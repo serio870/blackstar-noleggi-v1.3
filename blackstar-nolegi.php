@@ -1771,6 +1771,19 @@ function bsn_register_routes() {
         'callback'            => 'bsn_api_noleggi_rientro',
         'permission_callback' => 'bsn_check_admin',
     ]);
+
+    // NOLEGGI – DUPLICA
+    register_rest_route('bsn/v1', '/noleggi/duplica', [
+        'methods'             => 'POST',
+        'callback'            => 'bsn_api_noleggi_duplica',
+        'permission_callback' => 'bsn_check_admin',
+        'args'                => [
+            'id' => [
+                'required' => true,
+                'type'     => 'string',
+            ],
+        ],
+    ]);
 }
 
 // === STEP A1: Controllo permessi unico per tutta l'app ===
@@ -3229,9 +3242,13 @@ function bsn_api_noleggi_dettaglio( WP_REST_Request $request ) {
         'data_fine'      => $data_fine_iso,
         'stato'          => $n->stato,
         'note'           => $n->note,
+        'luogo_destinazione' => $n->luogo_destinazione,
+        'trasporto_mezzo'    => $n->trasporto_mezzo,
+        'cauzione'           => $n->cauzione,
+        'causale_trasporto'  => $n->causale_trasporto,
         'sconto_globale' => isset( $n->sconto_globale ) ? (float) $n->sconto_globale : 0.0,
         'articoli'       => $articoli_out,
-    ];
+    ]; 
 
     return rest_ensure_response( $response );
 }
