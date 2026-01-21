@@ -16,19 +16,31 @@ jQuery(document).ready(function($) {
     });
 
     // Utility per formattare i correlati nella tabella articoli
-    function bsnFormattaCorrelati(correlati_json) {
-        try {
-            var correlati = JSON.parse(correlati_json);
-            if (!Array.isArray(correlati) || correlati.length === 0) return '-';
-
-            var testo = correlati.map(function(c) {
-                return c.qty + 'x ' + c.nome;
-            }).join(', ');
-
-            return testo.length > 30 ? testo.substring(0, 30) + '...' : testo;
-        } catch (e) {
-            return 'JSON errore';
+   function bsnFormattaCorrelati(correlati_json) {
+        if (!correlati_json) {
+            return '-';
         }
+
+        var correlati = correlati_json;
+        if (typeof correlati_json === 'string') {
+            try {
+                correlati = JSON.parse(correlati_json);
+            } catch (e) {
+                return '-';
+            }
+        }
+
+        if (!Array.isArray(correlati) || correlati.length === 0) {
+            return '-';
+        }
+
+        var testo = correlati.map(function(c) {
+            var qty = parseInt(c.qty, 10) || 1;
+            var nome = c.nome || '';
+            return qty + 'x ' + nome;
+        }).join(', ');
+
+        return testo.length > 50 ? testo.substring(0, 50) + '...' : testo;
     }
 
     // Cache per ricerca nel form noleggi
@@ -1782,7 +1794,6 @@ $(document).on('keydown', '.bsn-noleggio-articolo-search', function(e) {
                             '<td>' + (n.stato || '') + '</td>' +
                             '<td>' + (n.articoli_riassunto || '-') + '</td>' +
                             '<td>' +
-                                                    '<td>' +
                         // Dettagli
                         '<button type="button" class="btn bsn-noleggio-details" title="Dettagli" ' +
                             'style="margin-right:3px;">🔍 Dettagli</button> ' +
