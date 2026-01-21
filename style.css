@@ -200,6 +200,7 @@ label {
     max-width: 160px;
     max-height: 160px;
 }
+
 @media print {
     #wpadminbar,
     #adminmenuwrap,
