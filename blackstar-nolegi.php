@@ -17,9 +17,9 @@ define('BSN_URL', plugin_dir_url(__FILE__));
  * Attivazione: crea tabelle
  */
 register_activation_hook(__FILE__, 'bsn_install_tables');
-function bsn_install_tables() {
-    global $wpdb;
-    $charset = $wpdb->get_charset_collate();
+function bsn_install_tables() {␊
+    global $wpdb;␊
+    $charset = $wpdb->get_charset_collate();␊
 
             // Clienti
     $table_clienti = $wpdb->prefix . 'bs_clienti';
@@ -92,6 +92,9 @@ $sql_articoli = "CREATE TABLE $table_articoli (
         operatore_richiesta varchar(50),
         operatore_verifica varchar(50),
         articoli longtext, -- JSON con qty + correlati espansi
+        rientro_dettagli longtext, -- JSON dettagli rientro
+        rientro_data datetime,
+        rientro_verificato tinyint(1) NOT NULL DEFAULT 0,
         totale_calcolato decimal(10,2),
         sconto_globale decimal(10,2) DEFAULT 0,
         note text,
@@ -109,6 +112,28 @@ $sql_articoli = "CREATE TABLE $table_articoli (
     dbDelta($sql_articoli);
     dbDelta($sql_noleggi);
 }
+
+/**
+ * Ensure rientro columns exist for existing installations.
+ */
+function bsn_maybe_add_rientro_columns() {
+    global $wpdb;
+    $table_noleggi = $wpdb->prefix . 'bs_noleggi';
+
+    $columns = [
+        'rientro_dettagli'   => "ALTER TABLE $table_noleggi ADD COLUMN rientro_dettagli longtext",
+        'rientro_data'       => "ALTER TABLE $table_noleggi ADD COLUMN rientro_data datetime",
+        'rientro_verificato' => "ALTER TABLE $table_noleggi ADD COLUMN rientro_verificato tinyint(1) NOT NULL DEFAULT 0",
+    ];
+
+    foreach ( $columns as $column => $sql ) {
+        $exists = $wpdb->get_var( $wpdb->prepare( "SHOW COLUMNS FROM $table_noleggi LIKE %s", $column ) );
+        if ( ! $exists ) {
+            $wpdb->query( $sql );
+        }
+    }
+}
+add_action( 'admin_init', 'bsn_maybe_add_rientro_columns' );
 
 // === STEP A2: Ruolo e capability per l'app noleggi ===
 function bsn_add_roles_and_caps() {
@@ -1598,7 +1623,7 @@ add_action('wp_enqueue_scripts', 'bsn_enqueue_assets');
  * Enqueue JS in admin per pagina Finalizza Noleggio
  */
 function bsn_enqueue_admin_finalizza( $hook ) {
-    // Carica solo sulle pagine admin dell'app (finalizza + rientro)
+    // Load only on app admin pages (finalizza + rientro).
     if ( $hook !== 'toplevel_page_blackstar-noleggi'
          && $hook !== 'noleggi_page_bsn-finalizza-noleggio'
          && $hook !== 'admin_page_bsn-finalizza-noleggio'
@@ -1607,24 +1632,22 @@ function bsn_enqueue_admin_finalizza( $hook ) {
         return;
     }
 
-    // CSS dell'app anche in admin, così vale @media print
     wp_enqueue_style(
         'bsn-style-admin',
-        BSN_URL . 'assets/css/style.css',
+        BSN_URL . 'style.css',
         [],
         BSN_VERSION
     );
 
-    // jQuery è già in admin, ma per sicurezza:
     wp_enqueue_script( 'jquery' );
 
-    // Script vuoto solo per avere BSN_API␊
-    wp_register_script(␊
-        'bsn-admin-finalizza',␊
-        '',␊
-        [ 'jquery' ],␊
-        BSN_VERSION,␊
-        true␊
+    // Empty script handle to localize BSN_API for inline admin JS.
+    wp_register_script(
+        'bsn-admin-finalizza',
+        '',
+        [ 'jquery' ],
+        BSN_VERSION,
+        true
     );
 
     wp_enqueue_script( 'bsn-admin-finalizza' );
@@ -1638,6 +1661,7 @@ function bsn_enqueue_admin_finalizza( $hook ) {
         ]
     );
 }
+
 add_action( 'admin_enqueue_scripts', 'bsn_enqueue_admin_finalizza' );
 
 /**
@@ -3672,13 +3696,27 @@ function bsn_api_noleggi_rientro( WP_REST_Request $request ) {
         );
     }
 
-    // Articoli rientro (tenuti per STEP C: stock/ticket)
+    // Articoli rientro salvati in colonna dedicata
     $articoli_rientro_json = wp_json_encode( $articoli );
+    $rientro_data = current_time( 'mysql' );
+    $rientro_verificato = 1;
+
+    foreach ( $articoli as $articolo ) {
+        $is_rientrato = ! empty( $articolo['rientrato'] );
+        $stato = isset( $articolo['stato_rientro'] ) ? (string) $articolo['stato_rientro'] : '';
+        if ( ! $is_rientrato || $stato !== 'ok' ) {
+            $rientro_verificato = 0;
+            break;
+        }
+    }
 
     // Aggiorna noleggio: stato -> chiuso, op_rientro_materiale
     $data_update = array(
         'stato'                => 'chiuso',
         'op_rientro_materiale' => $op_rient,
+        'rientro_dettagli'     => $articoli_rientro_json,
+        'rientro_data'         => $rientro_data,
+        'rientro_verificato'   => $rientro_verificato,
     );
 
     $where = array(
