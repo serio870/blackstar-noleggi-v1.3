@@ -1,0 +1,3525 @@
+voglio una applicazione WordPress da istallare e poi mettere semplicemente in una pagina inserendo il [codice di richiamo]
+
+sarà un programma per gestire i noleggio della mia azienda che è la black Star service srl di Brescia noleggio audio video luci ecc.. quindi comportati come un programmatore molto molto esperto e preparato che svolge ricerche anche sul proprio cliente al fine di fornire il servizio e il prodotto migliore e più adatto alle sue esigenze, facendo anche ricerche su software simili su cui attingere informazioni e spunti ( tipo rentman, gestirentve molti molti molti altri ) fai anche delle domande se non sono chiare delle dinamiche del programma e suggerisci cosa potrebbe mancare a un programma del genere, ricordati che è opportuno fare una sola volta il programma fatto bene piuttosto che fare correzioni e patch su patch quindi analizza bene e svolgi diligentemente quanto richiesto
+
+Ecco cosa deve avere e cosa deve fare
+
+-deve essere accessibile e utilizzabile solo da chi ha il grado di amministratore al sito quindi deve essere loggato
+
+deve avere una finestra di gestione dei clienti
+dove poter inserire la anagrafica del cliente o della azienda e che venga quindi archiviata,
+i campi devono quindi essere
+Nome o nominativo azienda (obbligatorio)
+cognome (non obbligatorio)
+codice fiscale o partita iva (obbligatorio)
+il numero di telefono (obbligatorio)
+indirizzo di residenza o della sede aziendale (via, cap, città)(non obbligatorio)
+la mail (obbligatoria perché poi dovrà inviare il riepilogo del noleggio via mail ogni volta che quel cliente noleggia qualcosa )
+categorizzazione del cliente (standard, fidato, premium, Service, collaboratori) di modo da applicarne la scontistica dedicata,
+la possibilità di caricare il documento di identità tramite webcam o tramite file sia fronte che retro, e il regime fiscale (esempio iva 22% ecc, metti semplicemente un campo che si chiamerà appunto regime fiscale e che noi completeremo con la percentuale di imposte previste per il suo regime da aggiungere al totale del suo noleggio) ovviamente i clienti creati devono essere modificabili
+
+
+una finestra di gestione del materiale dove deve essere possibile
+inserire l'articolo. con ovviamente il nome del articolo
+la tipologia (audio/video/luci/strutture/effetti speciali/altro) che sarà un eventuale filtro di ricerca..
+inserire il prezzo di noleggio
+poter editare 5 classi di sconto per ogni articolo (in base alla categorizzazione data a ogni cliente (
+le 5 classi sono : standard, fidato, premium, Service, collaboratori) e che dal nome univoco del articolo generi un QR stampabile e applicabile fisicamente sul articolo stesso che ne richiami i dati in fase di noleggio,
+una sezione note (tipo ammaccature ecc) , la possibilità di caricare 3o4 foto del articolo di modo che appunto se ci sono danni pregressi vengano documentati per ogni articolo, ogni articolo deve avere anche esso un report di chi lo ha noleggiato , per esempio se in magazzino manca una cassa. io vado a cercare chi è stata l'ultima persona a prendere quella cassa per esempio Syrincs12#3 (dove il numero dopo# sta per indicatare la terza delle casse uguali che abbiamo)
+ovviamente gli articoli creati devono essere modificabili.
+visualizzare chi ha noleggiato cosa in pratica se clicco sul prodotto specifico mi deve dire in ordine cronologico quale cliente è quando la ha noleggiata
+
+una finestra di gestione dei noleggi: dove viene richiamata l'anagrafica del cliente registrata precedentemente nella apposita finestra, la data di inizio noleggio, la data di restituzione
+dove si inserisca ogni articolo potendolo richiamare tramite nome o sparando il QR che avrà generato quel articolo durante l'inserimento nel database (quindi che compili in automatico il campo richiamando le info del articolo e vada quindi da solo alla riga successiva pronto per accogliere il successivo QR letto dalla sparacodici, ) sono necessari i campi del nome articolo (che sarà ovviamente quello che attingerà al database articoli) il prezzo , e un parametro quantità editabile (per esempio se diamo 10 cavi uguali ,non essendo un articolo dei quali ogni cavo ha un QR metteremo semplicemente manualmente la quantità, un caso ovviamente non venga scritto nulla nel campo quantità è da intendersi 1 pezzo ... non serve la immagine o altro.
+luogo di destonazione
+
+la firma digitale che verrà fatta tramite tablet o touchscreen con la possibilità di rifarla (pulendo quindi quel campo)
+e appena sotto una spunta obbligatoria con una scritta che sarà un link :(dichiaro di aver preso visione delle condizioni, privacy e del regolamento di noleggio) questa scritta deve puntare alla pagina : " https://www.blackstarservice.it/regolamento/ "
+
+poi metti il nome del operatore che ha fatto uscire il materiale editabile (obbligatorio)
+
+ovviamente il prezzo totale ovviamente calcolato in base ai giorni di noleggio , che deve seguire questo regola : se per esempio viene noleggiato oggi e restituito domani il prezzo viene calcolato per uno, se invece il noleggio è per più giorni si applica il noleggio scalare ovvero la radice quadrata dei giorni e il risultata va moltiplicato al prezzo che poi, viene scontato finale in base alla categoria assegnata al cliente (per esempio se un cliente fidato affitterà un articolo da 100€ che per la sua categoria ha uno sconto del 50% per 4 giorni il calcolo sarà √4(giorni) =2 x 100(valore articolo) = 200 - 50%(sconto categoria) = 100€
+segnala che i prezzi sono senza iva/imposte e quindi segnala anche quanto è l'iva o l'imposta da aggiungere al totale in base al regime fiscale che è salvato in anagrafica cliente e quindi fai il totale.
+
+metti anche un campo editabile con la voce "cauzione" e uno "con modalità di versamento"
+
+ovviamente una volta completato tutto questo documento deve essere salvato con un numero progressivo annuale (per esempio 2026/001) nel database, e possibile stamparlo o PDF in stile fattura o DDT e deve essere inviato come mail o come allegato appunto PDF (in base a cosa è più semplice e professionale ) via mail alla mail registrata del cliente, e alla mail : noleggi@blackstarservice.com
+oggetto : noleggio Black Star Service srl (e il numero progressivo)
+
+messaggio: in allegato il riepilogo del tuo noleggio, grazie per averci scelto
+
+e questi dati :
+*BLACK* STAR service srl
+
+*SEDE OPERATIVA* - Spedizioni e ritiri devono essere effettuate presso questo indirizzo:
+
+Via Cerca 28,
+25135, Brescia
+
+📞 Amministrazione : 3921135447
+📱Tecnico : 3201169791
+
+📧 : info@blackstarservice.it
+
+🖥️ : www.blackstarservice.com
+
+📍https://g.page/black-star-service-srl?gm
+
+*I NOSTRI ORARI SONO: DALLE 9:30 ALLE 12:30 e DALLE 14:30 ALLE 17:30*
+
+*SEDE LEGALE*
+Via Repubblica Argentina 54,
+25124, Brescia
+
+PI: 04130270988
+SDI : M5UXCR1
+--------fine messaggio mail-----
+
+
+la app deve anche
+indicare quanti noleggio sono in corso e quali (sia in un elenco e anche su un calendario) e che fino a che un noleggio non sia stato restituito venga segnalato come "in corso" anche se i giorni sono tecnicamente terminati.. anzi, se il cliente non ha ancora portato il materiale la scritta "in corso" deve essere in rosso, per poter concludere il noleggio deve essere necessario che un operatore manualmente clicchi per concludere il noleggio prmettendo di mettere il materiale con nuovo magazzino come disponibile, è quindi necessario inserire il nome del operatore che sta ritornando il materiale e dare conferma che sia rientrato tutto, mettendo quindi quel noleggio come completato ma all'occorrenza consultabile (deve essere anche registrato l'orario ecc.. questo perché se un operatore fa rientrare il materiale e dichiara che è tutto in ordine ma in realtà magari qualcosa mancava o era rotto ne è responsabile) eventualmente metti una spunta oltre al nome di chi fa rientrare il materiale che dichiari che l'operatore ha verificato il tutto.
+
+credo di aver detto tutto
+
+ho aggiornato il php 8.4.14
+
+Stato Attuale
+Clienti e Articoli salvano correttamente via AJAX nelle tabelle (es. wpgy_bs_clienti, wpgy_bs_articoli con prefisso wpgy_). Tabs responsive funzionanti, shortcode [blackstar_noleggi] ok solo per admin, API REST base (/bsn/v1/clienti, articoli) attive. Script.js aggiornato con caricamento liste e form base; debug correlati in corso senza errori critici.
+​
+
+Funzioni Implementate
+Shortcode [blackstar_noleggi] con tabs (Clienti, Articoli, Noleggi, Report) e loader iniziali.
+​
+
+Modulo Clienti: form (nome, CF/P.IVA, tel, email, indirizzo), salvataggio DB, lista tabella ID/nome/CF/tel/email, refresh automatico.
+​
+
+Modulo Articoli base: form (nome, codice, prezzo/giorno, qty, ubicazione), salvataggio DB, lista tabella, correlati salvati in JSON.
+​
+
+Database: tabelle wpgy_bs_clienti, wpgy_bs_articoli, wpgy_bs_noleggi, wpgy_bs_contatori create.
+​
+
+JS base: tabs switch, funzioni bsnCaricaClienti(), bsnCaricaArticoli(), submit form.
+​
+
+Funzioni Parzialmente Implementate
+Colonna Correlati negli Articoli: header presente in tabella, dati salvati in DB, ma visualizzazione formattata (bsnFormattaCorrelati) da fixare (riga ~228 script.js).
+​
+
+Bottone Clona Articoli: handler base con alert ID, da espandere per pre-compilare form e incrementare nome# (es. Truss#2).
+​
+
+Punto di Fermata
+Fermati al debug visualizzazione Correlati + test bottone Clona base (alert su click). Ultimo script.js condiviso dall'utente funziona per save/liste, ma manca chiamata corretta a bsnFormattaCorrelati e logica completa Clona; messaggi troncati per limiti lunghezza browser/app. Confermato: no errori PHP, clienti/articoli creabili/testati.
+​
+
+Funzioni Mancanti
+Completamento Articoli: visualizza Correlati formattati (es. "Cavo x1, RCA x1"), campi power/Ethernet, QR stampabile per codice.
+​
+
+Clonazione Articoli: logica completa (copia dati, incrementa suffisso nome# da contatore DB).
+
+Modulo Noleggi: form (cliente select, articoli+qty, date da/a, stato bozza/attivo/ritardo con colori grigio/verde/rosso), bozze non bloccano magazzino (solo alert "prenotato da X"), check sovrapposizioni.
+​
+
+Pricing: sconti auto % per qty/pacchetti, override manuale prezzo per articolo.
+
+Report/Calendario: vista sovrapposizioni articoli, statistiche realtime (noleggi attivi, ritardi), dashboard metriche, log attività.
+​
+
+PDF/Email: generazione PDF noleggio (dettagli, QR), invio email con allegato/link, checkbox verifica rientro ("operatore conferma tutto ok").
+​
+
+Ricerca/Filtri: su clienti/articoli/noleggi, ordinamento.
+​
+
+Avanzate: note clienti, posizione magazzino articoli, numerazione noleggi 2026/001, upload documenti.
+
+
+Riprendiamo da dove abbiamo lasciato quindi come sempre facciamo un recap:
+- stiamo facendo la app per il mio sito web , stiamo priprendendo esatamente da dove abbiamo lasciato, quindi esegui una analisi delel conversazioni passate dei link che ti ho messo e riprendiamo
+- ti ricordo che : devi comportarti come un programmatore esperto, che esegue comunque controlli e check per eseguire al massimo delle possibilitià ogni singola azione per avere il giusto risultato e facendo step by step e check by check 
+- e ti ricordo anche che non sono un esperto ne tanto meno con una IA quindi devi spiegarmi ogni volta cosa devo sostituire e dove , blocco per blocco o da commento a commento
+- e dammi il codice fatto per bene da incollare in Visual Studio Code, che ogni volta salv oe vado a sostituire al codice precedente per i test
+
+e il codice su cui stiamo lavorando attulemnte è visionabile a questi link, prendine memoria e consapevolezza precisa e ( subito dopo aver anche ri verificato tutte le utlime 4/5 conversazioni cominciamo)
+
+LINK DEL .PHP : 
+
+LINK DEL .JS :
+
+già che ci siamo cambiamo il nome a una etichetta label : da Ubicazione magazzino (scaffale/colonna) a Ubicazione magazzino (scaffale/colonna/ripiano)
+
+
+
+
+Ecco una sezione TODO pronta da copiare nel tuo README.md o in TODO.md.
+​
+
+TODO
+Gestione stati noleggio
+
+ Aggiungere endpoint REST dedicato per cambio stato noleggio (es. POST /bsn/v1/noleggi/stato).
+​
+
+ Validare le transizioni: bozza → attivo → chiuso → ritardo, con controlli sui permessi utente.
+​
+
+ Salvare orari reali di inizio/fine noleggio quando passa ad attivo/chiuso.
+​
+
+UI cambio stato in lista noleggi
+
+ Aggiungere colonna Azioni nella tabella noleggi con pulsanti rapidi per stato (es. “Attiva”, “Chiudi”, “Ritardo”).
+​
+
+ Implementare chiamata AJAX verso l’endpoint di cambio stato e refresh riga tabella.
+​
+
+ Mostrare messaggi di conferma/errore in caso di problemi nel cambio stato.
+​
+
+Modifica anagrafiche clienti
+
+ Aggiungere pulsante Modifica per ogni cliente in tabella.
+​
+
+ Pre‑compilare il form con i dati esistenti (nome, indirizzo, contatti, note) per modifica rapida.
+​
+
+ Gestire salvataggio aggiornato via AJAX (update invece di insert).
+​
+
+Modifica articoli/materiale
+
+ Aggiungere pulsante Modifica per ogni articolo nella tabella.
+​
+
+ Pre‑compilare il form articolo con tutti i campi (nome, codice, prezzo, quantità, ubicazione, note, correlati).
+​
+
+ Implementare update articolo via AJAX, mantenendo gestione correlati e clona.
+​
+
+Funzione “Clona articolo”
+
+ Rifinire funzione Clona per generare automaticamente codici tipo CDJ2000#1, CDJ2000#2, ecc.
+
+ Pre‑compilare il form della copia con stessi dati e nuova quantità se necessario.
+​
+
+Verifica disponibilità avanzata
+
+ Migliorare pulsante “Verifica disponibilità” per controllare sovrapposizioni senza salvare il noleggio.
+
+ Mostrare report dettagliato nel riquadro warnings (articoli in conflitto, date, quantità).
+​
+
+ Preparare la logica per famiglie/modelli (es. suggerire CDJ2000#2 se CDJ2000#1 è occupato).
+
+Gestione famiglie/modelli
+
+ Introdurre concetto di famiglia/modello per gruppi di articoli identici (CDJ2000, SM58, ecc.).
+
+ Consentire selezione per modello nel noleggio, con scelta automatica dell’unità fisica libera.
+
+Migliorie future interfaccia
+
+ Aggiungere pulsanti/modali per eliminare o disattivare clienti e articoli in sicurezza.
+​
+
+ Prevedere vista calendario/report per visualizzare noleggi e sovrapposizioni nel tempo.
+​
+
+ Valutare integrazione QR code e note “interne” per operatori.
+​
+
+Se vuoi, al prossimo giro si può partire proprio dal blocco “Gestione stati noleggio” e “UI cambio stato in lista noleggi”, e trasformare il primo gruppo di checkbox in codice reale.
+
+Ti propongo alcune evoluzioni utili, poi scegli tu da cosa partire:
+
+Calcolo automatico importi noleggio
+
+Totale = somma di 
+p
+r
+e
+z
+z
+o
+_
+g
+i
+o
+r
+n
+o
+×
+g
+i
+o
+r
+n
+i
+×
+q
+t
+y
+prezzo_giorno×giorni×qty per ogni articolo.
+​
+
+Possiamo mostrare sotto al form un riepilogo: “Totale giorni, Totale netto, eventuale sconto categoria, ecc.”.
+​
+
+Gestione stati noleggio più “operativa”
+
+Pulsanti rapidi in tabella: “Imposta attivo”, “Chiudi”, “Segna in ritardo”, collegati a una chiamata REST PATCH/POST che aggiorna solo lo stato.
+​
+
+Colorazione già ce l’hai (classi bsn-stato-*), si tratta solo di aggiungere azioni.
+​
+
+Filtro/ricerca nei noleggi
+
+Campi sopra la tabella: per stato, per cliente, per intervallo di date, così con JS filtri le righe già caricate.
+​
+
+Calendario disponibilità (step più avanzato)
+
+Visualizzare i noleggi su un calendario per vedere a colpo d’occhio quando un articolo è libero/occupato.
+​
+mettiamo il campo filtri.. per esempio che mi mostri in tabella solo gli stati  in noleggi attivi oppure bozze o ritardi ecc ( di modo che per esempio se l'operatore decide di vedere tutte le persone che sono in ritardo può farlo , e anche i campi di ricerca per nome.. materiale, lasso di date inizio+fine ecc
+TODO – Modulo Clienti
+ Creare colonne DB per:
+
+categoria_cliente (enum 5 categorie)
+
+regime_percentuale (DECIMAL)
+
+regime_note (VARCHAR)
+
+doc_fronte / doc_retro (URL immagini documento)
+​
+
+ Aggiornare bsn_api_clienti_post per:
+
+salvare categoria_cliente, regime_percentuale, regime_note, doc_fronte, doc_retro nelle rispettive colonne
+
+comporre l’indirizzo completo in un solo campo indirizzo
+
+ Aggiornare dettagli cliente JS per:
+
+mostrare categoria
+
+mostrare regime_percentuale + regime_note senza “undefined%”
+
+mostrare immagini documento da doc_fronte / doc_retro
+
+ Aggiungere upload documento via file + endpoint /upload-doc (Media Library)
+
+ Aggiungere scatto documento via webcam (fronte/retro) con getUserMedia + canvas.toBlob → /upload-doc
+​
+
+Da fare sui clienti (in futuro):
+
+ Implementare davvero Elimina cliente:
+
+endpoint REST DELETE o POST con azione delete su /clienti
+
+controllo per bloccare eliminazione se il cliente ha noleggi associati (o usare soft-delete)
+
+ Eventuale gestione modifica cliente anche lato PHP (UPDATE, non solo insert)
+
+TODO – Modulo Articoli (stato attuale / futuri miglioramenti)
+ Gestione articoli base con:
+
+nome, codice, prezzo_giorno, sconto_categoria, qty_disponibile, ubicazione, correlati, note
+
+ Integrare a pieno la logica correlati nel noleggio:
+
+quando aggiungi un articolo al noleggio, inserire automaticamente anche i correlati (cavi, accessori) con quantità suggerite
+
+ In futuro: gestione stato articolo (manutenzione/non disponibile) per bloccare noleggi in certe date
+
+TODO – Modulo Noleggi (da fare / completare)
+Obiettivo: usare davvero i dati dei clienti (categoria + regime fiscale) nel calcolo.
+
+ Quando selezioni un cliente nel form noleggio:
+
+recuperare categoria_cliente, regime_percentuale, regime_note del cliente
+
+tenerli come “snapshot” nel noleggio (per coerenza futura)
+
+ Calcolo prezzi noleggio per articolo:
+
+calcolare i giorni contabili (1 giorno se da oggi a domani; altrimenti moltiplicatore = radice quadrata dei giorni)
+
+prezzo_base × sqrt(giorni) come da tua regola
+
+applicare lo sconto in base a categoria_cliente (usando la colonna di sconto corretta per categoria, quando strutturiamo gli sconti per articolo)
+​
+
+ Calcolo totale noleggio:
+
+somma di tutte le righe nette
+
+calcolo IVA/imposta: totale_netto × (regime_percentuale / 100)
+
+totale lordo = netto + imposta
+
+riportare regime_note nel riepilogo/PDF
+
+ Integrare queste info nel PDF/Email riepilogo noleggio:
+
+indicare chiaramente: totale senza imposte, IVA/imposta (con percentuale e nota), totale con imposte
+
+TODO – Altre funzionalità previste (più avanti)
+ Elimina noleggio e/o gestione stati (bozza/attivo/chiuso/ritardo) già abbozzata:
+
+completare flusso di chiusura con operatore_rientro e spunta “verificato”
+
+ Vista calendario dei noleggi (per data e per articolo)
+
+ Reportistica:
+
+noleggi per cliente in intervallo date
+
+utilizzo articolo (giorni fuori magazzino, fatturato potenziale)
+
+ Log attività:
+
+chi crea/modifica/chiude noleggi
+
+chi modifica clienti/articoli
+
+Puoi salvare questo testo in un file “TODO Black Star Noleggi.txt”;
+
+ la formula del "noleggio scalare" e radice quadrata dei giorni di noleggio (escluso il primo ) * è la somma del totale degli articoli calcolati eccezioni
+
+ora te lo spiego per bene .. stai molto attento.. anche perchè dobbiamo aggiungere una modifica, una spunta nella tab clienti...
+
+facciamo esempio se una persona noleggia un videoproiettore e una cassa per un giorno ( ti ricordo che da oggi a domani è = a un giorno , da oggi a dopodomani 2 giorni. un pò come se si contassero " le notti" ) il prezzo è il totale degli articoli ( con tutti gli eventuali sconti categoria ecc già fatti) x 1 ...
+ma se per esempio gli stessi articoli vengono noleggiati per più di un giorno, per esempio 4 giorni consecutivi , il noleggio NON VA CALCOLATO PER 4 ma bensì si fa la radice quadrata dei giorni di noleggio in questo caso radice di 4 =2 .. quindi il tot del noleggio si moltiplica per la radice quadrata dei giorni superiori a 1 di noleggio
+
+ultimo esempio: abbiamo un utente categoria premium:
+affittta
+1 x proeittore da 40 € con sconto categoria premium 20% = 32€
+1 cassa da 90 €con sconto categoria premium 50% = 45€
+tot 77€
+il tutto noleggiato per 4 giorni .. quindi 77 x (√4) = 154
++ imposta dedicata la cleinte ( ipozziamo 22% di iva) è 154 + 22% =187.88
+chiaro ?
+Per implementarlo passo passo, bisogna:
+
+Aggiungere nel DB la colonna per il flag articoli (ALTER TABLE).
+
+Aggiornare il form Articoli con una checkbox “Applica noleggio scalare sui giorni”.
+
+Aggiungere nel form Noleggi la sezione “Extra manuali”.
+
+Aggiornare PHP (POST/UPDATE noleggi) e JS (preview) con la logica sopra.
+
+Se per te va bene questa impostazione, nel prossimo messaggio ti do:
+
+l’ALTER TABLE per wpgy_bs_articoli,
+
+il blocco HTML da aggiungere nel form Articoli per il flag,
+
+la nuova versione del calcolo in bsn_api_noleggi_post / update con:
+
+√giorni,
+
+separazione scalabili/non scalabili,
+
+somma extra manuali,
+
+imposta cliente da regime_percentuale,
+
+e poi lo snippet JS per gestire voci extra + preview.
+
+Da qui in avanti procediamo esattamente così:
+
+Prendiamo il PHP che hai incollato ora come “verità”, senza più riferirci a versioni vecchie.
+
+Ti propongo modifiche solo a blocchi precisi, sempre in questa forma:
+
+“cerca il commento X”
+
+“sostituisci da riga A a riga B con questo blocco”
+
+oppure “incolla questo blocco subito sopra/sotto questo commento”.
+
+Perfetto idea! Trasformiamo la preview in un mini documento di fattura/DDT che sia chiaro e professionale.
+
+Propongo questo layout (tipo DDT/Fattura):
+
+text
+╔═══════════════════════════════════════════════════════════════════╗
+║                    ANTEPRIMA NOLEGGIO                             ║
+╠═══════════════════════════════════════════════════════════════════╣
+║ CLIENTE: PROVADEL15gennaio (Categoria: PREMIUM)                   ║
+║ PERIODO: 16/01/2026 - 22/01/2026 (6 giorni, √6 ≈ 2,449)          ║
+║ REGIME FISCALE: 22%                                               ║
+╠═══════════════════════════════════════════════════════════════════╣
+║ ARTICOLI:                                                         ║
+╠════════════════════┬──────────┬────┬─────────┬──────────┬═════════╣
+║ Articolo           │ Prezzo   │Qty │ Fattore │ Sconto   │Subtotale║
+║ [Codice]           │ Giorno   │    │ Giorni  │ Cat.     │         ║
+╠════════════════════┼──────────┼────┼─────────┼──────────┼═════════╣
+║ Alto [ALTO#1]      │ €20,00   │ 3  │ Lineare │ -3%      │ €58,20  ║
+║ Basso [BASSO#1]    │ €10,00   │ 1  │ ×2,449  │ -5%      │ €23,27  ║
+╠════════════════════╧══════════╧════╧═════════╧══════════╧═════════╣
+║                                          SUBTOTALE: €81,47        ║
+║                                     REGIME 22%: +€17,92           ║
+║                                   TOTALE NOLEGGIO: €99,39         ║
+╚═════════════════════════════════════════════════════════════════════╝
+Campi che propongo di mostrare:
+
+Intestazione:
+
+Nome cliente + categoria cliente
+
+Date noleggio + giorni totali + √giorni
+
+Regime fiscale %
+
+Tabella articoli (una riga per articolo):
+
+Nome articolo + [codice]
+
+Prezzo giorno originale
+
+Quantità
+
+Fattore giorni (se scalare: √giorni, se no: "lineare")
+
+Sconto categoria (es. "-3%")
+
+Subtotale articolo (già calcolato con sconto e giorni)
+
+Riepilogo finale:
+
+Subtotale lordo
+
+Applicazione regime fiscale
+
+TOTALE NOLEGGIO
+
+---------------------------
+---------------------------- campo cauzione da compilarea a mano .. sapere se cash carta ecc --
+
+Prossimi step (come hai anticipato):
+
+✅ Anteprima noleggio (completato)
+
+⏳ Validazione noleggio (prima di firmare)
+
+⏳ Firma digitale (touchscreen o stampa)
+
+⏳ Privacy e modalità noleggio (checkbox)
+
+⏳ Documento finale (DDT/fattura)
+facciamo una altra cosa.. come sai la tabella articoli è molto indietro..
+abbiamo risolto molte cose come . ma mancano 2 cose fondamentali
+la prima
+un pò più scenografica
+la generazione del QR code tramite il codice del articolo, ovvero quello che una volta sparato con la pistola sparacodici andrà a popolare il campo "articoli nel noleggio" della tab noleggio
+e qui necessitiamo di 2 passaggi.. il primo
+mancano i pulsanti di editind e gestione degli articoli come : elimina, duplica e modifica sugli articoli creati,
+il secondo è accanto a codice nel modulo articoli un pulsante che faccia generare e stampare sulla etichettatrice il qr code.. in alternativa ti propongo una cosa forse più semplice ovvero un pulsante genera QR code nella stessa posizione di elimina, duplica e modifica sugli articoli creati, credo sia più funzionale e meno complicato. il QR CODE deve semplicemnte avere il codice articolo , esempio CDJ2000#1 sia in formato codice QR sia scritto in piccolo sotto di esso. hai domande ?
+
+Stato attuale:
+
+✅ Preview noleggio completa (clienti, date, articoli, regime, totali)
+
+✅ Calcolo noleggio scalare (√giorni) vs lineare (qty) funzionante
+
+✅ Tabella articoli con colonna "Azioni" e pulsante "📱 QR"
+
+✅ Modal QR code generato con libreria qrcode.js (CDN)
+
+✅ Pulsante stampa nel modal (funzionante)
+
+⏳ TEST ETICHETTATRICE (in corso - prima di modificare QR)
+
+File Gist aggiornati:
+
+PHP: https://gist.githubusercontent.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3/raw/blackstar-nolegi.php
+
+JS: https://gist.githubusercontent.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3/raw/script.js
+
+Gist completo: https://gist.github.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3
+
+Prossimi step (in ordine):
+
+Testare stampa QR con etichettatrice → raccogliere feedback modifiche
+
+Eventuali ajustamenti QR (dimensioni, formato, testo)
+
+Aggiungere pulsanti Elimina, Duplica, Modifica nella tabella articoli
+
+Implementare funzioni (endpoint PHP + JS per i 3 pulsanti)
+
+Creare pagina di validazione/firma noleggio (documento pre-firma)
+
+Aggiungere firma digitale touchscreen
+
+Checkbox privacy + modalità noleggio
+
+Generare documento finale (DDT/fattura con firma)
+
+Note importanti:
+
+QR è quasi perfetto, aspettare feedback etichettatrice prima di modifcare
+
+Regime fiscale cliente ora si salva e si legge correttamente (bug fixed)
+
+Label ubicazione articolo: "Ubicazione magazzino (scaffale/colonna/ripiano)" ✅
+
+------------------------------------------------------------------
+16 gennaio.. stiamo riprendendo il lavoro di ieri in merito alla applicazione per il gestionale di noleggio di blackstaservice.it
+
+ieri ti ho fatto fare un recap da inviarti ed eccolo qui.. ma prima ovviamente ti devo ri spiegare che ogni volta che modifichiamo il codice tu mi devi aiutare a trovare la parte da modificare e dare il codice da cambiare, sotituire, aggiungere ecc...-usando come coordinare da commento a commento e usando le porzione più intelligentemente grandi possibile ( per esempio se devo cambiare una parte poi saltare 2 righe e poi cambiare la parte sotto queste 2 righe , piuttosto dammi già la porzione fatta per bene con spazi e punteggiature e codice ordinato da incollare su visual studio code ) mi raccomando, qualora non ti ricordassi il codice devi chiedermi di inviarti tutto o parti di codice.. comportati come un programmatore esperto che deve speigare passo passo dove mettere e cosa e verificare perchè io non sono esperto...
+
+Stato attuale:
+
+
+✅ Preview noleggio completa (clienti, date, articoli, regime, totali)
+
+
+✅ Calcolo noleggio scalare (√giorni) vs lineare (qty) funzionante
+
+
+✅ Modal QR code generato con libreria qrcode.js (CDN)
+
+
+✅ Pulsante stampa nel modal (funzionante)
+
+
+⏳ TEST ETICHETTATRICE (in corso - prima di modificare QR)
+
+
+File Gist aggiornati:
+
+
+PHP: 
+https://gist.githubusercontent.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3/raw/574cec08cd7bece07a28aee88ec0742510d6791b/blackstar-nolegi.php
+
+JS: https://gist.githubusercontent.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3/raw/574cec08cd7bece07a28aee88ec0742510d6791b/script.js
+
+
+Gist completo: https://gist.github.com/serio870/54b4fcc01bc153fbf7de000e11ce22b3
+
+
+Prossimi step (in ordine): in alcuni trovi già anche le risposte
+
+
+Testare stampa QR con etichettatrice → raccogliere feedback modifiche
+(risposta : il qr sembra a posto ma deve essere portato al formato di stampa della brother p-touch D610BT che credo sia di altezza 180pixel ma devi controllare )
+
+
+Eventuali ajustamenti QR (dimensioni, formato, testo) (risposto sopra)
+
+
+Aggiungere pulsanti Elimina, Duplica, Modifica e clona nella tabella articoli ( il pulsante clona fa avanzare di un unità il codice articolo , esempio ho un CDJ2000#1 , clonandolo mantiene tutte le info dell'articolo ma avrà nome CDJ2000#2  ...... valutare un automatismo per fare si che il campo codice generi senza in automatico il codice all'inserimento del nome articolo .. per esempio appunto se scrivo CDJ2000 nel campo nome articolo, il campo codice si compili o semplicemente generi il coide CDJ2000#1 da qualche parte ( possibilmente editabile )
+
+
+Implementare funzioni (endpoint PHP + JS per i 3 pulsanti)
+
+Aggiungere campi operatore ( 3 campi per la parte pre noleggio : log operatore oppure compilazione manuale stillazione documento ,log operatore oppure compilazione manuale preparazione materiale, log operatore oppure compilazione manuale consegna materiale,) ( e un campo log operatore oppure compilazione manuale quando rientra il materiale, quindi quando viene cambiato lo stato in "terminato") questo serve a chi è l'operatore che fa l'elenco dei materiali, chi li prepara, chi li consegna e chi li ritira ( che è anche l'incaricato di testare i materiali) se hai suggeriemnti al riguardo valuto le rue opzioni di gestione di questi eventi
+
+Creare pagina di validazione/firma noleggio (documento pre-firma)
+( che contiene molti dati da valutare ancora quindi quando sarà il momento fammi l'elenco delle possibili info che voglio nel documento)
+
+Aggiungere firma digitale touchscreen
+
+
+Checkbox privacy, uso dati personali + modalità noleggio
+
+
+Generare documento finale (stile DDT/fattura con firma)
+
+
+Note importanti:
+
+
+QR è quasi perfetto, aspettare feedback etichettatrice prima di modifcare
+(già dette sopra)
+
+Regime fiscale cliente ora si salva e si legge correttamente (bug fixed)
+
+
+Label ubicazione articolo: "Ubicazione magazzino (scaffale/colonna/ripiano)" ✅
+
+-----------------------------
+Ecco il TODO completo da incollare domani per riprendere esattamente da qui (includi tutto questo blocco nel primo messaggio):
+
+TODO per domani – Black Star Noleggi
+Contesto attuale (non modificato dopo le 22:45)
+
+Plugin personalizzato con:
+
+Shortcode [blackstar_noleggi] che ora permette accesso a Administrator + Editor via current_user_can('manage_options') || current_user_can('edit_others_posts').
+
+Funzione bsn_check_admin() allineata: stessa logica di permesso per le REST API.
+
+REST API:
+
+CLIENTI: GET /clienti, POST /clienti, POST /clienti/delete.
+
+ARTICOLI: GET /articoli, POST /articoli, PUT /articoli, POST /articoli/delete, POST /articoli/clone.
+
+NOLEGGI: GET /noleggi, POST /noleggi, POST /noleggi/update, POST /noleggi/stato, POST /noleggi/duplica, POST /noleggi/delete, GET /noleggi/dettaglio.
+
+JS script.js:
+
+Cache BSN_CLIENTI_CACHE e BSN_ARTICOLI_CACHE.
+
+CRUD completo lato UI per Clienti, Articoli, Noleggi (crea, modifica, duplica/clona, elimina).
+
+Form noleggi con:
+
+ricerca clienti,
+
+ricerca articoli (autocomplete per nome/codice),
+
+funzione bsnCalcolaTotaleNoleggio() (noleggio scalare, sconti per categoria, regime fiscale, preview).
+
+duplicazione noleggio, cambio stato, dettagli, modifica.
+
+QR articoli:
+
+bottone QR in tabella articoli,
+
+modal con anteprima QR,
+
+finestra di stampa etichetta (layout ancora grezzo).
+
+Webcam documenti fronte/retro (desktop e mobile, via getUserMedia).
+
+Limitazione liste a ~12 record (clienti, articoli, noleggi) solo in render HTML (il resto è in cache).
+
+CSS:
+
+nuovo style.css con:
+
+#bsn-app centrato, max-width 1200px, box-shadow, padding.
+
+tab responsive, form style, colori stati noleggi.
+
+tabelle con scroll orizzontale su mobile.
+
+pulsanti dimensionati per mobile.
+
+modal QR abbassato rispetto all’header.
+
+NON ancora fatto:
+
+blocco dell’ENTER nel wrapper “articoli noleggio” (quindi ora l’INVIO della pistola può ancora far scattare il submit del form noleggio).
+
+automatismi avanzati legati alla pistola nel blocco articoli (es. auto creazione nuova riga).
+
+Scanner Inateck BCST‑23:
+
+configurato con keyboard layout corretto (es. Italian).
+
+ora legge correttamente il carattere #.
+
+confermato che dopo il codice invia automaticamente un ENTER (CR/CRLF).
+
+Obiettivo principale per domani: flusso pistola → articoli nel noleggio
+
+Bloccare l’ENTER nel blocco articoli noleggio per evitare che la pistola faccia “Salva noleggio”:
+
+Aggiungere in script.js (sezione NOLEGGI) un handler tipo:
+
+js
+$(document).on('keydown', '#bsn-noleggio-articoli-wrapper input', function(e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        e.preventDefault();
+        // qui metteremo la logica avanzata
+        return false;
+    }
+});
+Metterlo prima del $('#bsn-form-noleggio').on('submit', ...).
+
+Definire il flusso “scan → riga articolo”:
+
+Comportamento desiderato quando la pistola legge il QR in una riga “articolo noleggio”:
+
+scrive il codice nel campo .bsn-noleggio-articolo-search,
+
+la nostra logica di ricerca (già presente sull’evento input) trova l’articolo in BSN_ARTICOLI_CACHE,
+
+con ENTER (della pistola):
+
+se c’è un match unico:
+
+imposta automaticamente .bsn-noleggio-articolo-id con l’ID,
+
+chiude il box risultati,
+
+eventualmente conferma la quantità (default 1),
+
+crea una nuova riga articolo e sposta il focus sulla nuova riga pronta per il prossimo scan.
+
+se ci sono più match (in teoria no, se il codice è univoco), valutare un fallback semplice (ma prima ipotizziamo codice univoco).
+
+Modificare/estendere il codice esistente per:
+
+agganciare un handler specifico su keydown/keyup Enter nel campo .bsn-noleggio-articolo-search,
+
+riusare la funzione già usata nel click .bsn-risultato-articolo per selezionare l’articolo giusto,
+
+chiamare il codice che genera una nuova riga (#bsn-noleggio-articolo-add click) via JS.
+
+Gestire quantità e casi particolari:
+
+decidere se la pistola deve sempre usare quantità 1 (default), oppure se userai un campo separato per la qty.
+
+per domani, default: qty = 1, modificabile a mano se necessario.
+
+Obiettivo secondario: rifinitura QR + etichetta Brother
+
+Verificare QR code:
+
+con scanner BCST‑23 appena sistemato, testare lettura di un QR stampato “reale”:
+
+CDJ2000NXS2#1, ELX115#1, ecc.
+
+confermare che la stringa sul PC è identica a quella nel codice (nessuna sostituzione caratteri).
+
+Regolare layout stampa etichetta:
+
+rivedere la finestra di stampa:
+
+js
+printWindow.document.write('<div class="bsn-print-wrapper">');
+// QR
+// Label sotto
+obiettivo:
+
+QR dimensionato correttamente per etichette Brother 24mm,
+
+testo codice in una sola riga, leggibile, non tagliato / non “deformato”,
+
+layout centrato o allineato come preferisci (es. QR in alto a sinistra, codice sotto).
+
+Possibile aggiunta CSS specifica stampa:
+
+usare regole @media print per margini minimi, nessun bordo, dimensione precisa.
+
+Obiettivo terziario (se rimane tempo): UI mobile
+
+Verifica dal telefono:
+
+che le tabelle (clienti, articoli, noleggi) siano scrollabili in orizzontale,
+
+che i pulsanti siano tappabili comodamente,
+
+che il modal QR compaia sotto l’header, non tagliato.
+
+Se qualcosa non va, piccole patch CSS mirate.
+
+Nota importante per l’assistente
+
+NON sono stati ancora applicati:
+
+il blocco ENTER nel wrapper articoli,
+
+nessuna logica JS avanzata legata all’ENTER della pistola.
+
+Il codice PHP e JS che hai visto finora è l’ultimo stato funzionante; ripartire da quello.
+
+La pistola Inateck BCST‑23 ora ha layout tastiera corretto e legge # correttamente.
+
+Se incolli questo TODO nel primo messaggio domani, si può riprendere direttamente da:
+
+bloccare ENTER nel blocco articoli noleggio,
+
+progettare e implementare il flusso “scan QR → riga articolo → nuova riga”,
+
+poi rifinire QR/etichetta.
+
+Estendere i DETTAGLI NOLEGGIO per mostrare anche UBICAZIONE e CORRELATI degli articoli, non solo nome/codice/qty.”
+
+i dettagli funzionano, ti chiedo solo una informazione, è possibile vedere i dettagli in forma di tabella ? purtroppo non ti è chiaro il concetto di validazione che avevamo in mente dopo ti rinfresco la memoria ma per ora dimmi se possibile cliccare sui dettagli di noleggio e visualizzare in formato tabella semplice e magari stampare quella tabella ( includendo nella stampa anche le info che attualmente sono visibili già senza cliccare dettagli per esempio ID , cliente, date, stato ( gli articoli sarebbero già nella tabella con i dettagli quindi metterli 2 volte sarebbe ridondante ) 
+colgo occasione anche per rinfrescarti cosa intendo con VALIDAZIONE
+è quel passaggio di stato da bozza ad attivo nel quale generiamo un qualcosa simile a un DDT o fattura con ovviamente tutti i dati compilati nella parte noleggio e il cliente tramite touchscreen ( tablet o altro touch )   dove spunta la casella di presa visione regole noleggio, privacy, uso dati personali , e poi il cliente firma appunto su touchscreen validando viene generato un PDF che viene mandato alla mail del cliente ( email registrata in fase di generazione di esso nella tab clienti ) e alla mail [noleggi@blackstarservice.it](mailto:noleggi@blackstarservice.it)  e ovviamente archiviato nel database , quindi consultabile.. ti dico cosa manca sotto forma di elenco e quindi cosa dobbiamo fare oggi, cerco di usare una logica nel descriverti gli eventi ma se ritieni sia opportunno fare prima una cosa e poi una altra va bene 
+
+DOBBIAMO:
+- spostare i campi data inizio e data fine sulla stessa riga , ora sono uno sotto altro ma il campo è "piccolo" non ha senso averlo così è meglio uno accanto allaltro
+- aggiungere il campo : "luogo di destinazione" (semplice campo editabile)
+- aggiungere il campo : "Trasporto a mezzo" ( semplice campo editabile )
+- aggiungere il campo "cauzione" ( semplice campo di testo poi la operatrice deciderà cosa scrivere)
+- aggiungere il campo : "Causale di trasporto"
+- ti ricordo che avevamo parlato di poter editare i prezzi in casi specifici,  qui nella tabella "noleggi" . il risultato che voglio ottenere è questo : alla voce "articoli a noleggio " che funziona mettendo il nome o scansionando il qr , intanto diminuiamo la lunghezza di questo campo ( tanto i codici e i nomi degli articoli sono sempre brevi , e mettiamo un campo "prezzo" di quel singolo articolo ma che si auto compila quando appunto mettiamo l'articolo o lo scansioniamo, e compare ovviamente il prezzo di riferimento salvato nella tabella articoli, quel campo però è editabile e va a sostituire l'eventuale prezzo nella tabella che si genera.. esempio pratico : scansiono un articolo , (il comportamento della scansione rimane invariato, semplicemente si posiziona come ora nella riga successiva degli articoli per aspettare il nuovo codice) compare articolo, e nel campo prezzo compare il prezzo, se quel prezzo vogli oper qualche motivo cambiarlo, lo posso editare . in più dopo possiamo fare un semplice campo in più ( chiamato "sconto") che mettendo una cifra fa diminuire il totale  ,ti faccio un esempio : sai già che ma mano che mettiamo articoli ecc compare una bellissima tabella di anteprima  ben fatta e ben calcolata , (quella potrebbe essere una base per la tabella futura di validazione ) . dobbiamo prevedere un campo che potrebbe comparire sotto " totale noleggio" della tabella, che  è : " sconto" ovvero se il totale incluso tasse ecc dovesse per esempio essere 1001,34€ , se io compilo -1,34 mi porta il totale a 1000, adesso abbiamo:
+_subotale
+_regime
+_totale noleggio
+(qualora compilassimo la casella sconto ) compare : _Sconto
+_ (ed in fine ) _ nuovo totale
+
+- - una volta che abbiamo tutte queste belle cose e tutti questi dati creare il pulsane di validazione di noleggio, ovvero quello che genera il documento stile DDT / fattura , che richiami tutta una serie di dati che sto per dirti e appunto presenti al cliente in forma riassuntiva il suo noleggio spunti le calusole che ti ho detto prima e appone digitalmente la firma e poi sia stampabile
+
+-- i dati cha devono comparire in tabella sono i seguenti :
+- logo lo ho già in galleria sul sito al [http://www.blackstarservice.it/wp-content/uploads/2021/04/logo-1500px-1.jpg](http://www.blackstarservice.it/wp-content/uploads/2021/04/logo-1500px-1.jpg)
+- nostre info aziendali classiche ( Sede Legale Via Repubblica Argentina, 54 -25124 Brescia
+Sede Operativa Via Cerca 28 - 25135 Brescia
+Partita Iva 04130270988)
+-che tipo di documento è : ( DOCUMENTO DI RESPONSABILITA'
+DOCUMENTO DI TRASPORTO
+(D.P.R. 472 del 14-08-1996 - D.P.R. 696 del 21-12-1996))
+- ovviamente il nome del cliente ( dato che hai già dalla tab clienti )
+- il suo numero di telefono ( dato che hai già dalla tabo clienti )
+- il suo cf o p.iva ( dato che hai già dalla tab clienti)
+- numero del documento (dobbiamo aggiungerlo come campo nella tab clienti )
+- Data del documento ( ovvero la data di quando viene creato questo documento gg/mm/aaaa)
+- "luogo di destinazione" compilato con quanto scritto dall'operatore nella tab noleggi
+-  "Trasporto a mezzo" compilato con quanto scritto dall'operatore nella tab noleggi
+- "cauzione" compilato con quanto scritto dall'operatore nella tab noleggi
+- "Causale di trasporto" compilato con quanto scritto dall'operatore nella tab noleggi
+ poi la bella tabella del materiale con i dati esattamente come creata durante l'anteprima del noleggio ( quindi articolo , prezzo, qty, fattore, sconto, subtotale, ubicazione, correlati )
+poi sotto i calcolini di subtotale , regime. totale noleggio e qualora applicato sconto e nuovo totale
+- data del noleggio dal: gg/mm/aaaa -  al: gg/mm/aaaa (anche questo dato già visibile ecc
+- categoria cliente
+- firma o log operatore uscita
+- firma o log operatore rientro
+
+altra correzione da fare, se aumento le quantità del materaile nella tabella anteprima e poi anche quella di validazione devono aumentare esponenzialmetne anche il numero dei correlati ,(esempio se una americana ha 4 ovetti e 8 spine, il qty di 2 americane avrà 9 ovetti 16 spine ) 
+
+se hai consigli su cosa altro aggiungere dimmi pure
+
+Per arrivare a una beta mostrabile ai colleghi in tempi rapidi, la sequenza realistica è:
+
+Form noleggio – layout e nuovi campi
+
+Mettere data inizio e data fine sulla stessa riga.
+
+Aggiungere campi:
+
+“Luogo di destinazione” (input testo).
+
+“Trasporto a mezzo” (input testo).
+
+“Cauzione” (input testo, libero).
+
+“Causale di trasporto” (input testo).
+
+Righe articoli – prezzo editabile e sconto globale
+
+Aggiungere nella riga articoli un campo “prezzo” per singolo articolo:
+
+si auto-compila con il prezzo dell’articolo quando selezioni/scanni,
+
+è editabile per sconti speciali/casi particolari,
+
+il calcolo della preview usa questo prezzo “di riga” se presente.
+
+Aggiungere sotto la preview:
+
+campo “Sconto” (valore in euro, positivo o negativo)
+
+aggiornare la preview con “Sconto” e “Nuovo totale” dopo lo sconto.
+
+Dettagli noleggio – tabella + stampa “light”
+
+Trasformare i dati che già mostri in dettagli in una tabella semplice.
+
+Aggiungere un pulsante “Stampa Dettaglio” che:
+
+apre una finestra con layout pulito (logo, dati cliente, tabella articoli, totali),
+
+richiama window.print() (PDF/stampa).
+
+Validazione “vera” (firma + PDF + email)
+
+Progettarla e iniziarla, ma è probabile che serva almeno un’altra sessione:
+
+memorizzazione extra (numero documento cliente, info PDF),
+
+interfaccia di firma,
+
+generazione PDF (lato PHP),
+
+invio email.
+
+Con questi passi, domani puoi già far vedere:
+
+flusso pistola stabile,
+
+dettagli noleggio ricchi,
+
+form noleggio più completo (destinazione/trasporto/cauzione/causale),
+
+gestione prezzi riga + sconto globale,
+
+una stampa di dettaglio “light” che somiglia molto al futuro documento di validazione.
+
+si.. allora giusto un paio di implementazioni e un pò di "ordine" spostiamo qualche campo e aggiungiamo quelli che mancano alle tab
+
+tab noleggi:
+mettiamo ... le voci della tabella "Luogo di destinazione", "Trasporto a mezzo", sulla stessa riga
+poi, stessa cosa per "cauzione" e "causale di trasporto"
+
+tab clienti :
+mettiamo le voci "Nome e cognome / Ragione sociale" e "CF / P.IVA " sulla stessa riga ( e non una sotto l'altra ) e spostiamo anche accanto a destra "categoria cliente" tanto è un campo piccolo e dovrebbe starci tutto
+poi stessa riga anche per le voci telefono, E-mail
+stessa riga anche per voci indirizzo, cap, e città
+stessa riga per " Regime fiscale (%) " e "Regime fiscale - note"
+stessa riga anche per Documento identità (fronte) e Documento identità (retro)
+in fine aggiungiamo i campi : tipo di documento ( esempio carta identità, patente . passaporto oppure un menù a tendina con i documenti validi ai fini legali / fiscali ) e accanto aggiungiamo sulla stessa riga il numero del documento...
+
+tab Articoli
+facciamo un pò di logica di spazio anche qui
+- nome articolo e codice : stessa riga
+- prezzo per giorno e quantità : stessa riga e aggiungiamo sulla stessa riga tra le 2 voci una nuova voce che è : VALORE DEL BENE ( questa voce deve comparire in tabella di validazione ma non viene calcolata è solo una voce "psicolocica" per far capire il valore del materiale , per ora mettiamola come dato )
+- se ci stannosu una soal riga Sconto STANDARD (%) - Sconto FIDATO (%) - Sconto PREMIUM (%) - Sconto SERVICE (%) - Sconto COLLABORATORI (%)
+come appena detto tutti stessa riga in alternativa accetto proposte
+
+in caso, dato che siamo in ballo , consigliami anche un delle voci delle quali mi sto scordando
+
+TODO COMPLETO - Black Star Noleggi Beta
+✅ COMPLETATO OGGI:
+ Database: colonne tipo_documento e numero_documento create
+
+ Layout form clienti: campi su righe ottimizzate
+
+ Layout form noleggi: campi logistica su 2 righe
+
+ Sconto globale: funziona nel calcolo
+
+ Tab: funzionano correttamente (Clienti/Articoli/Noleggi)
+
+ Canvas webcam: scatta foto (salvano in media WordPress)
+
+ Noleggi: si salvano correttamente
+
+🔴 DA SISTEMARE URGENTE:
+1. CLIENTI - Salvataggio campi documento
+Problema: tipo_documento e numero_documento non si salvano nel database (restano vuoti)
+Causa: JavaScript non invia questi campi al server
+Fix: Aggiungere campi nel JavaScript script.js nella funzione submit form clienti
+
+2. CLIENTI - Modifica crea duplicato
+Problema: Quando modifichi un cliente esistente, ne crea uno nuovo invece di aggiornarlo
+Causa: JavaScript non gestisce UPDATE, solo INSERT
+Fix: Modificare JavaScript per distinguere creazione/modifica e chiamare endpoint UPDATE
+
+3. CLIENTI - Dettagli incompleti
+Problema: Click su "Dettagli" mostra solo: Nome, Indirizzo, Categoria, Regime fiscale
+Mancano: CF/P.IVA, Telefono, Email, Tipo documento, Numero documento, Link foto documenti
+Fix: Modificare JavaScript funzione dettagli cliente per mostrare tutti i campi
+
+4. CLIENTI - Link foto nei dettagli
+Problema: Foto webcam salvano in WordPress ma non appaiono nei dettagli cliente
+Fix: JavaScript deve salvare URL foto nel database (campi doc_fronte e doc_retro) e mostrarle nei dettagli
+
+🟡 DA IMPLEMENTARE (richiesto oggi):
+5. ARTICOLI - Layout form
+Da fare: Riorganizzare campi form articoli su righe ottimizzate:
+
+Nome + Codice: stessa riga
+
+Prezzo/giorno + VALORE DEL BENE (nuovo) + Quantità: stessa riga
+
+Tutti 5 sconti categoria: stessa riga (o 2 righe se non stanno)
+
+6. ARTICOLI - Pulsante Dettagli
+Problema: Manca pulsante "Dettagli" per vedere tutti i dati articolo
+Fix: Aggiungere pulsante e popup/espansione con tutti i campi
+
+🟢 MIGLIORAMENTI CSS:
+7. Label grassetto
+Problema: I label dei form non sono più in grassetto
+Fix: Aggiungere CSS nel file assets/css/style.css
+
+📊 STATO FUNZIONALITÀ:
+Funzionalità	Stato
+Tab switching	✅ OK
+Noleggi salvataggio	✅ OK
+Noleggi calcolo totale	✅ OK
+Noleggi sconto globale	✅ OK
+Noleggi anteprima	✅ OK
+Articoli CRUD	✅ OK (crea/elimina/clona)
+Clienti creazione	⚠️ Parziale (mancano campi documento)
+Clienti modifica	❌ Crea duplicato
+Clienti dettagli	⚠️ Incompleti
+Webcam scatto	✅ OK
+Webcam salvataggio DB	❌ Non salva
+Layout Articoli	❌ Non fatto
+⏰ PRIORITÀ per DOMANI MATTINA:
+Fix JavaScript clienti (tipo_documento, numero_documento, modifica, dettagli)
+
+Fix foto webcam (salvare URL in database)
+
+Layout Articoli + campo VALORE DEL BENE
+
+CSS grassetto label
+
+Tempo stimato: 2-3 ore
+
+Buonanotte e ci sentiamo domani mattina! 🌙
+
+Perfetto! Ho creato l'applicazione completa per la gestione noleggi BlackStar Service con tutte le funzionalità richieste:
+
+✅ Completato:
+📋 Entities (Database):
+
+Cliente (con documenti, categorie, regime fiscale)
+Articolo (con sconti per categoria, QR code, ubicazione, noleggio scalare)
+Noleggio (con validazione, firma, PDF, gestione rientro)
+🎨 UI Completa:
+
+Layout professionale con tabs navigabili
+Pagine: Clienti, Articoli, Noleggi, Report
+👥 Gestione Clienti:
+
+Form completo con tutti i campi richiesti
+Upload documenti identità (fronte/retro) con webcam o file
+Categorie con sconti differenziati
+📦 Gestione Articoli:
+
+Form con prezzi, sconti per categoria, ubicazione
+QR Code generato e stampabile
+Funzione "Clona" per duplicare articoli (es. CDJ2000#1 → #2)
+Flag noleggio scalare (√giorni)
+📄 Gestione Noleggi - Cuore del Sistema:
+
+Creazione noleggio con selezione cliente e articoli
+Scanner QR Code integrato per aggiungere articoli rapidamente
+Calcolo automatico scalare: giorni normali o √giorni per articoli marcati
+Sconti categoria applicati automaticamente
+Sconto globale manuale
+Regime fiscale automatico
+📋 Anteprima Documento:
+
+Layout professionale stile DDT/fattura
+Tabella articoli con: codice, descrizione, qty, fattore giorni, sconto, totale
+Ubicazione e correlati visibili
+Totali con regime fiscale
+✍️ Validazione con Firma Digitale:
+
+Checkbox: condizioni noleggio, privacy, uso dati personali
+Canvas firma touchscreen (react-signature-canvas)
+Generazione PDF automatica (jsPDF + html2canvas)
+Invio email automatico a cliente e noleggi@blackstarservice.it
+Passaggio da "bozza" → "attivo"
+📥 Gestione Rientro Materiale:
+
+Inserimento operatore
+Spunta "materiale verificato"
+Timestamp salvato
+Chiusura noleggio → stato "chiuso"
+📊 Report & Statistiche:
+
+Dashboard con KPI: totale clienti, articoli, noleggi attivi, in ritardo
+Incassi chiusi
+Top 5 clienti per numero noleggi
+🎯 Dati di Esempio:
+
+3 clienti con categorie diverse
+5 articoli professionali (CDJ, mixer, casse, luci, cavi)
+L'app è pronta all'uso, mobile-friendly e pensata per operatori non informatici. Tutti i workflow operativi funzionano come richiesto!
+
+tab Articoli
+facciamo un pò di logica di spazio anche qui
+- nome articolo e codice : stessa riga
+- prezzo per giorno e quantità : stessa riga e aggiungiamo sulla stessa riga tra le 2 voci una nuova voce che è : VALORE DEL BENE ( questa voce deve comparire in tabella di validazione ma non viene calcolata è solo una voce "psicolocica" per far capire il valore del materiale , per ora mettiamola come dato )
+- se ci stannosu una soal riga Sconto STANDARD (%) - Sconto FIDATO (%) - Sconto PREMIUM (%) - Sconto SERVICE (%) - Sconto COLLABORATORI (%)
+come appena detto tutti stessa riga in alternativa accetto proposte
+
+ora passiamo all parte più importante , la finalizzazione...
+di base come funziona,,, è un applicazione " condivisa" 
+la amministrazione si occupa per po più di caricare clienti e articoli e fare bozze dei noleggi
+il magazzino di implementare il magazzino articoli e mettere i qr, nonchè di spararli quando prepara gli oridini.. ma tutto questo è in fase di bozza...
+la cosa che a noi interessa è : .. quando arriva un cliente di finalizzare il noleggio..
+ovvero presentargli il riepilogo dell'ordine i formato stile ddt , con tutte le informazioni che servono e tramite un tablet farglielo firmare e poi generare un file stampabile formato A4.... e qui abbiamo 2 opzioni..
+o nella tab noleggi miglioriamo le informazioni nella "anteprima noleggio" rendendolo più stile documento, con le informazioni ordinate in caselle belle tipo documetn o fattura o documetn o ddt ( inteso tutte e tutte le info utili  ai fini fiscali e di sicurezz ) come ad esempio:
+logo aziendale ( già presente nei media del sito di grandezza 1558 x 435 ma posso rifarl oa dimensioni minori ovviamete al : http://www.blackstarservice.it/wp-content/uploads/2021/04/logo-1500px.jpg )
+intestazione aziendale:
+Sede Legale Via Repubblica Argentina, 54 -25124 Brescia
+Sede Operativa Via Cerca 28 - 25135 Brescia
+Partita Iva 04130270988
+ doc responsabilità e doc di trasporto ai sensi
+(D.P.R. 472 del 14-08-1996 - D.P.R. 696 del 21-12-1996)
+
+Cliente: 
+CF/P.IVA: 
+telefono cliente
+Email :
+numero e tipo di documento cliente
+Categoria: ( inteso quella legata alla scontistica .. stanadrd, premium ecc ) 
+Periodo di noleggio o di responsabilità: dal --- al
+Note cliente: 
+Luogo destinazione: 
+Trasporto a mezzo: 
+Cauzione:
+Causale trasporto:
+ ---- poi sotto tutta la tabella articoli perfetta esattamente cosi come è con i suoi calcolini ecc ( da aggiungere solo colonna valore del bene che non influisce su nessun calcolo )
+subtotale , regime, totale noleggio totale finale sconti ecc perfetto cosi come già lo vedo
+ma in fondo
+:  e mettiamo 
+- casella spunta : trattenendo dati personali e privacy ( che è un link alla pagina : https://www.blackstarservice.it/privacy/ )
+- casella spunta : presa visione modalità di noleggio e responsabilità ( che è un link alla pagina : https://www.blackstarservice.it/modalita-noleggio/ )
+- casella firma per la presa di responsabilità del noleggio ( campo touchscreen per firma da touchscreen o tablet
+e campi da compilare con :
+operatore preparazione documento : ( campo di testo )
+operatore preparazione materiale : ( campo di testo )
+Operatore consegna materiale : ( campo di testo )
+Operatore rientro del materiale che ne certifica la corretta consegna : (campo di testo )
+e una volta validato il noleggio passa in stato "attivo" in automatico 
+e genera un documento stampabile, nonché invia mail al cliente (usando il campo compilato nella tab clienti) e alla mail : noleggi@blackstarservice.it 
+
+oppure .. tutto quanto sopra citato , apre una nuova tabella.. una pagina o altro .. qualsiasi cosa sia intelligente fare 
+
+ora analizza questa richiesta e mettiala nei todo, anzi generale uno da copiare,
+poi :
+dimmi se mi sono dimenticato qualcosa o hai suggerimenti sui campi e sulle modalitò di generazione di questo passaggio e documento
+
+Serve implementare un vero flusso di finalizzazione con un documento stile DDT/contratto, firma e PDF/email.
+​
+
+To‑do da copiare
+Obiettivo: aggiungere una fase di “finalizzazione noleggio” con documento riepilogativo, firma del cliente, salvataggio, PDF stampabile ed email.
+
+Nuovo stato e azione
+
+Aggiungere un’azione “Finalizza noleggio” nella tabella noleggi (solo per bozze).
+
+Aprire una vista dedicata (pagina WP, modal grande o nuova tab) con il documento di riepilogo.
+
+Al completamento portare il noleggio automaticamente in stato attivo.
+
+Layout documento stile DDT
+
+In alto logo aziendale (da media) + intestazione:
+
+Sede legale, sede operativa, P.IVA.
+
+Testo: “Documento di responsabilità e di trasporto ai sensi D.P.R. 472/1996 e D.P.R. 696/1996”.
+
+Blocco dati cliente:
+
+Ragione sociale/nome.
+
+CF/P.IVA.
+
+Telefono.
+
+Email.
+
+Tipo e numero documento d’identità.
+
+Categoria cliente (standard/premium ecc.).
+
+Blocco dati noleggio:
+
+“Periodo di noleggio / responsabilità: dal … al …”.
+
+Note cliente.
+
+Luogo destinazione.
+
+Trasporto a mezzo.
+
+Cauzione.
+
+Causale trasporto.
+
+Tabella articoli (come anteprima attuale) con aggiunta colonna “Valore bene” (solo informativa, non entra nei calcoli).
+
+Sezione totali (già esistente): subtotale, regime, sconti, totale noleggio, totale finale.
+
+Consensi e responsabilità
+
+Casella spunta “Trattamento dati personali e privacy” con link a https://www.blackstarservice.it/privacy/.
+
+Casella spunta “Presa visione modalità di noleggio e responsabilità” con link a https://www.blackstarservice.it/modalita-noleggio/.
+
+Validazione: non permettere finalizzazione se le due spunte non sono selezionate.
+
+Firma e operatori
+
+Area firma cliente con canvas touchscreen per firma (tipo SignaturePad).
+
+Campi testo per:
+
+Operatore preparazione documento.
+
+Operatore preparazione materiale.
+
+Operatore consegna materiale.
+
+Operatore rientro materiale (conferma integrità).
+
+Salvare questi dati nel DB (nuove colonne nella tabella noleggi o tabella dedicata “bs_noleggi_log_operazioni”).
+
+Salvare anche l’immagine della firma (file PNG/JPEG + URL nel DB).
+
+Generazione documento stampabile
+
+Creare un template HTML “pulito” A4 (senza pulsanti, con solo il documento).
+
+Pulsante “Stampa / Esporta PDF” che apre questo template in nuova finestra con window.print().
+
+In alternativa, endpoint PHP che genera un PDF server‑side (TCPDF/DOMPDF) usando lo stesso template HTML.
+
+Invio email
+
+Dopo finalizzazione:
+
+Inviare email al cliente (indirizzo dalla scheda cliente).
+
+Inviare copia a noleggi@blackstarservice.it.
+
+Allegare il PDF o inserire link al documento generato sul sito.
+
+Oggetto tipo: “Conferma noleggio Black Star – [ID noleggio]”.
+
+Corpo email con riepilogo principale (periodo, luogo, totale).
+
+Integrazione nel flusso
+
+Limitare la finalizzazione a utenti magazzino/amministrazione (capability WP).
+
+Rendere modificabili solo alcuni campi prima della finalizzazione (es. note, destinazione, trasporto) o bloccarli del tutto e usare solo lo stato.
+
+Loggare data/ora di finalizzazione e utente WP che ha finalizzato.
+
+Suggerimenti e possibili integrazioni
+Firma alla riconsegna: oggi prevedi solo la firma alla consegna; potresti in futuro aggiungere una seconda firma al rientro, con un mini‑verbale (“materiale restituito integro / note danni”).
+
+Numero documento / DDT interno: oltre all’ID noleggio, puoi generare un numero documento formale (es. NLG-2026-00015) da mostrare nel PDF e in email.
+
+Flag “valore assicurativo”: se il “valore bene” serve anche per assicurazione, conviene distinguerlo chiaramente dai prezzi di noleggio.
+
+Storico consensi: memorizza il fatto che il cliente ha accettato privacy e condizioni con data/ora; in caso di contestazioni è utile.
+
+Se vuoi, nel prossimo passo si può partire da come vuoi tecnicamente la finalizzazione (pagina dedicata vs. popup sulla tabella noleggi) e ti preparo lo schema preciso di campi DB + struttura HTML da implementare.
+
+Per la finalizzazione conviene progettare una pagina/vista dedicata stile documento, raggiunta da un pulsante “Finalizza” nella tabella noleggi.
+
+Scelte confermate dalla tua risposta
+Nessuna seconda firma alla riconsegna per ora; in futuro userai una nuova sezione “ticket” per mancanze/danni.
+
+Nessun campo “valore assicurativo” separato: il valore bene resta solo informativo, senza logiche assicurative.
+
+Per lo “storico consensi” basta:
+
+Firma del cliente.
+
+Data/ora della firma salvata (campo dedicato, es. data_firma_responsabilita).
+
+Spunte privacy/condizioni memorizzate come 1/0.
+
+Questo è sufficiente in pratica: se il documento mostra firma, data firma e consensi spuntati, è difficilmente contestabile.
+
+Scelta tecnica: come implementare la finalizzazione
+Per l’uso da tablet e la stampa:
+
+Pulsante “Finalizza” nella colonna Azioni della lista noleggi (visibile solo per stato bozza).
+
+Click → apre pagina dedicata (o template WP) tipo:
+…/wp-admin/admin.php?page=bsn-noleggio-finalizza&id=2026/007
+
+In quella pagina:
+
+Recupero dati noleggio + cliente dal DB.
+
+Layout a tutta larghezza, ottimizzato per tablet, con:
+
+Intestazione aziendale + logo.
+
+Blocchi dati cliente / noleggio / articoli / totali.
+
+Sezione consensi + firma + operatori.
+
+Pulsanti in alto/basso:
+
+“Salva e attiva noleggio” (valida, salva, mette stato attivo, crea record firma).
+
+“Stampa/Scarica” (apre vista stampabile o PDF).
+
+Questa soluzione è più stabile di un popup/anteprima perché:
+
+È più comoda su tablet.
+
+Non rischia problemi di overflow o di stampa di pezzi di pagina non voluti.
+
+Isola bene la logica di firma e finalizzazione.
+
+Campi DB aggiuntivi (noleggio)
+Nella tabella bs_noleggi aggiungerei:
+
+firma_url (TEXT): URL immagine firma.
+
+firma_data (DATETIME): data/ora firma responsabilità.
+
+consenso_privacy (TINYINT(1)): 0/1.
+
+consenso_condizioni (TINYINT(1)): 0/1.
+
+op_preparazione_documento (VARCHAR).
+
+op_preparazione_materiale (VARCHAR).
+
+op_consegna_materiale (VARCHAR).
+
+op_rientro_materiale (VARCHAR, per ora si può lasciare vuoto e compilare al rientro se vuoi).
+
+Volendo si può fare una tabella log separata, ma per iniziare tenerli su bs_noleggi è più semplice.
+
+Struttura HTML della pagina di finalizzazione (schema)
+A grandi linee:
+
+Header documento
+
+Logo aziendale.
+
+Righe testo intestazione + riferimenti normativi.
+
+Numero noleggio + eventuale “Numero documento” (se lo vuoi introdurre ora o dopo).
+
+Sezione Cliente
+
+Nome/ragione sociale.
+
+CF/P.IVA.
+
+Telefono.
+
+Email.
+
+Documento identità (tipo + numero).
+
+Categoria cliente.
+
+Sezione Noleggio
+
+Periodo dal/al.
+
+Luogo destinazione.
+
+Trasporto a mezzo.
+
+Cauzione.
+
+Causale trasporto.
+
+Note cliente.
+
+Tabella articoli
+
+Come ora (codice, descrizione, qty, prezzo, correlati, ecc.) + colonna Valore bene.
+
+Totali in fondo (subtotale, regime, totale sconti, totale finale).
+
+Sezione consensi e firma
+
+Checkbox + testo con link:
+
+“Ho letto e accetto l’informativa privacy” (link privacy).
+
+“Ho letto e accetto le modalità di noleggio e responsabilità” (link condizioni).
+
+Campo data firma (precompilato con data/ora correnti, in sola lettura).
+
+Canvas per firma touchscreen.
+
+Sezione operatori
+
+Input testo:
+
+Operatore preparazione documento.
+
+Operatore preparazione materiale.
+
+Operatore consegna materiale.
+
+Operatore rientro materiale (può restare modificabile anche dopo, se vuoi).
+
+Azioni
+
+Pulsante “Salva e attiva noleggio” → controlla:
+
+Checkbox consensi spuntati.
+
+Firma presente (canvas non vuoto).
+
+Salva tutti i dati + immagine firma + stato attivo.
+
+Pulsante “Stampa/Apri versione A4” → apre stessa pagina in versione “print only”.
+
+Se sei d’accordo con questa impostazione (pagina dedicata + questi campi), nel prossimo passo posso prepararti:
+
+Bozza della query ALTER TABLE per aggiungere i campi.
+
+Schema della route/admin-page bsn-noleggio-finalizza.
+
+Skeleton HTML + JS (signature pad + validazione consensi) che puoi incollare.
+
+Ecco un to‑do chiaro da incollare domani come primo messaggio, lavorando con la versione JS 85 funzionante come base.
+​
+
+To‑do per domani (da incollare)
+Contesto da ricordare:
+
+Usare come base script.js versione 85, quella dove la tabella noleggi funziona.
+
+Obiettivo: aggiungere la funzionalità “Finalizza noleggio” SENZA rompere la lista noleggi.
+
+1. Ripristino e verifica base
+Ripristinare script.js alla versione 85 funzionante (quella salvata prima delle modifiche di oggi).
+
+Hard refresh pagina gestionale (Ctrl+F5).
+
+Verificare:
+
+che la tabella noleggi torni visibile;
+
+che i noleggi esistenti vengano mostrati correttamente;
+
+che non ci siano errori in console.
+
+2. Verifica pagina “Finalizza noleggio”
+Verificare che la pagina admin bsn-finalizza-noleggio esista ancora e funzioni:
+
+URL tipo: /wp-admin/admin.php?page=bsn-finalizza-noleggio&id=2026/001.
+
+Deve mostrare: “Finalizza noleggio [ID] … Cliente … Periodo … Stato …”.
+
+3. Aggiunta pulsante “Finalizza” SENZA toccare il resto
+Prendere il blocco lista.forEach(function(n) { ... }); dalla versione 85 funzionante.
+
+Aggiungere SOLO la parte per il bottone “Finalizza” in modo minimale, così:
+
+Dentro la colonna Azioni (<td>...</td>), aggiungere:
+
+javascript
+// dopo il bottone Elimina:
+var urlFinalizza = window.location.origin +
+    '/wp-admin/admin.php?page=bsn-finalizza-noleggio&id=' + encodeURIComponent(n.id);
+
+if (stato === 'bozza') {
+    htmlAzioni += ' <a href="' + urlFinalizza + '" class="button button-primary" style="margin-left:5px;">Finalizza</a>';
+}
+Senza cambiare nient’altro della struttura della riga.
+
+Testare:
+
+che la tabella continui a vedersi,
+
+che sulle righe in stato bozza compaia il bottone “Finalizza”,
+
+che cliccando il bottone si apra la pagina di finalizzazione giusta.
+
+4. Solo dopo: layout della pagina documento
+Quando la lista noleggi + bottone “Finalizza” sono stabili:
+
+Disegnare il layout del documento sulla pagina bsn_render_finalizza_noleggio_page():
+
+logo, intestazione aziendale, riferimenti normativi;
+
+blocco dati cliente;
+
+blocco dati noleggio;
+
+tabella articoli (come anteprima, con colonna Valore bene);
+
+consensi (checkbox con link privacy e condizioni);
+
+campo data firma;
+
+canvas firma;
+
+campi operatori;
+
+pulsante “Salva e attiva noleggio”.
+
+Quando domani riapri, incolla questo to‑do e partiamo dal punto 1 con calma, usando la versione che sai essere buona come base.
+
+BUG DA SISTEMARE ..  campi prezzo che aggiornano in tabella non vengono salvati per il documento (forse manca js ) 
+lo sconto  
+
+------------------------------------------------
+[
+Ora il flusso di base (crea/modifica noleggio, calcolo totale, sconto globale, finalizzazione documento) è coerente e funzionante; il TODO di stamattina è in gran parte già realizzato nella pagina bsn-finalizza-noleggio.
+​
+
+Cosa risulta già fatto dal TODO
+Dal papiro che hai incollato, confrontato con il codice attuale:
+
+Pagina dedicata di finalizzazione: esiste bsn_render_finalizza_noleggio_page() registrata come pagina admin nascosta (add_submenu_page(null, ...)) raggiungibile via admin.php?page=bsn-finalizza-noleggio&id=ID.
+
+Layout stile DDT:
+
+Logo e intestazione aziendale già presenti con il logo giusto.
+
+Blocco dati cliente: nome, CF/P.IVA, telefono, email, documento, categoria.
+
+Blocco dati noleggio: periodo dal/al, luogo destinazione, trasporto, cauzione, causale, note.
+
+Tabella articoli:
+
+codice, descrizione, correlati, ubicazione, prezzo, qty, fattore (lineare/√giorni), sconto, subtotale, valore bene.
+
+Sezione totali:
+
+subtotale calcolato con stessa logica JS/PHP;
+
+regime (percentuale cliente);
+
+totale noleggio;
+
+sconto globale (calcolato come differenza tra totale finale salvato e totale noleggio);
+
+totale finale = totale_calcolato da DB.
+
+Consensi e responsabilità:
+
+checkbox privacy con link a /privacy;
+
+checkbox condizioni con link a /modalita-noleggio;
+
+validazione JS: non ti lascia procedere senza spunte.
+
+Firma e operatori:
+
+canvas per firma con mouse/touch, pulsante cancella;
+
+campo data/ora firma precompilato;
+
+campi testo per operatori documento, materiale, consegna, rientro;
+
+validazione JS che obbliga almeno documento + materiale.
+
+Quindi la parte più “grossa” del TODO (layout, consensi, firma, operatori) è già in produzione.
+​
+
+Cosa manca ancora rispetto al TODO
+Mancano tre pezzi chiave:
+
+Pulsante “Finalizza” nella tabella noleggi
+
+Adesso non c’è azione che porti da “Lista noleggi” alla pagina bsn-finalizza-noleggio.
+
+Va aggiunto nella colonna Azioni solo per le bozze, costruendo un URL tipo:
+admin.php?page=bsn-finalizza-noleggio&id=ID_NOLEGGIO.
+
+Salvataggio reale in “Salva e Attiva Noleggio”
+
+La funzione JS validaESalva() oggi fa solo:
+
+validazioni logiche;
+
+alert('Validazione OK! ...');
+
+console.log('Dati da salvare', {...});
+
+Serve un endpoint PHP (REST o admin-ajax) che:
+
+aggiorni la riga del noleggio:
+
+stato → attivo;
+
+salvi firma_base64 su file e firma_url in DB;
+
+salvi firma_data, consenso_privacy, consenso_condizioni, operatori.
+
+Email e stampa/PDF
+
+Il pulsante “Stampa/Scarica PDF” ora mostra solo un alert.
+
+Il TODO prevede:
+
+almeno una versione A4 stampabile (può essere la stessa pagina con CSS @media print e window.print());
+
+invio email al cliente + noleggi@blackstarservice.it dopo la finalizzazione (anche solo con un link al documento per iniziare).
+​
+
+Prossimo step: piano “da commento a commento”
+Per rispettare la tua “legge” e non incasinare il codice che ora funziona, conviene procedere così, a step piccoli e testabili:
+
+Step 1 – Pulsante “Finalizza” in lista noleggi
+
+Ti preparo il blocco completo della parte lista.forEach(function(n) { ... }) dove si costruisce la riga della tabella noleggi, con in più:
+
+un link <a> “Finalizza” solo se n.stato === 'bozza', che punta a admin.php?page=bsn-finalizza-noleggio&id=ENCODED_ID.
+
+Tu lo incolli al posto del blocco esistente “da commento a commento”, testiamo:
+
+che la tabella continui a vedersi;
+
+che “Finalizza” compaia solo sulle bozze;
+
+che il click apra la pagina documento giusta.
+
+Step 2 – Endpoint PHP per salvataggio finalizzazione
+
+Nel codice PHP (stesso file dove hai gli altri endpoint) aggiungo:
+
+register_rest_route('bsn/v1', '/noleggi/finalizza', ...)
+
+funzione bsn_api_noleggi_finalizza( WP_REST_Request $request ) che:
+
+prende id_noleggio, firma_base64, firma_data, operatori, consensi;
+
+salva immagine firma in upload (es. /uploads/firme-noleggi/ID.png);
+
+aggiorna la riga bs_noleggi con:
+
+stato = 'attivo';
+
+firma_url, firma_data, consenso_privacy = 1/0, consenso_condizioni = 1/0;
+
+operatori.
+
+Ti do la funzione intera, pronta da incollare dopo gli altri endpoint.
+
+Step 3 – JS: sostituire il TODO in validaESalva()
+
+Nel blocco inline di bsn_render_finalizza_noleggio_page, ti do la funzione validaESalva() completa, in cui:
+
+dopo le validazioni, chiami $.ajax verso /wp-json/bsn/v1/noleggi/finalizza;
+
+passi nel body tutti i dati loggati oggi;
+
+se success, fai:
+
+alert “Noleggio finalizzato e attivato”;
+
+redirect alla lista noleggi;
+
+se error, mostri il messaggio di errore.
+
+Step 4 – Stampa base
+
+Sempre in quel JS, sostituisco l’alert dei pulsanti stampa con:
+
+window.print();
+
+e ti suggerisco un paio di regole CSS (@media print) da aggiungere per nascondere i pulsanti e lasciare solo il documento.
+
+Se ti sta bene questa sequenza, nel prossimo messaggio partiamo dallo Step 1: ti chiederò di incollarmi il blocco JS della costruzione riga noleggio (quello con lista.forEach(function(n) { ... che genera <tr class="bsn-noleggio-row"...>) e ti ridò tutto il blocco già aggiornato con il pulsante “Finalizza”, pronto da sostituire
+
+GENERAZIONE FINALIZZAZIONE
+ciao riprendiamo il lavoro di ieri, fai un controllo delle conversazioni passate , qui ti incollo quanto ci siamo detti e il TODO che ti ho fatto creare ieri e le indicazioni
+ora passiamo all parte più importante , la finalizzazione...
+di base come funziona,,, è un applicazione " condivisa"
+la amministrazione si occupa per po più di caricare clienti e articoli e fare bozze dei noleggi
+il magazzino di implementare il magazzino articoli e mettere i qr, nonchè di spararli quando prepara gli oridini.. ma tutto questo è in fase di bozza...
+la cosa che a noi interessa è : .. quando arriva un cliente di finalizzare il noleggio..
+ovvero presentargli il riepilogo dell'ordine i formato stile ddt , con tutte le informazioni che servono e tramite un tablet farglielo firmare e poi generare un file stampabile formato A4.... e qui abbiamo 2 opzioni..
+o nella tab noleggi miglioriamo le informazioni nella "anteprima noleggio" rendendolo più stile documento, con le informazioni ordinate in caselle belle tipo documetn o fattura o documetn o ddt ( inteso tutte e tutte le info utili  ai fini fiscali e di sicurezz ) come ad esempio:
+logo aziendale ( già presente nei media del sito di grandezza 1558 x 435 ma posso rifarl oa dimensioni minori ovviamete al : http://www.blackstarservice.it/wp-content/uploads/2021/04/logo-1500px.jpg )
+intestazione aziendale:
+Sede Legale Via Repubblica Argentina, 54 -25124 Brescia
+Sede Operativa Via Cerca 28 - 25135 Brescia
+Partita Iva 04130270988
+ doc responsabilità e doc di trasporto ai sensi
+(D.P.R. 472 del 14-08-1996 - D.P.R. 696 del 21-12-1996)
+
+
+Cliente: 
+CF/P.IVA: 
+telefono cliente
+Email :
+numero e tipo di documento cliente
+Categoria: ( inteso quella legata alla scontistica .. stanadrd, premium ecc ) 
+Periodo di noleggio o di responsabilità: dal --- al
+Note cliente: 
+Luogo destinazione: 
+Trasporto a mezzo: 
+Cauzione:
+Causale trasporto:
+ ---- poi sotto tutta la tabella articoli perfetta esattamente cosi come è con i suoi calcolini ecc ( da aggiungere solo colonna valore del bene che non influisce su nessun calcolo )
+subtotale , regime, totale noleggio totale finale sconti ecc perfetto cosi come già lo vedo
+ma in fondo
+:  e mettiamo
+- casella spunta : trattenendo dati personali e privacy ( che è un link alla pagina : https://www.blackstarservice.it/privacy/ )
+- casella spunta : presa visione modalità di noleggio e responsabilità ( che è un link alla pagina : https://www.blackstarservice.it/modalita-noleggio/ )
+- casella firma per la presa di responsabilità del noleggio ( campo touchscreen per firma da touchscreen o tablet
+e campi da compilare con :
+operatore preparazione documento : ( campo di testo )
+operatore preparazione materiale : ( campo di testo )
+Operatore consegna materiale : ( campo di testo )
+Operatore rientro del materiale che ne certifica la corretta consegna : (campo di testo )
+e una volta validato il noleggio passa in stato "attivo" in automatico
+e genera un documento stampabile, nonché invia mail al cliente (usando il campo compilato nella tab clienti) e alla mail : noleggi@blackstarservice.it
+
+
+oppure .. tutto quanto sopra citato , apre una nuova tabella.. una pagina o altro .. qualsiasi cosa sia intelligente fare
+
+
+ora analizza questa richiesta e mettiala nei todo, anzi generale uno da copiare,
+poi :
+dimmi se mi sono dimenticato qualcosa o hai suggerimenti sui campi e sulle modalitò di generazione di questo passaggio e documento
+
+
+Serve implementare un vero flusso di finalizzazione con un documento stile DDT/contratto, firma e PDF/email.
+​
+
+
+To‑do da copiare
+Obiettivo: aggiungere una fase di “finalizzazione noleggio” con documento riepilogativo, firma del cliente, salvataggio, PDF stampabile ed email.
+
+
+Nuovo stato e azione
+
+
+Aggiungere un’azione “Finalizza noleggio” nella tabella noleggi (solo per bozze).
+
+
+Aprire una vista dedicata (pagina WP, modal grande o nuova tab) con il documento di riepilogo.
+
+
+Al completamento portare il noleggio automaticamente in stato attivo.
+
+
+Layout documento stile DDT
+
+
+In alto logo aziendale (da media) + intestazione:
+
+
+Sede legale, sede operativa, P.IVA.
+
+
+Testo: “Documento di responsabilità e di trasporto ai sensi D.P.R. 472/1996 e D.P.R. 696/1996”.
+
+
+Blocco dati cliente:
+
+
+Ragione sociale/nome.
+
+
+CF/P.IVA.
+
+
+Telefono.
+
+
+Email.
+
+
+Tipo e numero documento d’identità.
+
+
+Categoria cliente (standard/premium ecc.).
+
+
+Blocco dati noleggio:
+
+
+“Periodo di noleggio / responsabilità: dal … al …”.
+
+
+Note cliente.
+
+
+Luogo destinazione.
+
+
+Trasporto a mezzo.
+
+
+Cauzione.
+
+
+Causale trasporto.
+
+
+Tabella articoli (come anteprima attuale) con aggiunta colonna “Valore bene” (solo informativa, non entra nei calcoli).
+
+
+Sezione totali (già esistente): subtotale, regime, sconti, totale noleggio, totale finale.
+
+
+Consensi e responsabilità
+
+
+Casella spunta “Trattamento dati personali e privacy” con link a https://www.blackstarservice.it/privacy/.
+
+
+Casella spunta “Presa visione modalità di noleggio e responsabilità” con link a https://www.blackstarservice.it/modalita-noleggio/.
+
+
+Validazione: non permettere finalizzazione se le due spunte non sono selezionate.
+
+
+Firma e operatori
+
+
+Area firma cliente con canvas touchscreen per firma (tipo SignaturePad).
+
+
+Campi testo per:
+
+
+Operatore preparazione documento.
+
+
+Operatore preparazione materiale.
+
+
+Operatore consegna materiale.
+
+
+Operatore rientro materiale (conferma integrità).
+
+
+Salvare questi dati nel DB (nuove colonne nella tabella noleggi o tabella dedicata “bs_noleggi_log_operazioni”).
+
+
+Salvare anche l’immagine della firma (file PNG/JPEG + URL nel DB).
+
+
+Generazione documento stampabile
+
+
+Creare un template HTML “pulito” A4 (senza pulsanti, con solo il documento).
+
+
+Pulsante “Stampa / Esporta PDF” che apre questo template in nuova finestra con window.print().
+
+
+In alternativa, endpoint PHP che genera un PDF server‑side (TCPDF/DOMPDF) usando lo stesso template HTML.
+
+
+Invio email
+
+
+Dopo finalizzazione:
+
+
+Inviare email al cliente (indirizzo dalla scheda cliente).
+
+
+Inviare copia a noleggi@blackstarservice.it.
+
+
+Allegare il PDF o inserire link al documento generato sul sito.
+
+
+Oggetto tipo: “Conferma noleggio Black Star – [ID noleggio]”.
+
+
+Corpo email con riepilogo principale (periodo, luogo, totale).
+
+
+Integrazione nel flusso
+
+
+Limitare la finalizzazione a utenti magazzino/amministrazione (capability WP).
+
+
+Rendere modificabili solo alcuni campi prima della finalizzazione (es. note, destinazione, trasporto) o bloccarli del tutto e usare solo lo stato.
+
+
+Loggare data/ora di finalizzazione e utente WP che ha finalizzato.
+
+
+Suggerimenti e possibili integrazioni
+Firma alla riconsegna: oggi prevedi solo la firma alla consegna; potresti in futuro aggiungere una seconda firma al rientro, con un mini‑verbale (“materiale restituito integro / note danni”).
+
+
+Numero documento / DDT interno: oltre all’ID noleggio, puoi generare un numero documento formale (es. NLG-2026-00015) da mostrare nel PDF e in email.
+
+
+Flag “valore assicurativo”: se il “valore bene” serve anche per assicurazione, conviene distinguerlo chiaramente dai prezzi di noleggio.
+
+
+Storico consensi: memorizza il fatto che il cliente ha accettato privacy e condizioni con data/ora; in caso di contestazioni è utile.
+
+
+Se vuoi, nel prossimo passo si può partire da come vuoi tecnicamente la finalizzazione (pagina dedicata vs. popup sulla tabella noleggi) e ti preparo lo schema preciso di campi DB + struttura HTML da implementare.
+
+
+Per la finalizzazione conviene progettare una pagina/vista dedicata stile documento, raggiunta da un pulsante “Finalizza” nella tabella noleggi.
+
+
+Scelte confermate dalla tua risposta
+Nessuna seconda firma alla riconsegna per ora; in futuro userai una nuova sezione “ticket” per mancanze/danni.
+
+
+Nessun campo “valore assicurativo” separato: il valore bene resta solo informativo, senza logiche assicurative.
+
+
+Per lo “storico consensi” basta:
+
+
+Firma del cliente.
+
+
+Data/ora della firma salvata (campo dedicato, es. data_firma_responsabilita).
+
+
+Spunte privacy/condizioni memorizzate come 1/0.
+
+
+Questo è sufficiente in pratica: se il documento mostra firma, data firma e consensi spuntati, è difficilmente contestabile.
+
+
+Scelta tecnica: come implementare la finalizzazione
+Per l’uso da tablet e la stampa:
+
+
+Pulsante “Finalizza” nella colonna Azioni della lista noleggi (visibile solo per stato bozza).
+
+
+Click → apre pagina dedicata (o template WP) tipo:
+…/wp-admin/admin.php?page=bsn-noleggio-finalizza&id=2026/007
+
+
+In quella pagina:
+
+
+Recupero dati noleggio + cliente dal DB.
+
+
+Layout a tutta larghezza, ottimizzato per tablet, con:
+
+
+Intestazione aziendale + logo.
+
+
+Blocchi dati cliente / noleggio / articoli / totali.
+
+
+Sezione consensi + firma + operatori.
+
+
+Pulsanti in alto/basso:
+
+
+“Salva e attiva noleggio” (valida, salva, mette stato attivo, crea record firma).
+
+
+“Stampa/Scarica” (apre vista stampabile o PDF).
+
+
+Questa soluzione è più stabile di un popup/anteprima perché:
+
+
+È più comoda su tablet.
+
+
+Non rischia problemi di overflow o di stampa di pezzi di pagina non voluti.
+
+
+Isola bene la logica di firma e finalizzazione.
+
+
+Campi DB aggiuntivi (noleggio)
+Nella tabella bs_noleggi aggiungerei:
+
+
+firma_url (TEXT): URL immagine firma.
+
+
+firma_data (DATETIME): data/ora firma responsabilità.
+
+
+consenso_privacy (TINYINT(1)): 0/1.
+
+
+consenso_condizioni (TINYINT(1)): 0/1.
+
+
+op_preparazione_documento (VARCHAR).
+
+
+op_preparazione_materiale (VARCHAR).
+
+
+op_consegna_materiale (VARCHAR).
+
+
+op_rientro_materiale (VARCHAR, per ora si può lasciare vuoto e compilare al rientro se vuoi).
+
+
+Volendo si può fare una tabella log separata, ma per iniziare tenerli su bs_noleggi è più semplice.
+
+
+Struttura HTML della pagina di finalizzazione (schema)
+A grandi linee:
+
+
+Header documento
+
+
+Logo aziendale.
+
+
+Righe testo intestazione + riferimenti normativi.
+
+
+Numero noleggio + eventuale “Numero documento” (se lo vuoi introdurre ora o dopo).
+
+
+Sezione Cliente
+
+
+Nome/ragione sociale.
+
+
+CF/P.IVA.
+
+
+Telefono.
+
+
+Email.
+
+
+Documento identità (tipo + numero).
+
+
+Categoria cliente.
+
+
+Sezione Noleggio
+
+
+Periodo dal/al.
+
+
+Luogo destinazione.
+
+
+Trasporto a mezzo.
+
+
+Cauzione.
+
+
+Causale trasporto.
+
+
+Note cliente.
+
+
+Tabella articoli
+
+
+Come ora (codice, descrizione, qty, prezzo, correlati, ecc.) + colonna Valore bene.
+
+
+Totali in fondo (subtotale, regime, totale sconti, totale finale).
+
+
+Sezione consensi e firma
+
+
+Checkbox + testo con link:
+
+
+“Ho letto e accetto l’informativa privacy” (link privacy).
+
+
+“Ho letto e accetto le modalità di noleggio e responsabilità” (link condizioni).
+
+
+Campo data firma (precompilato con data/ora correnti, in sola lettura).
+
+
+Canvas per firma touchscreen.
+
+
+Sezione operatori
+
+
+Input testo:
+
+
+Operatore preparazione documento.
+
+
+Operatore preparazione materiale.
+
+
+Operatore consegna materiale.
+
+
+Operatore rientro materiale (può restare modificabile anche dopo, se vuoi).
+
+
+Azioni
+
+
+Pulsante “Salva e attiva noleggio” → controlla:
+
+
+Checkbox consensi spuntati.
+
+
+Firma presente (canvas non vuoto).
+
+
+Salva tutti i dati + immagine firma + stato attivo.
+
+
+Pulsante “Stampa/Apri versione A4” → apre stessa pagina in versione “print only”.
+
+
+Se sei d’accordo con questa impostazione (pagina dedicata + questi campi), nel prossimo passo posso prepararti:
+
+
+Bozza della query ALTER TABLE per aggiungere i campi.
+
+
+Schema della route/admin-page bsn-noleggio-finalizza.
+
+
+Skeleton HTML + JS (signature pad + validazione consensi) che puoi incollare.
+
+
+Ecco un to‑do chiaro da incollare domani come primo messaggio, lavorando con la versione JS 85 funzionante come base.
+​
+
+
+To‑do per domani (da incollare)
+Contesto da ricordare:
+
+
+Usare come base script.js versione 85, quella dove la tabella noleggi funziona.
+
+
+Obiettivo: aggiungere la funzionalità “Finalizza noleggio” SENZA rompere la lista noleggi.
+
+
+1. Ripristino e verifica base
+Ripristinare script.js alla versione 85 funzionante (quella salvata prima delle modifiche di oggi).
+
+
+Hard refresh pagina gestionale (Ctrl+F5).
+
+
+Verificare:
+
+
+che la tabella noleggi torni visibile;
+
+
+che i noleggi esistenti vengano mostrati correttamente;
+
+
+che non ci siano errori in console.
+
+
+2. Verifica pagina “Finalizza noleggio”
+Verificare che la pagina admin bsn-finalizza-noleggio esista ancora e funzioni:
+
+
+URL tipo: /wp-admin/admin.php?page=bsn-finalizza-noleggio&id=2026/001.
+
+
+Deve mostrare: “Finalizza noleggio [ID] … Cliente … Periodo … Stato …”.
+
+
+3. Aggiunta pulsante “Finalizza” SENZA toccare il resto
+Prendere il blocco lista.forEach(function(n) { ... }); dalla versione 85 funzionante.
+
+
+Aggiungere SOLO la parte per il bottone “Finalizza” in modo minimale, così:
+
+
+Dentro la colonna Azioni (<td>...</td>), aggiungere:
+
+
+javascript
+// dopo il bottone Elimina:
+var urlFinalizza = window.location.origin +
+    '/wp-admin/admin.php?page=bsn-finalizza-noleggio&id=' + encodeURIComponent(n.id);
+
+
+if (stato === 'bozza') {
+    htmlAzioni += ' <a href="' + urlFinalizza + '" class="button button-primary" style="margin-left:5px;">Finalizza</a>';
+}
+Senza cambiare nient’altro della struttura della riga.
+
+
+Testare:
+
+
+che la tabella continui a vedersi,
+
+
+che sulle righe in stato bozza compaia il bottone “Finalizza”,
+
+
+che cliccando il bottone si apra la pagina di finalizzazione giusta.
+
+
+4. Solo dopo: layout della pagina documento
+Quando la lista noleggi + bottone “Finalizza” sono stabili:
+
+
+Disegnare il layout del documento sulla pagina bsn_render_finalizza_noleggio_page():
+
+
+logo, intestazione aziendale, riferimenti normativi;
+
+
+blocco dati cliente;
+
+
+blocco dati noleggio;
+
+
+tabella articoli (come anteprima, con colonna Valore bene);
+
+
+consensi (checkbox con link privacy e condizioni);
+
+
+campo data firma;
+
+
+canvas firma;
+
+
+campi operatori;
+
+
+pulsante “Salva e attiva noleggio”.
+
+
+Quando domani riapri, incolla questo to‑do e partiamo dal punto 1 con calma, usando la versione che sai essere buona come base.
+
+questi sono i link ai raw di git hub ma ti ho anche aperto le fonti con la autenticazione mia,
+
+RICORDATI CHE ! mi devi spiegare cosa cambiare passo passo , da comento a commento con precisione e se possibile darmi le sezioni di commenti già fatte e in ordine e procedere con fix by fix e test bu test
+
+
+
+
+
+
+
+
+
+
+
+
+COMPORTATI COME UN PRGRAMMATORE ESPERTO , VERIFICA OGNI PASAGGIO, ESEGUI UN CONTROLLO DEL CODICE ATTUALE CHE TUTTE LE FUNZIONI SIANO SCRITTE CORRETTAMENTE, SIMULA OGNI POSSIBILE CONFLITTO, E FAI DOMANDE SE QUALCOSA NON TI è CHIARO !]
+
+
+Per domani conviene riaprire una nuova conversazione incollando questo TODO così com’è: copre cosa c’è già, cosa manca e il tema permessi per utenti non admin.
+​
+
+TODO per domani – Finalizza noleggio (versione aggiornata)
+Contesto attuale (già fatto)
+Flusso creazione/modifica noleggio funzionante:
+
+JSON articoli salva anche prezzo custom.
+
+totale_calcolato e sconto_globale sono coerenti con l’anteprima JS.
+
+Endpoint /noleggi/dettaglio:
+
+restituisce articoli con id, qty, prezzo;
+
+restituisce sconto_globale e dati base noleggio/cliente.
+
+Click su Modifica:
+
+precompila correttamente campi prezzo riga e sconto globale;
+
+salvataggio aggiorna DB mantenendo coerenza dei totali.
+
+Pagina admin Finalizza noleggio (bsn_render_finalizza_noleggio_page):
+
+pagina nascosta, URL tipo admin.php?page=bsn-finalizza-noleggio&id=ID;
+
+layout documento stile DDT già presente:
+
+logo + intestazione aziendale + riferimenti normativi;
+
+blocco dati cliente (nome, CF/P.IVA, tel, email, documento, categoria);
+
+blocco dati noleggio (periodo, destinazione, trasporto, cauzione, causale, note);
+
+tabella articoli con calcoli (prezzo custom, scalare/lineare, sconto, subtotale) + colonna Valore bene informativa;
+
+sezione totali:
+
+Subtotale;
+
+Regime (% cliente);
+
+Totale noleggio (subtotale + regime);
+
+Sconto globale = totale_finale - totale_noleggio;
+
+Totale finale = totale_calcolato da DB.
+
+sezione Consensi e responsabilità:
+
+checkbox privacy con link /privacy;
+
+checkbox condizioni con link /modalita-noleggio;
+
+validazione JS obbliga entrambe le spunte.
+
+sezione Firma:
+
+canvas per firma (mouse + touch);
+
+pulsante “Cancella firma”;
+
+campo data/ora firma precompilato.
+
+sezione Operatori:
+
+campi testo per op documento, op materiale, op consegna, op rientro;
+
+validazione JS obbliga almeno documento + materiale.
+
+pulsanti:
+
+“Salva e Attiva Noleggio” (top e bottom) → oggi fa solo validazione + console.log;
+
+“Stampa/Scarica PDF” → oggi solo alert.
+
+Obiettivi generali
+Aggiungere un pulsante “Finalizza” in lista noleggi che porta alla pagina documento.
+
+Implementare il salvataggio reale in “Salva e Attiva Noleggio” (firma, consensi, operatori, stato).
+
+Aggiungere stampa/print usabile (anche solo window.print() con CSS).
+
+Permettere l’uso della pagina finalizza anche a utenti non admin, con ruolo/capability dedicata, evitando accesso a plugin, pagine, ecc.
+​
+
+Step 1 – Pulsante “Finalizza” nella tabella noleggi
+Obiettivo: dalla lista noleggi, aprire la pagina documento per una bozza.
+
+Nel JS che costruisce la tabella noleggi (lista.forEach(function(n) { ... })):
+
+dentro la colonna Azioni, dopo “Elimina”, aggiungere:
+
+se n.stato === 'bozza':
+
+creare var urlFinalizza = window.location.origin + '/wp-admin/admin.php?page=bsn-finalizza-noleggio&id=' + encodeURIComponent(n.id);
+
+aggiungere htmlAzioni += ' <a href="' + urlFinalizza + '" class="button button-primary" style="margin-left:5px;">Finalizza</a>';
+
+Non toccare il resto della costruzione riga.
+
+Test:
+
+tabella ancora ok;
+
+righe bozza con pulsante “Finalizza”;
+
+click apre pagina documento corretta.
+
+Step 2 – Endpoint PHP per salvataggio finalizzazione
+Obiettivo: al click “Salva e Attiva Noleggio”, salvare tutto e cambiare stato a attivo.
+
+Aggiungere campi DB (tabella bs_noleggi), se non ci sono ancora:
+
+firma_url (TEXT);
+
+firma_data (DATETIME);
+
+consenso_privacy (TINYINT(1));
+
+consenso_condizioni (TINYINT(1));
+
+op_preparazione_documento (VARCHAR);
+
+op_preparazione_materiale (VARCHAR);
+
+op_consegna_materiale (VARCHAR);
+
+op_rientro_materiale (VARCHAR).
+
+Registrare nuovo endpoint REST, es. /bsn/v1/noleggi/finalizza:
+
+methods → POST;
+
+callback → bsn_api_noleggi_finalizza;
+
+permission_callback:
+
+non solo manage_options; usare una capability custom, es. bsn_manage_noleggi, così può essere assegnata a un ruolo dedicato (magazziniere) senza dare accesso completo a WP.
+​
+
+Implementare bsn_api_noleggi_finalizza( WP_REST_Request $request ):
+
+input attesi:
+
+id_noleggio;
+
+firma_base64 (PNG data URL);
+
+firma_data;
+
+consenso_privacy, consenso_condizioni;
+
+op_documento, op_materiale, op_consegna, op_rientro.
+
+logica:
+
+verificare che il noleggio esista e sia in stato bozza;
+
+salvare immagine firma in uploads (es. /uploads/bsn-firme/noleggio-ID.png);
+
+salvare firma_url e firma_data in DB;
+
+salvare consensi (1/0) e operatori;
+
+impostare stato = 'attivo';
+
+restituire JSON success: true o WP_Error con messaggio.
+
+Step 3 – JS: sostituire TODO in validaESalva()
+Obiettivo: usare l’endpoint di Step 2.
+
+Nella bsn_render_finalizza_noleggio_page, nella funzione JS validaESalva():
+
+mantenere tutte le validazioni esistenti (checkbox, firma non vuota, operatori).
+
+al posto dell’alert “Validazione OK!” e del solo console.log, fare:
+
+costruire oggetto payload con:
+
+id_noleggio (PHP echo nel JS);
+
+consenso_privacy: 1;
+
+consenso_condizioni: 1;
+
+firma_data dal campo;
+
+firma_base64 da canvas.toDataURL('image/png');
+
+operatori dai rispettivi input.
+
+chiamare $.ajax:
+
+url: BSN_API.root + 'noleggi/finalizza';
+
+method: 'POST';
+
+beforeSend: settare X-WP-Nonce;
+
+data: payload.
+
+success:
+
+alert “Noleggio finalizzato e attivato”;
+
+redirect alla lista noleggi (admin.php?page=blackstar-noleggi).
+
+error:
+
+leggere err.responseJSON.message se presente, altrimenti messaggio generico.
+
+Step 4 – Stampa / versione A4
+Obiettivo: rendere “Stampa/Scarica PDF” almeno stampabile in A4.
+
+In bsn_render_finalizza_noleggio_page:
+
+i pulsanti #bsn-stampa-documento e #bsn-stampa-documento-2 devono:
+
+rimuovere l’alert;
+
+eseguire window.print();.
+
+Aggiungere CSS @media print (nel plugin o inline) per:
+
+nascondere header WP admin, pulsanti, canvas pulsanti;
+
+mostrare solo il blocco #bsn-documento-finalizzazione.
+
+PDF server-side è opzionale e può essere uno step futuro.
+​
+
+Step 5 – Permessi per utenti non admin
+Obiettivo: permettere l’accesso a “Finalizza noleggio” solo a utenti con ruolo dedicato (es. “Magazzino”), senza accesso a plugin/pagine.
+
+Definire una capability custom, es. bsn_manage_noleggi:
+
+alla creazione plugin, assegnarla a administrator;
+
+creare un ruolo dedicato (es. bsn_magazzino) con:
+
+capability read;
+
+capability bsn_manage_noleggi;
+
+nessuna capability di gestione plugin/temi/pagine.
+​
+
+Nella add_submenu_page della pagina finalizza:
+
+sostituire 'manage_options' con 'bsn_manage_noleggi'.
+
+Nei REST permission_callback:
+
+usare current_user_can('bsn_manage_noleggi').
+​
+
+Assicurarsi che lo shortcode [blackstar_noleggi] controlli la stessa capability, così solo questi utenti possono usare il gestionale front-end.
+
+Step 6 – Email (seconda fase, opzionale subito)
+Una volta che salvataggio e stato attivo funzionano:
+
+Nel bsn_api_noleggi_finalizza, dopo l’aggiornamento:
+
+recuperare email cliente + noleggi@blackstarservice.it;
+
+costruire oggetto “Conferma noleggio Black Star – [ID]”;
+
+corpo con riepilogo (cliente, periodo, destinazione, totale finale);
+
+inviare:
+
+email al cliente;
+
+copia a noleggi@blackstarservice.it.
+
+Per iniziare basta testo + link alla pagina documento; allegare PDF potrà essere uno step successivo.
+
+Quando domani apri una nuova conversazione, incolla questo TODO e specifica da che Step vuoi partire (consigliato: Step 1, pulsante “Finalizza” in lista noleggi).
+
+
+
+
+
+
+
+
+
+
+Abbiamo chiuso bene Finalizza (Salva e Attiva + firma + stampa). Ecco il TODO pulito per i prossimi step.
+
+TODO – Flussi operatori e ruoli
+1. Log operatore per ogni cambio stato
+Obiettivo: ogni cambio stato del noleggio deve lasciare una traccia chiara di chi ha fatto cosa e quando.
+
+Da fare:
+
+Definire nel DB (tabella bs_noleggi) i campi operatore per ciascun passaggio, ad esempio:
+
+operatore_richiesta (già esiste, lo usi in duplicazione)
+
+op_preparazione_documento (già usato in Finalizza)
+
+op_preparazione_materiale (già usato in Finalizza)
+
+op_consegna_materiale
+
+op_rientro_materiale
+
+eventuali operatore_chiusura, operatore_annullamento, ecc.
+
+Stabilire per ogni stato:
+
+da quale pagina/flusso può essere cambiato (es. Finalizza → bozza → attivo; Rientro → attivo → chiuso);
+
+quale campo operatore va popolato (es. in Rientro compilare op_rientro_materiale con current_user->user_login + campo editabile).
+
+Modificare gli endpoint che cambiano stato:
+
+evitare cambi stato “a caso” dall’endpoint /noleggi/stato per quelli critici (es. finalizza, rientro);
+
+spostare questi stati su pagine dedicate (come Finalizza) che scrivono anche gli operatori.
+
+Aggiungere eventualmente una timeline nel dettaglio noleggio (solo in lettura) con:
+
+data_richiesta + operatore_richiesta,
+
+data finalizzazione + op_preparazione_documento / op_preparazione_materiale,
+
+data rientro + op_rientro_materiale, ecc.
+
+2. Ruoli dedicati all’app (senza backend WP)
+Obiettivo: utenti “quasi base” che possono usare l’app noleggi ma non accedere al backend WP (niente Impostazioni, Pagine, Plugin, ecc.), e vedono solo la pagina /app-noleggi/ pulita.
+
+Da fare:
+
+Definire una capability custom, es. bsn_manage_noleggi.
+
+Creare un ruolo dedicato, es. bsn_operatore:
+
+con capability bsn_manage_noleggi;
+
+senza manage_options, senza edit_posts, ecc. (o solo il minimo indispensabile).
+
+Aggiornare i controlli permessi:
+
+modificare bsn_check_admin() per usare current_user_can('bsn_manage_noleggi') oltre ad admin/editor;
+
+aggiornare permission_callback di tutti gli endpoint REST noleggi (clienti, articoli, noleggi) a usare bsn_check_admin così esteso;
+
+per /noleggi/stato decidere se limitarlo a bsn_manage_noleggi o solo ad admin.
+
+Gestire l’accesso all’app:
+
+la pagina /app-noleggi/ resta front-end con shortcode [blackstar_noleggi] (già ok);
+
+mantenere il redirect login già presente (bsn_login_redirect) per editor e per il nuovo ruolo bsn_operatore verso /app-noleggi/;
+
+nascondere toolbar WP (show_admin_bar(false) per quei ruoli) per avere una vista “pulita”.
+
+Verificare:
+
+un utente bsn_operatore riesce a:
+
+loggarsi,
+
+entrare direttamente in /app-noleggi/,
+
+usare lista/creazione/modifica/finalizza,
+
+ma non aprire /wp-admin/ né vedere menu Impostazioni, Pagine, Plugin, ecc.
+
+Quando vuoi riprendere, ti chiederò:
+
+l’elenco degli stati noleggio che vuoi gestire solo via pagine (tipo Finalizza/Rientro) e non via select rapido;
+
+come vuoi chiamare esattamente il nuovo ruolo (es. operatore_magazzino, bsn_operatore, ecc.), così ti preparo il blocco add_role e gli aggiornamenti a bsn_check_admin() e agli endpoint da commento a commento.
+
+
+
+
+La logica che proponi è corretta e molto sensata: alcuni stati devono passare solo da pagine strutturate (con firma, operatori, check materiali, ticket, ecc.) e non più da select libere.
+
+Stati e pagine dedicate
+Proposta coerente con quanto hai scritto:
+
+bozza → attivo
+
+Solo tramite pagina Finalizza (già esistente).
+
+Azioni:
+
+firma + consensi
+
+op. prep. documento (obbligatorio)
+
+op. prep. materiale (obbligatorio)
+
+op. consegna materiale (obbligatorio)
+
+Dopo la finalizzazione:
+
+aggiungere in lista un pulsante tipo “Documento / Visualizza” che apre la stessa pagina in sola lettura (niente firma, pulsanti disabilitati, solo stampa).
+
+attivo → chiuso
+
+Solo tramite pagina Rientro da creare.
+
+Accesso da lista noleggi:
+
+se stato = attivo o ritardo → pulsante “Chiudi / Rientro”.
+
+Azioni in pagina Rientro:
+
+elenco articoli del noleggio con:
+
+checkbox “rientrato”
+
+stato: ok / danneggiato / mancante
+
+eventuale nota breve
+
+campo op_rientro_materiale obbligatorio (auto-suggerito con current_user->user_login ma modificabile).
+
+se tutto ok:
+
+aggiorna disponibilità
+
+imposta stato = 'chiuso'
+
+se ci sono problemi:
+
+apre/aggiorna uno o più Ticket (vedi sotto), ma lo stato noleggio passa comunque a “chiuso” (il problema vive nel ticket).
+
+attivo → ritardo
+
+Transizione automatizzata, non manuale da select:
+
+job o funzione che, alla mezzanotte o al primo accesso, trova i noleggi attivo con data_fine < oggi e li porta a ritardo.
+
+opzionale: endpoint interno o WP-Cron.
+
+Nessuna pagina dedicata; è solo uno “stato operativo”.
+
+bozza → annullato / attivo → annullato
+
+La tua sensazione è giusta: serve ma “non deve creare confusione”.
+
+Proposta:
+
+mantenere lo stato annullato ma non esporlo in select utente.
+
+prevedere un pulsante “Annulla noleggio”:
+
+visibile se stato = 'bozza' o stato = 'attivo'.
+
+apre un modal semplice: motivo annullamento + conferma.
+
+imposta stato = 'annullato', non modifica disponibilità (in bozza non blocca nulla, in attivo potrebbe richiedere gestione cauzione ma è un caso raro).
+
+nessun campo operatore_annullamento (come vuoi tu), basta operatore_richiesta e timeline che registra la data annullamento.
+
+Select stato nei form
+
+Concordo: va rimossa sia:
+
+dal form di creazione/modifica noleggio
+
+dalla colonna Azioni nella lista
+
+Gli stati diventano derivanti dal flusso, non modificabili “a mano”.
+
+Ruolo operatore e permessi
+Ruolo: bsn_operatore (come hai confermato).
+
+Capability: bsn_manage_noleggi.
+
+Permessi:
+
+read = sì.
+
+bsn_manage_noleggi = sì.
+
+niente manage_options, niente edit_posts, ecc.
+
+Accesso:
+
+login → redirect a /app-noleggi/.
+
+blocco accesso /wp-admin/ (tranne eventuali chiamate REST).
+
+show_admin_bar(false) per bsn_operatore per avere vista pulita.
+​
+
+Controlli:
+
+bsn_check_admin() va modificato così:
+
+ritorna true se:
+
+current_user_can('manage_options') (admin)
+
+current_user_can('edit_others_posts') (editor)
+
+current_user_can('bsn_manage_noleggi') (nuovo ruolo).
+
+Tutti gli endpoint REST (clienti, articoli, noleggi, finalizza, rientro, ticket, calendario) usano sempre bsn_check_admin come permission_callback.
+
+Flusso Ticket (materiale danneggiato/mancante)
+Ispirandosi ai migliori software di settore, la logica standard è: quando un articolo è danneggiato o mancante viene separato in una coda di lavoro (ticket/repair) e la disponibilità viene aggiornata di conseguenza.
+
+Struttura base Ticket
+Nuova tabella bs_tickets (o bs_tiket se vuoi italianizzare):
+
+Campi minimi:
+
+id (PK)
+
+articolo_id
+
+noleggio_id (nullable, perché il problema può venire da tecnici interni)
+
+cliente_id (nullable)
+
+stato_ticket enum:
+
+aperto
+
+in_lavorazione
+
+chiuso
+
+tipo enum:
+
+danneggiato
+
+mancante
+
+da_verificare
+
+bloccante tinyint(1):
+
+1 = articolo non prenotabile
+
+0 = prenotabile ma con warning
+
+qty_coinvolta int
+
+note text (descrizione problema)
+
+data_apertura, data_chiusura
+
+operatore_apertura, operatore_chiusura
+
+Effetto su disponibilità
+Se articolo identificato singolarmente (es. CDJ2000#1):
+
+se bloccante = 1 → quell’unità è fuori inventario finché il ticket non è chiuso (non compare tra i disponibili per nuovi noleggi).
+
+se bloccante = 0 → la puoi comunque usare ma:
+
+in fase di selezione articolo appare warning tipo “Attenzione: ticket aperto”.
+
+Se articolo a quantità (es. 20 fari):
+
+qty_disponibile si decrementa del valore qty_coinvolta se il ticket è bloccante.
+
+quando il ticket viene chiuso:
+
+se riparato → qty_disponibile rientra.
+
+se irrecuperabile → resterà decrementata (gestito manualmente o con flag “dismesso”).
+
+Interfaccia Ticket
+Nuova tab “Ticket” accanto a Clienti / Articoli / Noleggi:
+
+lista ticket filtrabile per:
+
+stato (aperto/in lavorazione/chiuso)
+
+articolo
+
+cliente
+
+form creazione ticket:
+
+articolo (autocomplete o QR)
+
+opzionale noleggio collegato
+
+opzionale cliente
+
+tipo (danneggiato/mancante/da verificare)
+
+bloccante sì/no
+
+qty
+
+note
+
+dall’interfaccia Rientro:
+
+se un articolo rientra danneggiato/mancante:
+
+pulsante “Crea ticket” che:
+
+precompila articolo + noleggio + cliente + qty
+
+imposta stato_ticket = aperto, bloccante = 1 di default.
+
+Calendario noleggi
+Best practice: un calendario tipo “Google Calendar” è lo standard per vedere rapidamente periodi occupati/liberi, con la possibilità di filtrare per stato e cliccare per aprire i dettagli.
+
+Come integrarlo nel tuo flusso
+Nuova tab “Calendario” nel frontend /app-noleggi/.
+
+Visualizzazione:
+
+modalità Mese per visione globale.
+
+switch Settimana/Giorno opzionale per la parte operativa.
+
+Ogni noleggio appare come barra:
+
+estesa da data_inizio a data_fine.
+
+colore per stato:
+
+bozza = grigio
+
+attivo = verde
+
+ritardo = rosso
+
+chiuso = blu tenue
+
+tooltip al mouseover:
+
+ID, cliente, luogo destinazione, stato, totale.
+
+Click su evento:
+
+apre:
+
+se stato bozza → pagina gestione bozza (modulo noleggio).
+
+se stato attivo/ritardo → pagina Finalizza in sola lettura + link rapido a pagina Rientro.
+
+se chiuso → dettaglio consultivo.
+
+Ruolo bsn_operatore: flusso completo
+Con quanto definito, un utente bsn_operatore potrà:
+
+loggarsi
+
+essere reindirizzato automaticamente a /app-noleggi/
+
+usare:
+
+lista clienti/articoli/noleggi
+
+creazione/modifica noleggi
+
+Finalizza (da bozza ad attivo)
+
+Rientro (da attivo/ritardo a chiuso)
+
+Ticket
+
+Calendario
+
+senza mai poter entrare in /wp-admin/ né vedere plugin/pagine/post.
+
+Riassunto TODO da salvare
+Puoi copiare/incollare questo blocco come TODO futuro:
+
+text
+TODO – Stati, Ticket, Calendario, Ruoli
+
+1) Stati e flussi
+- Rimuovere la select “stato” dal form noleggi e dalla lista azioni.
+- Gestire le transizioni così:
+  bozza → attivo = SOLO da pagina Finalizza (già esistente).
+  attivo → chiuso = SOLO da pagina Rientro (nuova pagina).
+  attivo → ritardo = automatica se data_fine < oggi.
+  bozza/attivo → annullato = pulsante “Annulla” con modal, non da select.
+
+- Dopo la finalizzazione:
+  aggiungere pulsante “Documento / Visualizza” nelle righe attive per aprire Finalizza in sola lettura (no firma, no salvataggio; solo stampa e consultazione).
+
+- Pagina Rientro:
+  elenco articoli del noleggio con:
+    - checkbox rientrato
+    - stato per riga (ok / danneggiato / mancante)
+    - note brevi
+  campo op_rientro_materiale OBBLIGATORIO.
+  se tutto ok → stato = chiuso e materiali tornano disponibili.
+  se problemi → crea/aggiorna Ticket per i pezzi coinvolti, ma il noleggio può comunque andare a chiuso.
+
+2) Ticket (materiale danneggiato/mancante)
+- Nuova tabella bs_tickets con:
+  id, articolo_id, noleggio_id (nullable), cliente_id (nullable),
+  stato_ticket (aperto/in_lavorazione/chiuso),
+  tipo (danneggiato/mancante/da_verificare),
+  bloccante (0/1),
+  qty_coinvolta,
+  note,
+  data_apertura, data_chiusura,
+  operatore_apertura, operatore_chiusura.
+
+- Logica disponibilità:
+  se articolo singolo e ticket bloccante → unità NON prenotabile finché ticket non chiuso.
+  se articolo a quantità e ticket bloccante → scala qty_disponibile di qty_coinvolta finché ticket non chiuso.
+  se bloccante = 0 → l’articolo resta prenotabile ma:
+    - in scelta articolo compare warning ticket aperto.
+
+- Interfaccia:
+  nuova tab “Ticket” accanto a Clienti / Articoli / Noleggi.
+  lista filtrabile per stato, articolo, cliente.
+  form creazione ticket:
+    - articolo (autocomplete o QR)
+    - opzionale noleggio
+    - opzionale cliente
+    - tipo, bloccante, qty, note.
+  da pagina Rientro: pulsante “Crea ticket” sulle righe con problemi che precompila i dati.
+
+3) Calendario noleggi
+- Nuova tab “Calendario” in /app-noleggi/.
+- Vista tipo Google Calendar:
+  - barre per ogni noleggio da data_inizio a data_fine.
+  - colori per stato: bozza/attivo/ritardo/chiuso.
+  - tooltip con ID, cliente, luogo, totale.
+- Click su evento:
+  - bozza → apre gestione noleggio.
+  - attivo/ritardo → apre pagina Finalizza (view) + link a pagina Rientro.
+  - chiuso → apre dettaglio consultivo.
+
+4) Ruolo e permessi
+- Creare ruolo `bsn_operatore` con:
+  - capability `read`
+  - capability `bsn_manage_noleggi`
+  - nessun manage_options, nessun edit_posts, ecc.
+
+- Aggiornare bsn_check_admin():
+  - true se:
+    current_user_can('manage_options') OR
+    current_user_can('edit_others_posts') OR
+    current_user_can('bsn_manage_noleggi').
+
+- Aggiornare tutti gli endpoint REST (clienti, articoli, noleggi, finalizza, rientro, ticket, calendario) a usare bsn_check_admin come permission_callback.
+
+- Accesso:
+  - login: redirect per editor + bsn_operatore verso /app-noleggi/.
+  - blocco /wp-admin/ per ruolo bsn_operatore (solo REST).
+  - show_admin_bar(false) per bsn_operatore.
+
+5) Log operatori (estensione)
+- Campo op_preparazione_documento, op_preparazione_materiale, op_consegna_materiale OBBLIGATORI in Finalizza.
+- Campo op_rientro_materiale OBBLIGATORIO in Rientro.
+- Timeline (step successivo possibile) nel dettaglio noleggio:
+  - data_richiesta + operatore_richiesta
+  - data finalizzazione + op_preparazione_documento / op_preparazione_materiale
+  - data rientro + op_rientro_materiale
+  - eventuali eventi ticket collegati.
+Se ti è comodo, al rientro dal pranzo si può scegliere da quale blocco partire in codice (consiglio: prima ruolo/capability + bsn_check_admin, poi Rientro + Ticket o Calendario).
+Ti propongo di aggiornare il TODO così (solo parte nuova legata ai tuoi ultimi input); quando lo confermi, si può partire dal codice:
+
+Rientro
+
+Pagina “Rientro” accessibile da lista noleggi quando stato = attivo o ritardo.
+
+Per ogni articolo:
+
+checkbox “rientrato”
+
+select stato_rientro: ok / danneggiato / mancante
+
+note breve
+
+Campo op_rientro_materiale obbligatorio (precompilato con current_user->user_login).
+
+Salvataggio:
+
+articoli ok → tornano disponibili.
+
+articoli danneggiati/mancanti → creano ticket automatici (1 riga = 1 ticket) con:
+
+articolo_id, noleggio_id, cliente_id, qty_coinvolta
+
+tipo (danneggiato/mancante)
+
+bloccante = 1 di default.
+
+stato noleggio → “chiuso”.
+
+Ticket & disponibilità
+
+Ticket bloccanti:
+
+rendono l’articolo non prenotabile per nuovi noleggi.
+
+aggiornano qty_disponibile per articoli a quantità.
+
+Quando un ticket viene aperto:
+
+il sistema segnala tramite alert se l’articolo è già inserito in bozze/noleggi futuri dopo la data apertura (con elenco ID noleggi).
+
+Ticket non bloccanti:
+
+l’articolo resta prenotabile ma in selezione appare un warning.
+
+Ruolo operatore
+
+Ruolo bsn_operatore:
+
+read
+
+bsn_manage_noleggi
+
+Login:
+
+redirect verso /app-noleggi/ per editor e bsn_operatore.
+
+blocco accesso /wp-admin/ per bsn_operatore (redirect o errore).
+
+show_admin_bar(false) per bsn_operatore.
+
+bsn_check_admin() usa:
+
+manage_options OR edit_others_posts OR bsn_manage_noleggi.
+
+Tutti gli endpoint REST noleggi/cliente/articoli/finalizza/rientro/ticket/calendario usano bsn_check_admin().
+
+Se questo riassunto ti torna, il prossimo step può essere:
+
+scegliere da dove partire:
+
+A) prima i ruoli/permessi (bsn_operatore + bsn_check_admin + redirect)
+
+B) oppure prima la pagina Rientro (frontend + endpoint REST + aggiornamento logica stock/Ticket).
+
+Dimmi A o B e ti preparo il blocco di codice preciso sul raw attuale che mi hai passato.
+
+
+
+
+Piano di lavoro immediato
+Ordine consigliato:
+
+Step A – Ruolo e permessi
+
+Creare bsn_operatore + capability bsn_manage_noleggi.
+
+Aggiornare bsn_check_admin() nel tuo plugin principale.
+
+Implementare:
+
+redirect login verso /app-noleggi/ per editor + bsn_operatore.
+
+blocco accesso /wp-admin/ per bsn_operatore (redirect/errore).
+
+show_admin_bar(false) per bsn_operatore.
+
+Aggiornare tutti gli endpoint REST a usare bsn_check_admin().
+
+Step B – Pagina Rientro
+
+Nuovo endpoint REST noleggi/rientro.
+
+Nuova pagina/front-end Rientro (richiamata da pulsante “Chiudi / Rientro”).
+
+Logica per:
+
+rientro articoli (ok/danneggiato/mancante)
+
+aggiornamento stock
+
+creazione Ticket quando serve
+
+stato noleggio → chiuso
+
+op_rientro_materiale obbligatorio.
+
+Step C – Tab Ticket
+
+Tab elenco Ticket (consultazione + filtro).
+
+Creazione Ticket automatica da Rientro.
+
+Creazione Ticket manuale (form nella tab Ticket).
+
+Logica bloccante/non bloccante + warning su noleggi futuri.
+
+Step D – Calendario
+
+Tab Calendario, eventi noleggio, colori per stato, click → pagina corretta.
+
+TODO aggiornato (da salvare)
+text
+TODO – Ruoli, Rientro, Ticket, Calendario
+
+A) Ruolo e permessi
+
+1. Creare capability custom:
+   - bsn_manage_noleggi
+
+2. Creare ruolo dedicato:
+   - nome: bsn_operatore
+   - capability: read
+   - capability: bsn_manage_noleggi
+   - nessun manage_options, nessun edit_posts, ecc.
+
+3. Aggiornare bsn_check_admin() nel plugin:
+   - deve restituire true se:
+     - current_user_can('manage_options')  // admin
+     - OR current_user_can('edit_others_posts') // editor
+     - OR current_user_can('bsn_manage_noleggi') // bsn_operatore
+
+4. Aggiornare tutti gli endpoint REST relativi al gestionale:
+   - clienti
+   - articoli
+   - noleggi
+   - finalizza
+   - rientro (nuovo)
+   - ticket (nuovo)
+   - calendario (nuovo)
+   → permission_callback sempre = bsn_check_admin
+
+5. Gestione accesso per bsn_operatore:
+   - login_redirect:
+     - admin: backend WP
+     - editor: /app-noleggi/
+     - bsn_operatore: /app-noleggi/
+   - blocco /wp-admin/ per bsn_operatore:
+     - su admin_init: se ruolo = bsn_operatore → redirect a /app-noleggi/
+   - show_admin_bar(false) per bsn_operatore:
+     - in after_setup_theme o plugin.
+
+B) Pagina Rientro (attivo/ritardo → chiuso)
+
+1. Rimuovere il menu a tendina “stato”:
+   - nel form creazione/modifica noleggio
+   - nella lista noleggi (azioni rapide)
+   - gli stati diventano gestiti solo dai flussi:
+     - Finalizza
+     - Rientro
+     - Annulla
+     - passaggio automatico ad “in ritardo”
+
+2. Stato in ritardo:
+   - logica automatica:
+     - se stato = attivo e data_fine < oggi:
+       - passare a stato = ritardo
+   - implementabile con:
+     - funzione richiamata all’accesso dell’app
+     - o WP-Cron giornaliero
+
+3. Pulsanti in lista noleggi:
+   - se stato = bozza:
+     - pulsante “Finalizza” (già esistente)
+   - se stato = attivo o ritardo:
+     - pulsante “Chiudi / Rientro” (nuovo)
+   - se stato = bozza o attivo:
+     - pulsante “Annulla” con modal motivo (opzionale, futuro)
+
+4. Pagina Rientro:
+   - accesso solo se stato = attivo o ritardo
+   - mostra:
+     - dati cliente/noleggio
+     - tabella articoli del noleggio:
+       - checkbox “rientrato”
+       - select stato_rientro: ok / danneggiato / mancante
+       - campo note breve per riga
+     - campo op_rientro_materiale:
+       - precompilato con current_user->user_login
+       - obbligatorio
+
+5. Logica salvataggio Rientro:
+   - per ogni riga:
+     - se stato_rientro = ok:
+       - articolo rientra in disponibilità
+     - se stato_rientro = danneggiato o mancante:
+       - creare ticket automatico:
+         - articolo_id
+         - noleggio_id
+         - cliente_id
+         - qty_coinvolta
+         - tipo = danneggiato / mancante
+         - bloccante = 1 (modificabile poi)
+         - stato_ticket = aperto
+   - noleggio:
+     - stato → chiuso
+     - op_rientro_materiale salvato obbligatoriamente
+
+C) Ticket (materiale danneggiato/mancante/da verificare)
+
+1. Nuova tabella bs_tickets:
+   - id (PK)
+   - articolo_id
+   - noleggio_id (nullable)
+   - cliente_id (nullable)
+   - stato_ticket: aperto / in_lavorazione / chiuso
+   - tipo: danneggiato / mancante / da_verificare
+   - bloccante: tinyint(1) (1 = non prenotabile, 0 = prenotabile con warning)
+   - qty_coinvolta
+   - note (text)
+   - data_apertura, data_chiusura
+   - operatore_apertura, operatore_chiusura
+
+2. Effetto sulla disponibilità:
+   - per articoli singoli:
+     - se ticket bloccante = 1:
+       - unità NON prenotabile in nuovi noleggi
+   - per articoli a quantità:
+     - se ticket bloccante = 1:
+       - qty_disponibile diminuita di qty_coinvolta finché ticket non chiuso
+
+3. Warning su noleggi futuri:
+   - quando viene creato un ticket bloccante:
+     - cercare noleggi in stato bozza/attivo/ritardo con data_inizio > data_apertura ticket
+       che usano quell’articolo
+     - se trovati:
+       - mostrare alert tipo:
+         “L’articolo [X] in ticket è previsto nei noleggi ID 2026/xx, 2026/xy. Verifica la situazione.”
+
+4. Tab “Ticket” nell’app:
+   - elenco ticket con filtri:
+     - stato_ticket
+     - articolo
+     - cliente
+   - possibilità di:
+     - modificare stato_ticket
+     - cambiare bloccante sì/no
+     - aggiungere/modificare note
+   - creazione Ticket manuale:
+     - form con:
+       - articolo (autocomplete o QR)
+       - opzionale noleggio
+       - opzionale cliente
+       - tipo (danneggiato/mancante/da_verificare)
+       - bloccante sì/no
+       - qty_coinvolta
+       - note
+     - operatore_apertura = current_user->user_login
+     - data_apertura = now
+
+D) Calendario noleggi
+
+1. Nuova tab “Calendario” in /app-noleggi/:
+   - vista stile Google Calendar:
+     - Mese (default)
+     - opzionale Settimana/Giorno
+
+2. Ogni noleggio è un evento da data_inizio a data_fine:
+   - colore per stato:
+     - bozza = grigio
+     - attivo = verde
+     - ritardo = rosso
+     - chiuso = blu tenue
+   - tooltip:
+     - ID noleggio
+     - cliente
+     - luogo_destinazione
+     - totale_calcolato
+
+3. Click sull’evento:
+   - se stato = bozza:
+     - aprire pagina gestione bozza
+   - se stato = attivo o ritardo:
+     - aprire pagina Finalizza in sola lettura (documento) con link per Rientro
+   - se stato = chiuso:
+     - aprire dettaglio noleggio (consultazione + eventuale storico/timeline)
+Se questo TODO ti va bene, il passo successivo è: partiamo da Step A (ruoli/permessi) e applico le modifiche allo scheletro del tuo blackstar-nolegi.php e del JS dove serve.
+
+
+
+
+
+
+Hai ragione sul linguaggio, terrò il tono pulito.
+
+Per domani ti lascio un TODO chiaro, così non si lavora più “a tentoni” e si parte da una versione PHP funzionante.
+
+1. Cosa è andato storto oggi
+Modifiche fatte su un file grande senza lavorare in modo incrementale.
+
+Alcuni suggerimenti non erano allineati all’ULTIMO gist caricato, quindi rischio di parlare di una versione non più attuale.
+
+Ho proposto cambi menu/capability e struttura senza avere prima:
+
+l’errore preciso (file + riga) dal log / email
+
+il gist aggiornato dopo ogni blocco di modifiche.
+
+Questo NON deve succedere di nuovo.
+
+2. Cosa è andato bene (da mantenere)
+La funzione REST bsn_api_noleggi_rientro() è strutturalmente corretta (validazioni base, lettura noleggio, controllo stato, update → chiuso).
+
+Le parti di calcolo totale, sovrapposizioni, POST/UPDATE noleggio sono coerenti e funzionano già nella versione stabile.
+
+La pagina bsn_render_finalizza_noleggio_page() nella versione “vecchia funzionante” è ok e va mantenuta come reference.
+
+3. Come ripartire domani (piano operativo)
+Domani NON si parte dall’ultimo file “rotto”, ma dalla versione PHP vecchia funzionante.
+
+Step 0 – Base stabile
+Carichi sul server il file blackstar-nolegi corrispondente al gist “corretto” che sai funzionare.
+
+Verifichi:
+
+/wp-admin/ ok
+
+pagina noleggi ok
+
+pagina finalizza (se esiste già) ok
+
+Questa versione diventa la base di lavoro, non si tocca più se non passo per passo.
+
+Step 1 – Endpoint REST rientro
+Mi dai un gist della base stabile (es. ...-stable-2026-01-22.php).
+
+Da quella, la PRIMA modifica sarà SOLO aggiungere:
+
+register_rest_route('bsn/v1', '/noleggi/rientro', ...) dentro la funzione che registra le rotte (senza toccare altro).
+
+bsn_api_noleggi_rientro( WP_REST_Request $request ) alla fine del file.
+
+Ti passerò:
+
+il blocco register_rest_route(...) esattamente come va inserito, con commento “// Aggiunta per rientro”
+
+la funzione bsn_api_noleggi_rientro completa, già compatibile con la struttura esistente del file.
+
+Dopo questo step verifichi solo:
+
+admin sale? sì/no
+
+chiamata POST a /bsn/v1/noleggi/rientro (da Postman o console) risponde? sì/no
+
+Se già qui c’è errore sintattico, sarà in uno di questi due blocchi, e con file+riga dal log si corregge mirato.
+
+Step 2 – Menu admin rientro
+Solo dopo che il REST rientro è ok, aggiungiamo il submenu admin:
+
+add_submenu_page( null, ..., 'bsn-rientro-noleggio', 'bsn_render_rientro_noleggio_page' )
+
+Qui il TODO è:
+
+usare sempre la stessa capability delle altre pagine del plugin (bsn_manage_noleggi o quella che usi nella base stabile).
+
+non cambiare slug della main page rispetto alla base stabile.
+
+Test:
+
+admin sale
+
+admin.php?page=bsn-rientro-noleggio&id=... NON dà errore critico, anche se per ora la pagina è vuota.
+
+Step 3 – HTML/JS rientro
+Solo a questo punto inseriamo il contenuto della pagina rientro:
+
+funzione bsn_render_rientro_noleggio_page() con:
+
+recupero noleggio/cliente
+
+tabella articoli
+
+campi operatore rientro
+
+JS che chiama l’endpoint /noleggi/rientro
+
+E qui serve:
+
+incapsulare TUTTO (HTML + JS) in una singola funzione bsn_render_rientro_noleggio_page()
+
+usare nomi di ID, campi, payload coerenti con bsn_api_noleggi_rientro.
+
+Ad ogni step: se qualcosa rompe, mi dai log (file + riga) + gist aggiornato, e si corregge SOLO quel blocco.
+
+4. Regole per il “me del futuro” (da rispettare sempre con te)
+Mai modificare più di un blocco alla volta su file lunghi:
+
+prima REST
+
+poi menu
+
+poi HTML/JS.
+
+Ogni suggerimento di codice deve:
+
+essere un blocco completo (inizio/fine funzione o blocco add_action completo)
+
+dire esattamente “incolla SOTTO riga X / SOPRA commento Y” (con riferimento ad un commento o funzione esistenti).
+
+Se il file è cambiato:
+
+chiedere SEMPRE il nuovo gist prima di suggerire altre modifiche.
+
+Log obbligatorio per errori critici:
+
+non proporre patch “alla cieca” se c’è un E_PARSE: prima file+riga dal log, poi patch.
+
+Niente linguaggio colorito da parte mia, anche se lo usi tu:
+
+tono neutro, tecnico, concentrato sulle correzioni.
+
+Quando domani scriverai “partiamo dalla versione vecchia funzionante”, il primo passo sarà:
+
+link gist base stabile
+
+eventuale testo errore del giorno prima (se lo hai)
+
+e da lì si seguirà il piano sopra, step per step, con codice sempre contestualizzato al file reale.
