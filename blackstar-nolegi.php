@@ -1598,10 +1598,11 @@ add_action('wp_enqueue_scripts', 'bsn_enqueue_assets');
  * Enqueue JS in admin per pagina Finalizza Noleggio
  */
 function bsn_enqueue_admin_finalizza( $hook ) {
-    // Carica solo sulla pagina admin.php?page=bsn-finalizza-noleggio
+    // Carica solo sulle pagine admin dell'app (finalizza + rientro)
     if ( $hook !== 'toplevel_page_blackstar-noleggi'
          && $hook !== 'noleggi_page_bsn-finalizza-noleggio'
          && $hook !== 'admin_page_bsn-finalizza-noleggio'
+         && $hook !== 'admin_page_bsn-rientro-noleggio'
     ) {
         return;
     }
@@ -1617,13 +1618,13 @@ function bsn_enqueue_admin_finalizza( $hook ) {
     // jQuery è già in admin, ma per sicurezza:
     wp_enqueue_script( 'jquery' );
 
-    // Script vuoto solo per avere BSN_API
-    wp_register_script(
-        'bsn-admin-finalizza',
-        '',
-        [ 'jquery' ],
-        BSN_VERSION,
-        true
+    // Script vuoto solo per avere BSN_API␊
+    wp_register_script(␊
+        'bsn-admin-finalizza',␊
+        '',␊
+        [ 'jquery' ],␊
+        BSN_VERSION,␊
+        true␊
     );
 
     wp_enqueue_script( 'bsn-admin-finalizza' );
