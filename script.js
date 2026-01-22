@@ -1797,14 +1797,24 @@ $(document).on('keydown', '.bsn-noleggio-articolo-search', function(e) {
                                 'style="margin-right:3px;">✏️ Modifica</button> '
                             : ''
                         ) +
-                        // Finalizza solo per bozza
+                        // Finalizza solo per bozza (frontend)
                         (stato === 'bozza'
                             ? '<a href="' + window.location.origin +
-                                '/wp-admin/admin.php?page=bsn-finalizza-noleggio&id=' +
+                                '/finalizza/?id=' +
                                 encodeURIComponent(n.id) +
                                 '" class="button button-primary" ' +
                                 'title="Finalizza noleggio" ' +
                                 'style="margin-right:3px;">✅ Finalizza</a> '
+                            : ''
+                        ) +
+                        // Ispeziona solo per attivo o ritardo (frontend)
+                        ((stato === 'attivo' || stato === 'ritardo')
+                            ? '<a href="' + window.location.origin +
+                                '/ispeziona/?id=' +
+                                encodeURIComponent(n.id) +
+                                '" class="button button-secondary" ' +
+                                'title="Ispeziona noleggio" ' +
+                                'style="margin-right:3px;">👁️ Ispeziona</a> '
                             : ''
                         ) +
                         // Rientro (Chiudi) solo per attivo o ritardo
@@ -2147,7 +2157,7 @@ $(document).on('click', '.bsn-noleggio-edit', function() {
     });
     */
 
-            // Click su "Rientro / Chiudi" nella tabella noleggi → apre pagina admin Rientro
+        // Click su "Rientro / Chiudi" nella tabella noleggi → apre pagina frontend Rientro
         $(document).on('click', '.bsn-noleggio-rientro', function() {
         var $row = $(this).closest('.bsn-noleggio-row');
         var id   = $row.data('id');
@@ -2155,7 +2165,7 @@ $(document).on('click', '.bsn-noleggio-edit', function() {
         if (!id) return;
 
         var urlRientro = window.location.origin +
-            '/wp-admin/admin.php?page=bsn-rientro-noleggio&id=' +
+            '/rientro/?id=' +
             encodeURIComponent(id);
 
         window.location.href = urlRientro;
