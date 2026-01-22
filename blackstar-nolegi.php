@@ -178,9 +178,16 @@ add_action('admin_menu', function() {
 });
 
 
-function bsn_render_finalizza_noleggio_page() {
+function bsn_render_finalizza_noleggio_page( $args = [] ) {
     global $wpdb;
-    
+
+    $args = wp_parse_args(
+        $args,
+        [
+            'back_url' => admin_url( 'admin.php?page=blackstar-noleggi' ),
+        ]
+    );
+
     // ===== RECUPERA ID NOLEGGIO =====
     $noleggio_id = isset($_GET['id']) ? sanitize_text_field($_GET['id']) : '';
     
@@ -272,7 +279,7 @@ function bsn_render_finalizza_noleggio_page() {
         
         <!-- ===== HEADER AZIONI ===== -->
         <div class="bsn-finalizza-header" style="background: #fff; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc;">
-            <a href="admin.php?page=blackstar-noleggi" class="button">← Torna ai noleggi</a>
+            <a href="<?php echo esc_url( $args['back_url'] ); ?>" class="button">← Torna ai noleggi</a>
             <button id="bsn-salva-finalizza" class="button button-primary" style="float: right; margin-left: 10px;">💾 Salva e Attiva Noleggio</button>
             <button id="bsn-stampa-documento" class="button" style="float: right;">🖨️ Stampa/Scarica PDF</button>
             <div style="clear: both;"></div>
@@ -816,6 +823,265 @@ function bsn_render_finalizza_noleggio_page() {
     });
     </script>
     
+    <?php
+}
+
+function bsn_render_ispeziona_noleggio_page( $args = [] ) {
+    global $wpdb;
+
+    $args = wp_parse_args(
+        $args,
+        [
+            'back_url' => home_url( '/app-noleggi/' ),
+        ]
+    );
+
+    $noleggio_id = isset( $_GET['id'] ) ? sanitize_text_field( $_GET['id'] ) : '';
+
+    if ( empty( $noleggio_id ) ) {
+        echo '<div class="wrap"><h1>Errore</h1><p>ID noleggio mancante.</p></div>';
+        return;
+    }
+
+    $table_noleggi = $wpdb->prefix . 'bs_noleggi';
+    $noleggio = $wpdb->get_row(
+        $wpdb->prepare(
+            "SELECT * FROM $table_noleggi WHERE id = %s",
+            $noleggio_id
+        ),
+        ARRAY_A
+    );
+
+    if ( ! $noleggio ) {
+        echo '<div class="wrap"><h1>Errore</h1><p>Noleggio non trovato.</p></div>';
+        return;
+    }
+
+    $table_clienti = $wpdb->prefix . 'bs_clienti';
+    $cliente = $wpdb->get_row(
+        $wpdb->prepare(
+            "SELECT * FROM $table_clienti WHERE id = %d",
+            $noleggio['cliente_id']
+        ),
+        ARRAY_A
+    );
+
+    if ( ! $cliente ) {
+        echo '<div class="wrap"><h1>Errore</h1><p>Cliente non trovato.</p></div>';
+        return;
+    }
+
+    $articoli = json_decode( $noleggio['articoli'], true );
+    if ( ! is_array( $articoli ) ) {
+        $articoli = [];
+    }
+
+    $data_inizio_raw = substr( $noleggio['data_inizio'], 0, 10 );
+    $data_fine_raw   = substr( $noleggio['data_fine'], 0, 10 );
+
+    $data_inizio_formattata = $data_inizio_raw ? date( 'd/m/Y', strtotime( $data_inizio_raw ) ) : '';
+    $data_fine_formattata   = $data_fine_raw ? date( 'd/m/Y', strtotime( $data_fine_raw ) ) : '';
+
+    $table_articoli = $wpdb->prefix . 'bs_articoli';
+    $ids_articoli = array_map(
+        function ( $a ) {
+            return (int) $a['id'];
+        },
+        $articoli
+    );
+    $ids_articoli = array_values( array_unique( $ids_articoli ) );
+
+    $mappa_articoli = [];
+    if ( ! empty( $ids_articoli ) ) {
+        $placeholders = implode( ',', array_fill( 0, count( $ids_articoli ), '%d' ) );
+        $sql_art = "SELECT * FROM $table_articoli WHERE id IN ($placeholders)";
+        $rows_art = $wpdb->get_results( $wpdb->prepare( $sql_art, $ids_articoli ), ARRAY_A );
+
+        foreach ( $rows_art as $row ) {
+            $mappa_articoli[ (int) $row['id'] ] = $row;
+        }
+    }
+
+    ?>
+
+    <div class="wrap bsn-ispeziona-wrap">
+        <div class="bsn-ispeziona-header" style="background: #fff; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc;">
+            <a href="<?php echo esc_url( $args['back_url'] ); ?>" class="button">← Torna ai noleggi</a>
+            <button id="bsn-stampa-documento" class="button" style="float: right;">🖨️ Stampa/Scarica PDF</button>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div id="bsn-documento-ispezione" style="background: #fff; padding: 30px; max-width: 21cm; margin: 0 auto; border: 1px solid #ddd;">
+            <div class="bsn-doc-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; padding-bottom: 10px;">
+                <div style="flex: 0 0 auto;">
+                    <img src="http://www.blackstarservice.it/wp-content/uploads/2021/04/logo-1500px.jpg"
+                         alt="Black Star Service"
+                         style="max-width: 280px; height: auto;">
+                </div>
+                <div style="flex: 1; text-align: right; font-size: 10px; line-height: 1.4; padding-left: 20px;">
+                    <strong style="font-size: 11px;">BLACK STAR SERVICE S.R.L.</strong><br>
+                    Sede Legale: Via Repubblica Argentina, 54 - 25124 Brescia<br>
+                    Sede Operativa: Via Cerca, 28 - 25135 Brescia<br>
+                    Partita IVA: 04130270988
+                </div>
+            </div>
+
+            <div style="text-align: center; font-size: 9px; font-style: italic; margin-bottom: 10px;">
+                Documento di ispezione noleggio - solo consultazione
+            </div>
+
+            <div style="border-bottom: 2px solid #000; margin-bottom: 8px;"></div>
+
+            <div style="text-align: right; margin-bottom: 15px;">
+                <strong style="font-size: 15px;">NOLEGGIO N° <?php echo esc_html( $noleggio_id ); ?></strong><br>
+                <span style="font-size: 10px;">Data richiesta: <?php echo date( 'd/m/Y', strtotime( $noleggio['data_richiesta'] ) ); ?></span>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <div style="flex: 1; border: 1px solid #000; padding: 10px;">
+                    <h3 style="margin: 0 0 8px 0; font-size: 12px; background: #000; color: #fff; padding: 3px 8px; margin: -10px -10px 8px -10px;">DATI CLIENTE</h3>
+                    <table style="width: 100%; font-size: 10px; line-height: 1.3;">
+                        <tr>
+                            <td style="width: 35%; padding: 2px 0;"><strong>Nome/Rag. Soc.:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $cliente['nome'] ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>CF/P.IVA:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $cliente['cf_piva'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Telefono:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $cliente['telefono'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Email:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $cliente['email'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Documento:</strong></td>
+                            <td style="padding: 2px 0;">
+                                <?php
+                                $doc_tipo = ! empty( $cliente['tipo_documento'] ) ? esc_html( $cliente['tipo_documento'] ) : 'N/D';
+                                $doc_numero = ! empty( $cliente['numero_documento'] ) ? ' - ' . esc_html( $cliente['numero_documento'] ) : '';
+                                echo $doc_tipo . $doc_numero;
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Categoria:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( strtoupper( $cliente['categoria_cliente'] ?? 'Standard' ) ); ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="flex: 1; border: 1px solid #000; padding: 10px;">
+                    <h3 style="margin: 0 0 8px 0; font-size: 12px; background: #000; color: #fff; padding: 3px 8px; margin: -10px -10px 8px -10px;">DATI NOLEGGIO</h3>
+                    <table style="width: 100%; font-size: 10px; line-height: 1.3;">
+                        <tr>
+                            <td style="width: 35%; padding: 2px 0;"><strong>Periodo:</strong></td>
+                            <td style="padding: 2px 0;">dal <strong><?php echo esc_html( $data_inizio_formattata ); ?></strong> al <strong><?php echo esc_html( $data_fine_formattata ); ?></strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Luogo Dest.:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $noleggio['luogo_destinazione'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Trasporto:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $noleggio['trasporto_mezzo'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Cauzione:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $noleggio['cauzione'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 2px 0;"><strong>Causale:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo esc_html( $noleggio['causale_trasporto'] ?? 'N/D' ); ?></td>
+                        </tr>
+                        <?php if ( ! empty( $noleggio['note'] ) ) : ?>
+                        <tr>
+                            <td style="padding: 2px 0; vertical-align: top;"><strong>Note:</strong></td>
+                            <td style="padding: 2px 0;"><?php echo nl2br( esc_html( $noleggio['note'] ) ); ?></td>
+                        </tr>
+                        <?php endif; ?>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bsn-doc-section" style="margin-bottom: 15px;">
+                <h3 style="font-size: 12px; background: #000; color: #fff; padding: 3px 8px; margin-bottom: 8px;">ARTICOLI NOLEGGIATI</h3>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 9px;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="border: 1px solid #000; padding: 3px; text-align: left; width: 10%;">Codice</th>
+                            <th style="border: 1px solid #000; padding: 3px; text-align: left; width: 25%;">Descrizione</th>
+                            <th style="border: 1px solid #000; padding: 3px; text-align: left; width: 25%;">Correlati</th>
+                            <th style="border: 1px solid #000; padding: 3px; text-align: left; width: 20%;">Ubicazione</th>
+                            <th style="border: 1px solid #000; padding: 3px; text-align: center; width: 10%;">Q.tà</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ( empty( $articoli ) ) {
+                            echo '<tr><td colspan="5" style="border: 1px solid #ccc; padding: 6px;">Nessun articolo associato.</td></tr>';
+                        } else {
+                            foreach ( $articoli as $art ) {
+                                $qty = isset( $art['qty'] ) ? (int) $art['qty'] : 1;
+                                $articolo_id = isset( $art['id'] ) ? (int) $art['id'] : 0;
+
+                                if ( ! isset( $mappa_articoli[ $articolo_id ] ) ) {
+                                    continue;
+                                }
+
+                                $articolo_db = $mappa_articoli[ $articolo_id ];
+
+                                $codice = $articolo_db['codice'] ?? 'N/D';
+                                $nome = $articolo_db['nome'] ?? 'Articolo #' . $articolo_id;
+                                $ubicazione = $articolo_db['ubicazione'] ?? '-';
+
+                                $correlati_testo = '-';
+                                if ( ! empty( $articolo_db['correlati'] ) ) {
+                                    $correlati = json_decode( $articolo_db['correlati'], true );
+                                    if ( is_array( $correlati ) && ! empty( $correlati ) ) {
+                                        $corrLabels = array_map(
+                                            function ( $c ) use ( $qty ) {
+                                                $qtyCorr = ( (int) ( $c['qty'] ?? 1 ) ) * $qty;
+                                                return $qtyCorr . 'x ' . ( $c['nome'] ?? '' );
+                                            },
+                                            $correlati
+                                        );
+                                        $correlati_testo = implode( ', ', $corrLabels );
+                                    }
+                                }
+                                ?>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 3px;"><?php echo esc_html( $codice ); ?></td>
+                                    <td style="border: 1px solid #ccc; padding: 3px;"><?php echo esc_html( $nome ); ?></td>
+                                    <td style="border: 1px solid #ccc; padding: 3px; font-size: 8px;"><?php echo esc_html( $correlati_testo ); ?></td>
+                                    <td style="border: 1px solid #ccc; padding: 3px;"><?php echo esc_html( $ubicazione ); ?></td>
+                                    <td style="border: 1px solid #ccc; padding: 3px; text-align: center;"><?php echo esc_html( $qty ); ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="bsn-ispeziona-footer" style="background: #fff; padding: 15px; margin-top: 20px; border: 1px solid #ccc; text-align: center;">
+            <button id="bsn-stampa-documento-2" class="button button-hero">🖨️ Stampa/Scarica PDF</button>
+        </div>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('#bsn-stampa-documento, #bsn-stampa-documento-2').on('click', function() {
+            window.print();
+        });
+    });
+    </script>
     <?php
 }
 
@@ -1563,6 +1829,47 @@ function bsn_shortcode() {
     return ob_get_clean();
 }
 
+add_shortcode( 'blackstar_finalizza', 'bsn_shortcode_finalizza' );
+function bsn_shortcode_finalizza() {
+    if ( ! bsn_check_admin() ) {
+        return '<p>Accesso negato. Permesso riservato agli operatori autorizzati.</p>';
+    }
+
+    ob_start();
+    bsn_render_finalizza_noleggio_page(
+        [
+            'back_url' => home_url( '/app-noleggi/' ),
+        ]
+    );
+    return ob_get_clean();
+}
+
+add_shortcode( 'blackstar_ispeziona', 'bsn_shortcode_ispeziona' );
+function bsn_shortcode_ispeziona() {
+    if ( ! bsn_check_admin() ) {
+        return '<p>Accesso negato. Permesso riservato agli operatori autorizzati.</p>';
+    }
+
+    ob_start();
+    bsn_render_ispeziona_noleggio_page(
+        [
+            'back_url' => home_url( '/app-noleggi/' ),
+        ]
+    );
+    return ob_get_clean();
+}
+
+add_shortcode( 'blackstar_rientro', 'bsn_shortcode_rientro' );
+function bsn_shortcode_rientro() {
+    if ( ! bsn_check_admin() ) {
+        return '<p>Accesso negato. Permesso riservato agli operatori autorizzati.</p>';
+    }
+
+    ob_start();
+    bsn_render_rientro_noleggio_page();
+    return ob_get_clean();
+}
+
 /**
  * Enqueue CSS/JS solo dove serve
  */
@@ -1572,12 +1879,17 @@ function bsn_enqueue_assets() {
     $post = get_post();
     if (!$post) return;
 
-    if (has_shortcode($post->post_content, 'blackstar_noleggi')) {
+    $has_app = has_shortcode( $post->post_content, 'blackstar_noleggi' );
+    $has_finalizza = has_shortcode( $post->post_content, 'blackstar_finalizza' );
+    $has_ispeziona = has_shortcode( $post->post_content, 'blackstar_ispeziona' );
+    $has_rientro = has_shortcode( $post->post_content, 'blackstar_rientro' );
+
+    if ( $has_app ) {
         $version_dinamica = BSN_VERSION . '.' . time(); // Aggiunge timestamp
         wp_enqueue_style( 'bsn-style', BSN_URL . 'assets/css/style.css', [], $version_dinamica );
         wp_enqueue_script( 'bsn-script', BSN_URL . 'assets/js/script.js', ['jquery'], $version_dinamica, true );
-        
-                // Includi libreria qrcode.js da CDN
+               
+        // Includi libreria qrcode.js da CDN
         wp_enqueue_script(
             'qrcode-js',
             'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js',
@@ -1589,6 +1901,27 @@ function bsn_enqueue_assets() {
             'root'  => esc_url_raw(rest_url('bsn/v1/')),
             'nonce' => wp_create_nonce('wp_rest')
         ]);
+    }
+
+    if ( $has_finalizza || $has_ispeziona || $has_rientro ) {
+        wp_enqueue_style( 'bsn-style-frontend-doc', BSN_URL . 'assets/css/style.css', [], BSN_VERSION );
+        wp_enqueue_script( 'jquery' );
+        wp_register_script(
+            'bsn-frontend-doc',
+            '',
+            [ 'jquery' ],
+            BSN_VERSION,
+            true
+        );
+        wp_enqueue_script( 'bsn-frontend-doc' );
+        wp_localize_script(
+            'bsn-frontend-doc',
+            'BSN_API',
+            [
+                'root'  => esc_url_raw( rest_url( 'bsn/v1/' ) ),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+            ]
+        );
     }
 }
 add_action('wp_enqueue_scripts', 'bsn_enqueue_assets');
@@ -3238,6 +3571,10 @@ function bsn_api_noleggi_dettaglio( WP_REST_Request $request ) {
         'data_fine'      => $data_fine_iso,
         'stato'          => $n->stato,
         'note'           => $n->note,
+        'luogo_destinazione' => $n->luogo_destinazione,
+        'trasporto_mezzo'    => $n->trasporto_mezzo,
+        'cauzione'           => $n->cauzione,
+        'causale_trasporto'  => $n->causale_trasporto,
         'sconto_globale' => isset( $n->sconto_globale ) ? (float) $n->sconto_globale : 0.0,
         'articoli'       => $articoli_out,
     ];
