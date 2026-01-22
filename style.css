@@ -201,22 +201,83 @@ label {
     max-height: 160px;
 }
 @media print {
-    #wpadminbar,
-    #adminmenuwrap,
-    #wpfooter,
-    #screen-meta,
-    #screen-meta-links,
+
+    /* RESET BASE */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* NASCONDI PULSANTI / BARRE */
     .bsn-finalizza-header,
     .bsn-finalizza-footer,
-    #wpbody-content > .wrap > h1 {
+    .bsn-ispeziona-header,
+    .bsn-ispeziona-footer,
+    #bsn-salva-finalizza,
+    #bsn-stampa-documento,
+    #bsn-salva-finalizza-2,
+    #bsn-stampa-documento-2 {
         display: none !important;
     }
 
-    #bsn-documento-finalizzazione {
-        box-shadow: none !important;
-        border: none !important;
+    /* NASCONDI ELEMENTI TEMA NON UTILI A STAMPA */
+    header,
+    nav,
+    footer,
+    .site-header,
+    .site-footer,
+    .sidebar,
+    .menu,
+    .widget-area,
+    .no-print {
+        display: none !important;
+    }
+
+    /* WRAPPER */
+    .site,
+    .site-content,
+    .content-area,
+    .entry-content,
+    .container,
+    .wrap {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        width: 100% !important;
+    }
+
+    /* 1) ISPEZIONE: come ora (flusso normale, funziona già) */
+    #bsn-documento-ispezione {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 99% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0.5cm !important;
-        width: 100% !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+    }
+
+    /* 2) FINALIZZA: staccata dal resto con position: absolute; parte SEMPRE in alto a pagina 1 */
+    #bsn-documento-finalizzazione {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        width: 99% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0.5cm !important;
+
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
     }
 }
