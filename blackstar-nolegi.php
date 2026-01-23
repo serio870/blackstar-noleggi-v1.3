@@ -1401,6 +1401,7 @@ function bsn_shortcode() {
             <button class="tab-btn active" data-tab="clienti">Clienti</button>
             <button class="tab-btn" data-tab="articoli">Articoli</button>
             <button class="tab-btn" data-tab="noleggi">Noleggi</button>
+            <button class="tab-btn" data-tab="calendario">Calendario</button>
         </div>
 
         <div id="bsn-content">
@@ -1820,6 +1821,42 @@ function bsn_shortcode() {
                 <!-- Lista noleggi -->
                 <div id="bsn-lista-noleggi">
                     <p>Nessun noleggio caricato.</p>
+                </div>
+            </div>
+
+            <!-- CALENDARIO -->
+            <div id="calendario" class="tab-content">
+                <h2>Calendario Noleggi</h2>
+
+                <div class="bsn-calendar-toolbar">
+                    <div class="bsn-calendar-nav">
+                        <button type="button" class="btn btn-secondary" id="bsn-calendar-prev">◀</button>
+                        <div id="bsn-calendar-title">-</div>
+                        <button type="button" class="btn btn-secondary" id="bsn-calendar-next">▶</button>
+                    </div>
+                    <div class="bsn-calendar-views">
+                        <button type="button" class="btn btn-secondary bsn-calendar-view active" data-view="month">Mese</button>
+                        <button type="button" class="btn btn-secondary bsn-calendar-view" data-view="week">Settimana</button>
+                        <button type="button" class="btn btn-secondary bsn-calendar-view" data-view="day">Giorno</button>
+                    </div>
+                </div>
+
+                <div class="bsn-calendar-filters">
+                    <input type="text" id="bsn-calendar-search" placeholder="Cerca per cliente, materiale o ID..." />
+                </div>
+
+                <div id="bsn-calendar" class="bsn-calendar">
+                    <div class="bsn-calendar-weekdays">
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mer</div>
+                        <div>Gio</div>
+                        <div>Ven</div>
+                        <div>Sab</div>
+                        <div>Dom</div>
+                    </div>
+                    <div id="bsn-calendar-grid" class="bsn-calendar-grid"></div>
+                    <div id="bsn-calendar-day" class="bsn-calendar-day" hidden></div>
                 </div>
             </div>
 
@@ -2742,16 +2779,20 @@ function bsn_api_noleggi_get($request) {
         // Formatta date in stile italiano (solo giorno/mese/anno)
         $data_da_it = '';
         $data_a_it  = '';
+        $data_da_raw = '';
+        $data_a_raw  = '';
         if (!empty($n->data_inizio)) {
             $ts = strtotime($n->data_inizio);
             if ($ts) {
                 $data_da_it = date('d/m/Y', $ts);
+                $data_da_raw = date('Y-m-d', $ts);
             }
         }
         if (!empty($n->data_fine)) {
             $ts = strtotime($n->data_fine);
             if ($ts) {
                 $data_a_it = date('d/m/Y', $ts);
+                $data_a_raw = date('Y-m-d', $ts);
             }
         }
 
@@ -2760,6 +2801,8 @@ function bsn_api_noleggi_get($request) {
             'cliente_nome'       => $n->cliente_nome,
             'data_da'            => $data_da_it,
             'data_a'             => $data_a_it,
+            'data_inizio_raw'    => $data_da_raw,
+            'data_fine_raw'      => $data_a_raw,
             'stato'              => $n->stato,
             'articoli_riassunto' => $articoli_riassunto,
         ];
