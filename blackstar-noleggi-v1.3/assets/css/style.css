@@ -1,0 +1,541 @@
+/* Contenitore principale app */
+#bsn-app {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 98%; /* Cambiato da 1200px a 98% per usare quasi tutto lo schermo */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Tabs */
+#bsn-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dee2e6;
+}
+.tab-btn {
+    background: #e9ecef;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+.tab-btn.active,
+.tab-btn:hover {
+    background: #007cba;
+    color: white;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Stati noleggio (celle colorate) */
+.bozza {
+    color: #6c757d !important;
+    background: #dee2e6 !important;
+}
+.attivo {
+    color: #198754;
+    background: #d1e7dd !important;
+}
+.ritardo {
+    color: #dc3545;
+    background: #f8d7da !important;
+}
+
+/* Stati noleggi: intera riga */
+.bsn-noleggio-row.bsn-stato-bozza {
+    background-color: #f4f4f4;
+    color: #555;
+}
+.bsn-noleggio-row.bsn-stato-attivo {
+    background-color: #e6ffed;
+    color: #155724;
+}
+.bsn-noleggio-row.bsn-stato-chiuso {
+    background-color: #cce5ff;
+    color: #003366;
+}
+.bsn-noleggio-row.bsn-stato-ritardo {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Pulsanti base */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-primary {
+    background: #007cba;
+    color: white;
+}
+.btn-success {
+    background: #198754;
+    color: white;
+}
+.correlati {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.bsn-ticket-badge {
+    background: #ffeb3b;
+    color: #333;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+/* Contenitori liste: permetti scroll orizzontale */
+#bsn-lista-clienti,
+#bsn-lista-articoli,
+#bsn-lista-noleggi {
+    overflow-x: auto;
+}
+
+/* Tabelle base */
+.bsn-tabella {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#bsn-tabella-rientro-articoli {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    display: table;
+}
+
+#bsn-tabella-rientro-articoli thead {
+    display: table-header-group;
+}
+
+#bsn-tabella-rientro-articoli tbody {
+    display: table-row-group;
+}
+
+#bsn-tabella-rientro-articoli tr {
+    display: table-row;
+}
+
+#bsn-tabella-rientro-articoli th,
+#bsn-tabella-rientro-articoli td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    vertical-align: top;
+    background: #fff;
+    display: table-cell;
+}
+
+#bsn-tabella-rientro-articoli th {
+    background: #f1f1f1;
+}
+
+#bsn-tabella-rientro-articoli select,
+#bsn-tabella-rientro-articoli input {
+    float: none;
+    position: static;
+    display: inline-block;
+    max-width: 100%;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+#bsn-tabella-rientro-articoli .bsn-stato-rientro {
+    appearance: auto;
+}
+
+#bsn-tabella-rientro-articoli td {
+    white-space: normal;
+}
+
+/* Pulsanti generali dell'app (override leggero) */
+#bsn-app .btn {
+    padding: 4px 8px;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .bsn-tabella {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .bsn-tabella th,
+    .bsn-tabella td {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+
+    #bsn-app .btn {
+        padding: 8px 10px;
+        font-size: 14px;
+        margin: 2px 0;
+    }
+
+    #bsn-modal-qr > div {
+        margin-top: 120px;
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Box interno del modal QR (centrato un po' più in basso) */
+#bsn-modal-qr > div {
+    margin-top: 80px; /* sotto l'header */
+}
+
+/* Label in grassetto */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ---- Impostazioni leggere per tabella articoli ---- */
+
+/* allinea a destra le colonne numeriche ma senza forzare larghezze strane */
+#bsn-articoli-table th:nth-child(4),
+#bsn-articoli-table td:nth-child(4),
+#bsn-articoli-table th:nth-child(5),
+#bsn-articoli-table td:nth-child(5) {
+    text-align: right;
+}
+
+#bsn-articoli-table th:nth-child(6),
+#bsn-articoli-table td:nth-child(6) {
+    text-align: center;
+}
+
+/* Contenitore fisso per il QR nel modal */
+#bsn-qr-box {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Canvas/IMG dentro il box */
+#bsn-qr-box canvas,
+#bsn-qr-box img {
+    max-width: 160px;
+    max-height: 160px;
+}
+@media print {
+
+    /* RESET BASE */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* NASCONDI PULSANTI / BARRE */
+    .bsn-finalizza-header,
+    .bsn-finalizza-footer,
+    .bsn-ispeziona-header,
+    .bsn-ispeziona-footer,
+    #bsn-salva-finalizza,
+    #bsn-stampa-documento,
+    #bsn-salva-finalizza-2,
+    #bsn-stampa-documento-2 {
+        display: none !important;
+    }
+
+    /* NASCONDI ELEMENTI TEMA NON UTILI A STAMPA */
+    header,
+    nav,
+    footer,
+    .site-header,
+    .site-footer,
+    .sidebar,
+    .menu,
+    .widget-area,
+    .no-print {
+        display: none !important;
+    }
+
+    /* WRAPPER */
+    .site,
+    .site-content,
+    .content-area,
+    .entry-content,
+    .container,
+    .wrap {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        width: 100% !important;
+    }
+
+    /* 1) ISPEZIONE: come ora (flusso normale, funziona già) */
+    #bsn-documento-ispezione {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 99% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0.5cm !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+    }
+
+    /* 2) FINALIZZA: staccata dal resto con position: absolute; parte SEMPRE in alto a pagina 1 */
+    #bsn-documento-finalizzazione {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        width: 99% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0.5cm !important;
+
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* === Calendario Noleggi === */
+.bsn-calendar-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 15px;
+}
+
+.bsn-calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#bsn-calendar-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 180px;
+    text-align: center;
+}
+
+.bsn-calendar-views {
+    display: flex;
+    gap: 8px;
+}
+
+.bsn-calendar-views .btn.active {
+    background: #007cba;
+    color: #fff;
+}
+
+.bsn-calendar-filters {
+    margin-bottom: 10px;
+}
+
+.bsn-calendar-filters input {
+    width: 100%;
+    max-width: 360px;
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.bsn-calendar {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.bsn-calendar-weekdays,
+.bsn-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.bsn-calendar-weekdays {
+    display: none;
+}
+
+.bsn-calendar-weekdays div {
+    padding: 6px 0;
+}
+
+.bsn-calendar-grid {
+    gap: 6px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.bsn-calendar-day-cell {
+    border: 1px solid #504747;
+    min-height: 100px;
+    width: 24px;
+    padding: 4px;
+    background: #fafafa;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bsn-calendar-day-cell.outside {
+    background: #f5f5f5;
+    color: #aaa;
+}
+
+.bsn-calendar-day-number {
+    font-size: 0.75rem;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: #4a4a4a;
+}
+
+.bsn-calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.bsn-calendar-week-row {
+    position: relative;
+    overflow: hidden;
+}
+
+.bsn-calendar-week-events {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 6px;
+    grid-auto-rows: minmax(31px, auto);
+    align-items: start;
+}
+
+.bsn-calendar-event {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #222;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border: 1px solid transparent;
+    line-height: 1.4;
+    height: 26px;
+}
+
+.bsn-calendar-event:hover {
+    opacity: 0.9;
+}
+
+.bsn-calendar-event--bozza {
+    background: #dee2e6;
+    color: #6c757d;
+}
+
+.bsn-calendar-event--attivo {
+    background: #d1e7dd;
+    color: #189b36;
+}
+
+.bsn-calendar-event--ritardo {
+    background: #f8d7da;
+    color: #ac1322;
+}
+
+.bsn-calendar-event--chiuso {
+    background: #cce5ff;
+    color: #13599e;
+}
+
+.bsn-calendar-day {
+    padding: 10px;
+}
+
+.bsn-calendar-day h3 {
+    margin-top: 0;
+}
+
+.bsn-calendar-day-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bsn-calendar-day-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    background: #f9f9f9;
+}
+
+.bsn-calendar-day-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+@media (max-width: 900px) {
+    .bsn-calendar-day-cell {
+        min-height: 80px;
+    }
+    .bsn-calendar-event {
+        font-size: 0.7rem;
+    }
+}
