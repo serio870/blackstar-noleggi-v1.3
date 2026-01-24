@@ -162,9 +162,9 @@ jQuery(document).ready(function($) {
                             '<td>' + (c.email || '') + '</td>' +
                             '<td>' + (c.categoria_cliente || '') + '</td>' +
                             '<td>' +
-                                '<button type="button" class="btn bsn-cliente-details">Dettagli</button> ' +
-                                '<button type="button" class="btn bsn-cliente-edit">Modifica</button> ' +
-                                '<button type="button" class="btn bsn-cliente-delete">Elimina</button>' +
+                                '<button type="button" class="btn bsn-cliente-details">🔍Dettagli</button> ' +
+                                '<button type="button" class="btn bsn-cliente-edit">✏️Modifica</button> ' +
+                                '<button type="button" class="btn bsn-cliente-delete">🗑️Elimina</button>' +
                             '</td>' +
                         '</tr>' +
                         '<tr class="bsn-cliente-row-details" data-id="' + c.id + '" style="display:none;">' +
@@ -681,19 +681,19 @@ jQuery(document).ready(function($) {
             }
 
             var html = '' +
-                '<table class="bsn-tabella" id="bsn-articoli-table">' +
-                    '<thead><tr>' +
-                        '<th>ID</th>' +
-                        '<th>Nome</th>' +
-                        '<th>Codice</th>' +
-                        '<th>Prezzo/giorno</th>' +
-                        '<th>Valore bene</th>' +
-                        '<th>Q.tà</th>' +
-                        '<th>Ubicazione</th>' +
-                        '<th>Correlati</th>' +
-                        '<th>Azioni</th>' +
-                    '</tr></thead>' +
-                    '<tbody>';
+                    '<table class="bsn-tabella" id="bsn-articoli-table">' +
+                        '<thead><tr>' +
+                            '<th>ID</th>' +
+                            '<th>Nome</th>' +
+                            '<th>Codice</th>' +
+                            '<th>Prezzo<br>/giorno</th>' +
+                            '<th>Valore bene</th>' +
+                            '<th>Q.tà</th>' +
+                            '<th>Ubicazione</th>' +
+                            '<th>Correlati</th>' +
+                            '<th>Azioni</th>' +
+                        '</tr></thead>' +
+                        '<tbody>';
 
             var maxRows = 12;
             var lista = response.articoli.slice(0, maxRows);
@@ -709,13 +709,15 @@ jQuery(document).ready(function($) {
                         '<td style="text-align:center;">' + (a.qty_disponibile || '0') + '</td>' +
                         '<td>' + (a.ubicazione || '') + '</td>' +
                         '<td>' + (a.correlati ? bsnFormattaCorrelati(a.correlati) : '-') + '</td>' +
-                        '<td style="white-space:nowrap;">' +
-                            '<button type="button" class="btn bsn-articolo-details">Dettagli</button> ' +
-                            '<button type="button" class="btn bsn-articolo-qr" data-codice="' + (a.codice || '') + '">📱 QR</button> ' +
-                            '<button type="button" class="btn bsn-articolo-edit">✏️ Modifica</button> ' +
-                            '<button type="button" class="btn bsn-articolo-duplica">📄 Duplica</button> ' +
-                            '<button type="button" class="btn bsn-articolo-clona">🔁 Clona</button> ' +
-                            '<button type="button" class="btn bsn-articolo-delete" style="color:#b00;">🗑️ Elimina</button>' +
+                        '<td>' +
+                            '<div class="bsn-azioni-grid">' +
+                                '<button type="button" class="btn bsn-articolo-details">🔍Dettagli</button>' +
+                                '<button type="button" class="btn bsn-articolo-qr" data-codice="' + (a.codice || '') + '">📱 QR</button>' +
+                                '<button type="button" class="btn bsn-articolo-edit">✏️ Modifica</button>' +
+                                '<button type="button" class="btn bsn-articolo-duplica">📄 Duplica</button>' +
+                                '<button type="button" class="btn bsn-articolo-clona">🔁 Clona</button>' +
+                                '<button type="button" class="btn bsn-articolo-delete" style="color:#b00;">🗑️ Elimina</button>' +
+                            '</div>' +
                         '</td>' +
                     '</tr>' +
                     '<tr class="bsn-articolo-row-details" data-id="' + a.id + '" style="display:none;">' +
@@ -1949,49 +1951,42 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
                             '</td>' +
                             '<td>' + (n.articoli_riassunto || '-') + '</td>' +
                             '<td>' +
-                        // Dettagli
-                        '<button type="button" class="btn bsn-noleggio-details" title="Dettagli" ' +
-                            'style="margin-right:3px;">🔍 Dettagli</button> ' +
-                        // Duplica
-                        '<button type="button" class="btn bsn-noleggio-duplica" title="Duplica noleggio" ' +
-                            'style="margin-right:3px;">📄 Duplica</button> ' +
-                        // Modifica (solo se non chiuso)
-                        (stato !== 'chiuso'
-                            ? '<button type="button" class="btn bsn-noleggio-edit" title="Modifica noleggio" ' +
-                                'style="margin-right:3px;">✏️ Modifica</button> '
-                            : ''
-                        ) +
-                        // Finalizza solo per bozza (frontend)
-                        (stato === 'bozza'
-                            ? '<a href="' + window.location.origin +
-                                '/finalizza/?id=' +
-                                encodeURIComponent(n.id) +
-                                '" class="button button-primary" ' +
-                                'title="Finalizza noleggio" ' +
-                                'style="margin-right:3px;">✅ Finalizza</a> '
-                            : ''
-                        ) +
-                        // Ispeziona solo per attivo o ritardo (frontend)
-                        ((stato === 'attivo' || stato === 'ritardo' || stato === 'chiuso')
-                            ? '<a href="' + window.location.origin +
-                                '/ispeziona/?id=' +
-                                encodeURIComponent(n.id) +
-                                '" class="button button-secondary" ' +
-                                'title="Ispeziona noleggio" ' +
-                                'style="margin-right:3px;">👁️ Ispeziona</a> '
-                            : ''
-                        ) +
-                        // Rientro (Chiudi) solo per attivo o ritardo
-                        ((stato === 'attivo' || stato === 'ritardo')
-                            ? '<button type="button" class="button button-secondary bsn-noleggio-rientro" ' +
-                                'title="Chiudi / Rientro noleggio" ' +
-                                'style="margin-right:3px;">🚚 Rientro / Chiudi</button> '
-                            : ''
-                        ) +
-                        // Elimina
-                        '<button type="button" class="btn bsn-noleggio-delete" title="Elimina noleggio" ' +
-                            'style="color:#b00;">🗑️ Elimina</button>' +
-                    '</td>' +
+                                '<div class="bsn-azioni-grid">' +
+                                    // Dettagli
+                                    '<button type="button" class="btn bsn-noleggio-details" title="Dettagli">🔍 Dettagli</button>' +
+                                    // Duplica
+                                    '<button type="button" class="btn bsn-noleggio-duplica" title="Duplica noleggio">📄 Duplica</button>' +
+                                    // Modifica (solo se non chiuso)
+                                    (stato !== 'chiuso'
+                                        ? '<button type="button" class="btn bsn-noleggio-edit" title="Modifica noleggio">✏️ Modifica</button>'
+                                        : ''
+                                    ) +
+                                    // Finalizza solo per bozza (frontend)
+                                    (stato === 'bozza'
+                                        ? '<a href="' + window.location.origin +
+                                            '/finalizza/?id=' +
+                                            encodeURIComponent(n.id) +
+                                            '" class="button button-primary" ' +
+                                            'title="Finalizza noleggio">✅ Finalizza</a>'
+                                        : ''
+                                    ) +
+                                    // Ispeziona anche per bozza (frontend)
+                                    '<a href="' + window.location.origin +
+                                        '/ispeziona/?id=' +
+                                        encodeURIComponent(n.id) +
+                                        '" class="btn bsn-noleggio-ispeziona" ' +
+                                        'title="Ispeziona noleggio">👁️ Ispeziona</a>' +
+                                    // Rientro (Chiudi) solo per attivo o ritardo
+                                    ((stato === 'attivo' || stato === 'ritardo')
+                                        ? '<button type="button" class="button button-secondary bsn-noleggio-rientro" ' +
+                                            'title="Chiudi / Rientro noleggio">🚚 Rientro / Chiudi</button>'
+                                        : ''
+                                    ) +
+                                    // Elimina
+                                    '<button type="button" class="btn bsn-noleggio-delete" title="Elimina noleggio" ' +
+                                        'style="color:#b00;">🗑️ Elimina</button>' +
+                                '</div>' +
+                            '</td>' +
 
                         '</tr>' +
                         // Riga dettagli, inizialmente vuota/nascosta
@@ -2431,6 +2426,71 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
 
     var BSN_TICKETS_CACHE = [];
 
+    // Aggiorna la preview delle foto ticket nel form
+    function bsnAggiornaPreviewTicketFoto(urls) {
+        var $preview = $('#bsn-ticket-foto-preview');
+        $preview.empty();
+
+        if (!urls || !urls.length) {
+            return;
+        }
+
+        var html = '<div style="display:flex; flex-wrap:wrap; gap:6px;">';
+        urls.forEach(function(url) {
+            if (!url) {
+                return;
+            }
+            var safeUrl = encodeURI(url);
+            html += '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer">' +
+                '<img src="' + safeUrl + '" alt="Foto ticket" style="width:60px; height:60px; object-fit:cover; border:1px solid #ccc; border-radius:4px;">' +
+            '</a>';
+        });
+        html += '</div>';
+        $preview.html(html);
+    }
+
+    // Carica un singolo file foto per ticket e restituisce una Promise con l'URL
+    function bsnUploadTicketFoto(file) {
+        var formData = new FormData();
+        formData.append('file', file);
+
+        return $.ajax({
+            url: BSN_API.root + 'upload-doc',
+            method: 'POST',
+            processData: false,
+            contentType: false,
+            data: formData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-WP-Nonce', BSN_API.nonce);
+            }
+        }).then(function(response) {
+            return response && response.url ? response.url : '';
+        });
+    }
+
+    // Filtra i ticket lato client (stato + testo)
+    function bsnFiltraTickets() {
+        var testo = ($('#bsn-ticket-search').val() || '').toLowerCase();
+        var stato = ($('#bsn-ticket-filtro-stato').val() || '').toLowerCase();
+
+        $('#bsn-ticket-table tbody tr.bsn-ticket-row').each(function() {
+            var $row = $(this);
+            var rowState = ($row.data('stato') || '').toString().toLowerCase();
+            var haystack = ($row.data('search') || '').toString().toLowerCase();
+
+            var matchTesto = !testo || haystack.indexOf(testo) !== -1;
+            var matchStato = !stato || rowState === stato;
+            var visibile = matchTesto && matchStato;
+
+            $row.toggle(visibile);
+            var id = $row.data('ticket-id');
+            var $details = $('.bsn-ticket-row-details[data-ticket-id="' + id + '"]');
+            if (!visibile) {
+                $details.hide();
+            }
+        });
+    }
+
     function bsnCaricaTickets() {
         $.ajax({
             url: BSN_API.root + 'tickets',
@@ -2455,15 +2515,24 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
                             '<th>ID</th>' +
                             '<th>Articolo</th>' +
                             '<th>Quantità</th>' +
-                            '<th>Tipo</th>' +
+                            '<th>Tipo problema</th>' +
                             '<th>Noleggio</th>' +
                             '<th>Stato</th>' +
-                            '<th>Note</th>' +
                             '<th>Azioni</th>' +
                         '</tr></thead>' +
                         '<tbody>';
 
-                response.tickets.forEach(function(t) {
+                var lista = response.tickets || [];
+                var statoFiltro = $('#bsn-ticket-filtro-stato').val();
+                var listaFiltrata = lista.filter(function(t) {
+                    if (!statoFiltro) {
+                        return true;
+                    }
+                    return t.stato === statoFiltro;
+                });
+                var listaLimitata = listaFiltrata.slice(0, 12);
+
+                listaLimitata.forEach(function(t) {
                     var articoloLabel = '';
                     if (t.articolo_codice) {
                         articoloLabel += '[' + t.articolo_codice + '] ';
@@ -2471,27 +2540,41 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
                     articoloLabel += (t.articolo_nome || ('Articolo #' + t.articolo_id));
                     
                     var rowClass = t.origine === 'rientro' ? ' style="background:#fff3cd;"' : '';
+                    var searchData = [
+                        t.id,
+                        articoloLabel,
+                        t.tipo,
+                        t.stato,
+                        t.note || '',
+                        t.noleggio_id || ''
+                    ].join(' ').toLowerCase();
 
                     html += '' +
-                        '<tr data-ticket-id="' + t.id + '"' + rowClass + '>' +
+                        '<tr class="bsn-ticket-row" data-ticket-id="' + t.id + '" data-stato="' + (t.stato || '') + '" data-search="' + searchData + '"' + rowClass + '>' +
                             '<td>' + t.id + '</td>' +
                             '<td>' + articoloLabel + '</td>' +
                             '<td>' + t.qty + '</td>' +
                             '<td>' + t.tipo + '</td>' +
                             '<td>' + (t.noleggio_id || '-') + '</td>' +
                             '<td>' + t.stato + '</td>' +
-                            '<td>' + (t.note || '-') + '</td>' +
                             '<td>' +
+                                '<button type="button" class="btn bsn-ticket-details">Dettagli</button> ' +
                                 '<button type="button" class="btn bsn-ticket-edit">Modifica</button> ' +
                                 (t.stato === 'aperto'
                                     ? '<button type="button" class="btn bsn-ticket-chiudi">Chiudi</button>'
                                     : '-') +
+                            '</td>' +
+                        '</tr>' +
+                        '<tr class="bsn-ticket-row-details" data-ticket-id="' + t.id + '" style="display:none;">' +
+                            '<td colspan="7">' +
+                                '<div class="bsn-ticket-details-container"></div>' +
                             '</td>' +
                         '</tr>';
                 });
 
                 html += '</tbody></table>';
                 wrapper.html(html);
+                bsnFiltraTickets();
             },
             error: function(err) {
                 console.error(err);
@@ -2510,6 +2593,16 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
         var stato      = $('#bsn-ticket-stato').val();
         var noleggioId = $('#bsn-ticket-noleggio').val().trim();
         var note       = $('#bsn-ticket-note').val().trim();
+        var fotoFiles  = $('#bsn-ticket-foto')[0].files || [];
+        var fotoUrls   = [];
+
+        if ($('#bsn-ticket-foto-urls').val()) {
+            try {
+                fotoUrls = JSON.parse($('#bsn-ticket-foto-urls').val()) || [];
+            } catch (e) {
+                fotoUrls = [];
+            }
+        }
 
         if (!articoloId) {
             alert('Seleziona un articolo dalla ricerca.');
@@ -2522,40 +2615,67 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
         }
 
         var isUpdate = ticketId && ticketId.length > 0;
-        $.ajax({
-            url: BSN_API.root + (isUpdate ? 'tickets/update' : 'tickets'),
-            method: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', BSN_API.nonce);
-            },
-            data: {
-                ticket_id: ticketId,
-                articolo_id: articoloId,
-                qty: qty,
-                tipo: tipo,
-                note: note,
-                noleggio_id: noleggioId,
-                stato: stato
-            },
-            success: function() {
-                alert(isUpdate ? 'Ticket aggiornato correttamente.' : 'Ticket creato correttamente.');
-                $('#bsn-form-ticket')[0].reset();
-                $('#bsn-ticket-id').val('');
-                $('#bsn-ticket-stato').val('aperto');
-                $('#bsn-ticket-articolo-id').val('');
-                $('#bsn-ticket-articoli-risultati').hide().empty();
-                $('#bsn-ticket-articolo-search').prop('disabled', false);
-                bsnCaricaTickets();
-                bsnCaricaArticoli();;
-            },
-            error: function(err) {
-                console.error(err);
-                alert('Errore nel salvataggio del ticket.');
+        var uploadPromises = [];
+
+        if (fotoFiles.length) {
+            Array.prototype.forEach.call(fotoFiles, function(file) {
+                uploadPromises.push(bsnUploadTicketFoto(file));
+            });
+        }
+
+        $.when.apply($, uploadPromises).done(function() {
+            var nuoviUrl = [];
+            if (uploadPromises.length === 1) {
+                nuoviUrl = [arguments[0]];
+            } else if (uploadPromises.length > 1) {
+                nuoviUrl = Array.prototype.slice.call(arguments).map(function(result) {
+                    return result;
+                });
             }
+
+            var fotoFinali = fotoUrls.concat(nuoviUrl).filter(Boolean);
+
+            $.ajax({
+                url: BSN_API.root + (isUpdate ? 'tickets/update' : 'tickets'),
+                method: 'POST',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('X-WP-Nonce', BSN_API.nonce);
+                },
+                data: {
+                    ticket_id: ticketId,
+                    articolo_id: articoloId,
+                    qty: qty,
+                    tipo: tipo,
+                    note: note,
+                    noleggio_id: noleggioId,
+                    stato: stato,
+                    foto: JSON.stringify(fotoFinali)
+                },
+                success: function() {
+                    alert(isUpdate ? 'Ticket aggiornato correttamente.' : 'Ticket creato correttamente.');
+                    $('#bsn-form-ticket')[0].reset();
+                    $('#bsn-ticket-id').val('');
+                    $('#bsn-ticket-stato').val('aperto');
+                    $('#bsn-ticket-articolo-id').val('');
+                    $('#bsn-ticket-articoli-risultati').hide().empty();
+                    $('#bsn-ticket-articolo-search').prop('disabled', false);
+                    $('#bsn-ticket-foto-urls').val('');
+                    bsnAggiornaPreviewTicketFoto([]);
+                    bsnCaricaTickets();
+                    bsnCaricaArticoli();;
+                },
+                error: function(err) {
+                    console.error(err);
+                    alert('Errore nel salvataggio del ticket.');
+                }
+            });
+        }).fail(function(err) {
+            console.error(err);
+            alert('Errore nel caricamento delle foto.');
         });
     });
 
-        $(document).on('click', '.bsn-ticket-edit', function() {
+    $(document).on('click', '.bsn-ticket-edit', function() {
         var ticketId = $(this).closest('tr').data('ticket-id');
         var ticket = (BSN_TICKETS_CACHE || []).find(function(t) {
             return parseInt(t.id, 10) === parseInt(ticketId, 10);
@@ -2574,6 +2694,67 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
         $('#bsn-ticket-stato').val(ticket.stato);
         $('#bsn-ticket-noleggio').val(ticket.noleggio_id || '');
         $('#bsn-ticket-note').val(ticket.note || '');
+        $('#bsn-ticket-foto-urls').val(ticket.foto || '');
+
+        var fotoParsed = [];
+        if (ticket.foto) {
+            try {
+                fotoParsed = JSON.parse(ticket.foto) || [];
+            } catch (e) {
+                fotoParsed = [];
+            }
+        }
+        bsnAggiornaPreviewTicketFoto(fotoParsed);
+    });
+
+    // Dettagli ticket: mostra note complete e foto
+    $(document).on('click', '.bsn-ticket-details', function() {
+        var $row = $(this).closest('tr');
+        var ticketId = $row.data('ticket-id');
+        var ticket = (BSN_TICKETS_CACHE || []).find(function(t) {
+            return parseInt(t.id, 10) === parseInt(ticketId, 10);
+        });
+        var $detailsRow = $('.bsn-ticket-row-details[data-ticket-id="' + ticketId + '"]');
+        var $container = $detailsRow.find('.bsn-ticket-details-container');
+
+        if ($detailsRow.is(':visible')) {
+            $detailsRow.hide();
+            return;
+        }
+
+        if (!ticket) {
+            $container.html('<em>Dati ticket non trovati.</em>');
+            $detailsRow.show();
+            return;
+        }
+
+        var fotoHtml = '<em>Nessuna foto</em>';
+        if (ticket.foto) {
+            try {
+                var fotoList = JSON.parse(ticket.foto) || [];
+                if (fotoList.length) {
+                    fotoHtml = '<div style="display:flex; flex-wrap:wrap; gap:6px;">' +
+                        fotoList.map(function(url) {
+                            var safeUrl = encodeURI(url);
+                            return '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer">' +
+                                '<img src="' + safeUrl + '" alt="Foto ticket" style="width:80px; height:80px; object-fit:cover; border:1px solid #ccc; border-radius:4px;">' +
+                            '</a>';
+                        }).join('') +
+                        '</div>';
+                }
+            } catch (e) {
+                fotoHtml = '<em>Errore nel caricamento foto.</em>';
+            }
+        }
+
+        var html = '' +
+            '<div style="margin-bottom:8px;"><strong>Note complete:</strong><br>' +
+                (ticket.note ? ticket.note : '-') +
+            '</div>' +
+            '<div><strong>Foto:</strong><br>' + fotoHtml + '</div>';
+
+        $container.html(html);
+        $detailsRow.show();
     });
     
     $(document).on('click', '.bsn-ticket-chiudi', function() {
@@ -2603,7 +2784,15 @@ $(document).on('click', '#bsn-elimina-profilo-btn', function() {
                 alert('Errore nella chiusura del ticket.');
             }
         });
-    });
+        });
+
+        $(document).on('input', '#bsn-ticket-search', function() {
+            bsnFiltraTickets();
+        });
+
+        $(document).on('change', '#bsn-ticket-filtro-stato', function() {
+            bsnCaricaTickets();
+        });
 
     // Elimina noleggio
     $(document).on('click', '.bsn-noleggio-delete', function() {
