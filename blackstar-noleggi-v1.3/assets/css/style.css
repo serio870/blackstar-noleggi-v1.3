@@ -157,7 +157,8 @@
 /* Contenitori liste: permetti scroll orizzontale */
 #bsn-lista-clienti,
 #bsn-lista-articoli,
-#bsn-lista-noleggi {
+#bsn-lista-noleggi,
+#bsn-lista-ticket {
     overflow-x: auto;
 }
 
@@ -265,6 +266,11 @@ label {
 
 /* ---- Impostazioni leggere per tabella articoli ---- */
 
+#bsn-articoli-table {
+    font-size: 0.9em;
+    table-layout: fixed;
+}
+
 /* allinea a destra le colonne numeriche ma senza forzare larghezze strane */
 #bsn-articoli-table th:nth-child(4),
 #bsn-articoli-table td:nth-child(4),
@@ -276,6 +282,44 @@ label {
 #bsn-articoli-table th:nth-child(6),
 #bsn-articoli-table td:nth-child(6) {
     text-align: center;
+}
+
+#bsn-articoli-table th:nth-child(4),
+#bsn-articoli-table td:nth-child(4),
+#bsn-articoli-table th:nth-child(5),
+#bsn-articoli-table td:nth-child(5),
+#bsn-articoli-table th:nth-child(6),
+#bsn-articoli-table td:nth-child(6) {
+    width: 90px;
+}
+
+#bsn-articoli-table th:last-child,
+#bsn-articoli-table td:last-child,
+#bsn-noleggi-table th:last-child,
+#bsn-noleggi-table td:last-child {
+    width: 190px;
+}
+
+.bsn-azioni-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.bsn-azioni-grid > .btn,
+.bsn-azioni-grid > .button {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 4px 6px;
+    font-size: 12px;
+}
+
+.bsn-azioni-grid > .button.button-primary,
+.bsn-azioni-grid > .button.button-secondary {
+    line-height: 1.2;
 }
 
 /* Contenitore fisso per il QR nel modal */
