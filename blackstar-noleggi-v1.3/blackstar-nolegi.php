@@ -111,6 +111,7 @@ function bsn_install_tables() {
         qty int NOT NULL DEFAULT 1,
         tipo enum('mancante','non_rientrato','quantita_inferiore','danneggiato','problematico_utilizzabile') NOT NULL,
         note text,
+        foto longtext,
         stato enum('aperto','chiuso') DEFAULT 'aperto',
         operatore varchar(50),
         origine varchar(20) DEFAULT 'manuale',
@@ -199,6 +200,12 @@ function bsn_ensure_ticket_table() {
         if ( ! $col_origine ) {
             $wpdb->query( "ALTER TABLE $table_ticket ADD origine varchar(20) DEFAULT 'manuale'" );
         }
+        $col_foto = $wpdb->get_var(
+            $wpdb->prepare( "SHOW COLUMNS FROM $table_ticket LIKE %s", 'foto' )
+        );
+        if ( ! $col_foto ) {
+            $wpdb->query( "ALTER TABLE $table_ticket ADD foto longtext" );
+        }
         return;
     }
 
@@ -210,6 +217,7 @@ function bsn_ensure_ticket_table() {
         qty int NOT NULL DEFAULT 1,
         tipo enum('mancante','non_rientrato','quantita_inferiore','danneggiato','problematico_utilizzabile') NOT NULL,
         note text,
+        foto longtext,
         stato enum('aperto','chiuso') DEFAULT 'aperto',
         operatore varchar(50),
         origine varchar(20) DEFAULT 'manuale',
@@ -2104,7 +2112,7 @@ function bsn_shortcode() {
                             </select>
                         </div>
                         <div style="flex:1 1 200px;">
-                            <label>Riferimento noleggio (opzionale)</label>
+                            <label>Riferimento noleggio</label>
                             <input type="text" id="bsn-ticket-noleggio" placeholder="Es. 2026/001" style="width:100%;">
                         </div>
                     </div>
@@ -2112,8 +2120,26 @@ function bsn_shortcode() {
                         <label>Note operative</label>
                         <textarea id="bsn-ticket-note" rows="3" style="width:100%;"></textarea>
                     </div>
+                    <div style="margin-top:10px;">
+                        <label>Foto (opzionale)</label>
+                        <input type="file" id="bsn-ticket-foto" accept="image/*" capture="environment" multiple style="width:100%;">
+                        <input type="hidden" id="bsn-ticket-foto-urls" value="">
+                        <div id="bsn-ticket-foto-preview" style="margin-top:6px;"></div>
+                    </div>
                     <button type="submit" class="btn btn-primary" style="margin-top:10px;">Apri ticket</button>
                 </form>
+
+                <div id="bsn-ticket-filtri" style="margin-bottom:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                    <input type="text" id="bsn-ticket-search" placeholder="Cerca nei ticket..." style="width:100%; max-width:300px; padding:5px;">
+                    <label style="display:flex; align-items:center; gap:6px; margin:0;">
+                        Stato:
+                        <select id="bsn-ticket-filtro-stato">
+                            <option value="">Tutti</option>
+                            <option value="aperto" selected>Aperti</option>
+                            <option value="chiuso">Chiusi</option>
+                        </select>
+                    </label>
+                </div>
 
                 <div id="bsn-lista-ticket">
                     <p>Nessun ticket caricato.</p>
@@ -4231,6 +4257,7 @@ add_action( 'rest_api_init', function () {
             'qty'         => [ 'required' => true,  'type' => 'integer' ],
             'tipo'        => [ 'required' => true,  'type' => 'string'  ],
             'note'        => [ 'required' => false, 'type' => 'string'  ],
+            'foto'        => [ 'required' => false, 'type' => 'string'  ],
         ],
     ] );
 
@@ -4254,6 +4281,7 @@ add_action( 'rest_api_init', function () {
             'tipo'       => [ 'required' => true,  'type' => 'string'  ],
             'note'       => [ 'required' => false, 'type' => 'string'  ],
             'stato'      => [ 'required' => false, 'type' => 'string'  ],
+            'foto'       => [ 'required' => false, 'type' => 'string'  ],
         ],
     ] );
 } );
@@ -4542,6 +4570,33 @@ function bsn_ticket_aggiorna_disponibilita( $articolo_id, $qty_delta ) {
     );
 }
 
+/**
+ * Normalizza le foto ticket in JSON (array di URL).
+ */
+function bsn_ticket_normalizza_foto( $foto_param ) {
+    if ( empty( $foto_param ) ) {
+        return '';
+    }
+
+    if ( is_array( $foto_param ) ) {
+        $urls = array_filter( array_map( 'esc_url_raw', $foto_param ) );
+        return $urls ? wp_json_encode( array_values( $urls ) ) : '';
+    }
+
+    if ( is_string( $foto_param ) ) {
+        $decoded = json_decode( $foto_param, true );
+        if ( is_array( $decoded ) ) {
+            $urls = array_filter( array_map( 'esc_url_raw', $decoded ) );
+            return $urls ? wp_json_encode( array_values( $urls ) ) : '';
+        }
+
+        $single = esc_url_raw( $foto_param );
+        return $single ? wp_json_encode( [ $single ] ) : '';
+    }
+
+    return '';
+}
+
 function bsn_crea_ticket( $data ) {
     global $wpdb;
     $table_ticket = $wpdb->prefix . 'bs_ticket';
@@ -4554,13 +4609,18 @@ function bsn_crea_ticket( $data ) {
         'qty'         => max( 1, intval( $data['qty'] ) ),
         'tipo'        => $data['tipo'],
         'note'        => ! empty( $data['note'] ) ? $data['note'] : '',
+        'foto'        => ! empty( $data['foto'] ) ? $data['foto'] : '',
         'operatore'   => ! empty( $data['operatore'] ) ? $data['operatore'] : '',
         'origine'     => ! empty( $data['origine'] ) ? $data['origine'] : 'manuale',
         'stato'       => 'aperto',
         'creato_il'   => current_time( 'mysql' ),
     ];
 
-    $result = $wpdb->insert( $table_ticket, $insert, [ '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s' ] );
+    $result = $wpdb->insert(
+        $table_ticket,
+        $insert,
+        [ '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ]
+    );
 
     if ( ! $result ) {
         return false;
@@ -4599,6 +4659,8 @@ function bsn_api_tickets_post( WP_REST_Request $request ) {
     $tipo        = sanitize_text_field( $request->get_param( 'tipo' ) );
     $note        = sanitize_text_field( $request->get_param( 'note' ) );
     $stato       = sanitize_text_field( $request->get_param( 'stato' ) );
+    $foto_raw    = $request->get_param( 'foto' );
+    $foto_json   = bsn_ticket_normalizza_foto( $foto_raw );
 
     if ( $articolo_id <= 0 ) {
         return new WP_Error( 'bsn_ticket_articolo', 'Articolo non valido.', [ 'status' => 400 ] );
@@ -4620,6 +4682,7 @@ function bsn_api_tickets_post( WP_REST_Request $request ) {
         'qty'         => $qty,
         'tipo'        => $tipo,
         'note'        => $note,
+        'foto'        => $foto_json,
         'operatore'   => $current_user ? $current_user->user_login : '',
         'origine'     => 'manuale',
     ] );
@@ -4648,6 +4711,8 @@ function bsn_api_tickets_update( WP_REST_Request $request ) {
     $tipo        = sanitize_text_field( $request->get_param( 'tipo' ) );
     $note        = sanitize_text_field( $request->get_param( 'note' ) );
     $stato       = sanitize_text_field( $request->get_param( 'stato' ) );
+    $foto_raw    = $request->get_param( 'foto' );
+    $foto_json   = bsn_ticket_normalizza_foto( $foto_raw );
 
     if ( $ticket_id <= 0 ) {
         return new WP_Error( 'bsn_ticket_id', 'ID ticket non valido.', [ 'status' => 400 ] );
@@ -4694,9 +4759,10 @@ function bsn_api_tickets_update( WP_REST_Request $request ) {
             'tipo'        => $tipo,
             'note'        => $note,
             'stato'       => $stato,
+            'foto'        => $foto_json,
         ],
         [ 'id' => $ticket_id ],
-        [ '%d', '%d', '%s', '%s', '%s' ],
+        [ '%d', '%d', '%s', '%s', '%s', '%s' ],
         [ '%d' ]
     );
 
