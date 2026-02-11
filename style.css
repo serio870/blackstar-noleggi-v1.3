@@ -1,0 +1,939 @@
+/* Contenitore principale app */
+#bsn-app {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 98%; /* Cambiato da 1200px a 98% per usare quasi tutto lo schermo */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Tabs */
+#bsn-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dee2e6;
+}
+.bsn-app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.bsn-user-badge {
+    padding: 4px 10px;
+    border: 1px solid #cfd4da;
+    border-radius: 999px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+}
+.tab-btn {
+    background: #e9ecef;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+.tab-btn.active,
+.tab-btn:hover {
+    background: #007cba;
+    color: white;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Stati noleggio (celle colorate) */
+.bozza {
+    color: #6c757d !important;
+    background: #dee2e6 !important;
+}
+.preventivo {
+    color: #6b21a8 !important;
+    background: #f3e8ff !important;
+}
+.attivo {
+    color: #198754;
+    background: #d1e7dd !important;
+}
+.ritardo {
+    color: #dc3545;
+    background: #f8d7da !important;
+}
+
+/* Stati noleggi: intera riga */
+.bsn-noleggio-row.bsn-stato-bozza {
+    background-color: #f4f4f4;
+    color: #555;
+}
+.bsn-noleggio-row.bsn-stato-preventivo {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+.bsn-noleggio-row.bsn-stato-attivo {
+    background-color: #e6ffed;
+    color: #155724;
+}
+.bsn-noleggio-row.bsn-stato-chiuso {
+    background-color: #cce5ff;
+    color: #003366;
+}
+.bsn-noleggio-row.bsn-stato-ritardo {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+/* === PROFILI SCONTI === */
+#bsn-profili-sconti-box {
+  background: #f9f9f9;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#bsn-profili-sconti-dropdown {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#bsn-profili-sconti-messaggio {
+  font-style: italic;
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  #bsn-profili-sconti-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #bsn-profili-sconti-dropdown,
+  #bsn-salva-profilo-btn,
+  #bsn-elimina-profilo-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Pulsanti base */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-primary {
+    background: #007cba;
+    color: white;
+}
+.btn-warning {
+    background: #f59e0b;
+    color: #fff;
+}
+.btn-success {
+    background: #198754;
+    color: white;
+}
+.correlati {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.bsn-ticket-badge {
+    background: #ffeb3b;
+    color: #333;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+/* Contenitori liste: permetti scroll orizzontale */
+#bsn-lista-clienti,
+#bsn-lista-articoli,
+#bsn-lista-noleggi,
+#bsn-lista-ticket,
+#bsn-lista-etichette {
+    overflow-x: auto;
+}
+
+/* Tabelle base */
+.bsn-tabella {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#bsn-tabella-rientro-articoli {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    display: table;
+}
+
+#bsn-tabella-rientro-articoli thead {
+    display: table-header-group;
+}
+
+#bsn-tabella-rientro-articoli tbody {
+    display: table-row-group;
+}
+
+#bsn-tabella-rientro-articoli tr {
+    display: table-row;
+}
+
+#bsn-tabella-rientro-articoli th,
+#bsn-tabella-rientro-articoli td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    vertical-align: top;
+    background: #fff;
+    display: table-cell;
+}
+
+#bsn-tabella-rientro-articoli th {
+    background: #f1f1f1;
+}
+
+#bsn-tabella-rientro-articoli select,
+#bsn-tabella-rientro-articoli input {
+    float: none;
+    position: static;
+    display: inline-block;
+    max-width: 100%;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+#bsn-tabella-rientro-articoli .bsn-stato-rientro {
+    appearance: auto;
+}
+
+#bsn-tabella-rientro-articoli td {
+    white-space: normal;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .bsn-tabella {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .bsn-tabella th,
+    .bsn-tabella td {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+
+    #bsn-app .btn {
+        padding: 8px 10px;
+        font-size: 14px;
+        margin: 2px 0;
+    }
+
+    #bsn-modal-qr > div {
+        margin-top: 120px;
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Box interno del modal QR (centrato un po' più in basso) */
+#bsn-modal-qr > div {
+    margin-top: 80px; /* sotto l'header */
+}
+
+/* Label in grassetto */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ---- Impostazioni leggere per tabella articoli ---- */
+
+#bsn-articoli-table {
+    font-size: 0.9em;
+    table-layout: fixed;
+}
+
+/* allinea a destra le colonne numeriche ma senza forzare larghezze strane */
+#bsn-articoli-table th:nth-child(4),
+#bsn-articoli-table td:nth-child(4),
+#bsn-articoli-table th:nth-child(5),
+#bsn-articoli-table td:nth-child(5) {
+    text-align: right;
+}
+
+#bsn-articoli-table th:nth-child(6),
+#bsn-articoli-table td:nth-child(6) {
+    text-align: center;
+}
+
+#bsn-articoli-table th:nth-child(4),
+#bsn-articoli-table td:nth-child(4),
+#bsn-articoli-table th:nth-child(5),
+#bsn-articoli-table td:nth-child(5),
+#bsn-articoli-table th:nth-child(6),
+#bsn-articoli-table td:nth-child(6) {
+    width: 90px;
+}
+
+#bsn-articoli-table th:last-child,
+#bsn-articoli-table td:last-child {
+    width: 200px;
+}
+
+#bsn-noleggi-table th:last-child,
+#bsn-noleggi-table td:last-child {
+    width: 210px;
+}
+
+#bsn-ticket-table th:last-child,
+#bsn-ticket-table td:last-child {
+    width: 200px;
+}
+
+/* Contenitore fisso per il QR nel modal */
+#bsn-qr-box {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Canvas/IMG dentro il box */
+#bsn-qr-box canvas,
+#bsn-qr-box img {
+    max-width: 160px;
+    max-height: 160px;
+}
+@media print {
+
+    /* RESET BASE */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* NASCONDI PULSANTI / BARRE */
+    .bsn-finalizza-header,
+    .bsn-finalizza-footer,
+    .bsn-ispeziona-header,
+    .bsn-ispeziona-footer,
+    #bsn-salva-finalizza,
+    #bsn-stampa-documento,
+    #bsn-salva-finalizza-2,
+    #bsn-stampa-documento-2 {
+        display: none !important;
+    }
+
+    /* NASCONDI ELEMENTI TEMA NON UTILI A STAMPA */
+    header,
+    nav,
+    footer,
+    .site-header,
+    .site-footer,
+    .sidebar,
+    .menu,
+    .widget-area,
+    .no-print {
+        display: none !important;
+    }
+
+    /* WRAPPER */
+    .site,
+    .site-content,
+    .content-area,
+    .entry-content,
+    .container,
+    .wrap {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        width: 100% !important;
+    }
+
+    /* 1) ISPEZIONE: come ora (flusso normale, funziona già) */
+    #bsn-documento-ispezione {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 99% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0.5cm !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+    }
+
+    /* 2) FINALIZZA: staccata dal resto con position: absolute; parte SEMPRE in alto a pagina 1 */
+    #bsn-documento-finalizzazione {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        width: 99% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0.5cm !important;
+
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* === Calendario Noleggi === */
+.bsn-calendar-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 15px;
+}
+
+.bsn-calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#bsn-calendar-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 180px;
+    text-align: center;
+}
+
+.bsn-calendar-views {
+    display: flex;
+    gap: 8px;
+}
+
+.bsn-calendar-views .btn.active {
+    background: #007cba;
+    color: #fff;
+}
+
+.bsn-calendar-filters {
+    margin-bottom: 10px;
+}
+
+.bsn-calendar-filters input {
+    width: 100%;
+    max-width: 360px;
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.bsn-calendar {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.bsn-calendar-weekdays,
+.bsn-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.bsn-calendar-weekdays {
+    display: none;
+}
+
+.bsn-calendar-weekdays div {
+    padding: 6px 0;
+}
+
+.bsn-calendar-grid {
+    gap: 6px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.bsn-calendar-day-cell {
+    border: 1px solid #504747;
+    min-height: 100px;
+    width: 24px;
+    padding: 4px;
+    background: #fafafa;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bsn-calendar-day-cell.outside {
+    background: #f5f5f5;
+    color: #aaa;
+}
+
+.bsn-calendar-day-number {
+    font-size: 0.75rem;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: #4a4a4a;
+}
+
+.bsn-calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.bsn-calendar-week-row {
+    position: relative;
+    overflow: hidden;
+}
+
+.bsn-calendar-week-events {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 6px;
+    grid-auto-rows: minmax(31px, auto);
+    align-items: start;
+}
+
+.bsn-calendar-event {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #222;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border: 1px solid transparent;
+    line-height: 1.4;
+    height: 26px;
+}
+
+.bsn-calendar-event:hover {
+    opacity: 0.9;
+}
+
+.bsn-calendar-event--bozza {
+    background: #dee2e6;
+    color: #6c757d;
+}
+
+.bsn-calendar-event--preventivo {
+    background: #f3e8ff;
+    color: #6b21a8;
+}
+
+.bsn-calendar-event--attivo {
+    background: #d1e7dd;
+    color: #189b36;
+}
+
+.bsn-calendar-event--ritardo {
+    background: #f8d7da;
+    color: #ac1322;
+}
+
+.bsn-calendar-event--chiuso {
+    background: #cce5ff;
+    color: #13599e;
+}
+
+.bsn-calendar-day {
+    padding: 10px;
+}
+
+.bsn-calendar-day h3 {
+    margin-top: 0;
+}
+
+.bsn-calendar-day-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bsn-calendar-day-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    background: #f9f9f9;
+}
+
+.bsn-calendar-day-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+/* === AZIONI TABELLE: uniformazione pulsanti (Clienti/Articoli/Noleggi/Ticket) === */
+#bsn-app .bsn-azioni-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+}
+
+#bsn-app .bsn-azioni-grid > .btn,
+#bsn-app .bsn-azioni-grid > .button {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 5px;
+    font-weight: normal;
+    padding: 4px 4px;
+    font-size: 12px;
+    line-height: 1.2;
+    background: #e0e0e0;
+    border: 1px solid #000;
+    color: #000;
+    box-shadow: none;
+}
+
+#bsn-app #clienti .bsn-azioni-grid {
+    row-gap: 8px;
+    column-gap: 6px;
+}
+
+#bsn-app #bsn-articoli-table .bsn-azioni-grid > .btn,
+#bsn-app #bsn-articoli-table .bsn-azioni-grid > .button {
+    min-width: 70px;
+}
+
+#bsn-app #bsn-noleggi-table .bsn-azioni-grid > .btn,
+#bsn-app #bsn-noleggi-table .bsn-azioni-grid > .button {
+    min-width: 80px;
+}
+
+#bsn-app #bsn-ticket-table .bsn-azioni-grid > .btn,
+#bsn-app #bsn-ticket-table .bsn-azioni-grid > .button {
+    min-width: 70px;
+}
+
+/* underline animato (default OFF, hover ON) SOLO nella griglia azioni */
+#bsn-app .bsn-azioni-grid > .btn,
+#bsn-app .bsn-azioni-grid > .button,
+#bsn-app .bsn-azioni-grid a,
+#bsn-app .bsn-azioni-grid button {
+    text-decoration: none !important;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 180ms ease;
+}
+
+#bsn-app .bsn-azioni-grid > .btn:hover,
+#bsn-app .bsn-azioni-grid > .button:hover,
+#bsn-app .bsn-azioni-grid a:hover,
+#bsn-app .bsn-azioni-grid button:hover,
+#bsn-app .bsn-azioni-grid > .btn:focus-visible,
+#bsn-app .bsn-azioni-grid > .button:focus-visible,
+#bsn-app .bsn-azioni-grid a:focus-visible,
+#bsn-app .bsn-azioni-grid button:focus-visible {
+    background-size: 100% 2px;
+}
+
+#bsn-app .bsn-azioni-grid a,
+#bsn-app .bsn-azioni-grid button {
+    cursor: pointer !important;
+}
+
+@media (max-width: 900px) {
+    .bsn-calendar-day-cell {
+        min-height: 80px;
+    }
+    .bsn-calendar-event {
+        font-size: 0.7rem;
+    }
+}
+
+/* Anteprima noleggio: colonna stato */
+.bsn-preview-table {
+    font-size: 90%;
+}
+
+.bsn-preview-stato-col,
+.bsn-preview-stato-cell {
+    width: 4%;
+    min-width: 38px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.bsn-alert-icon {
+    display: inline-block;
+    margin: 0 1px;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.bsn-alert-availability {
+    color: #f0ad4e;
+    font-weight: 700;
+}
+
+.bsn-alert-ticket {
+    color: #5bc0de;
+}
+
+/* === FIX: pulsanti Clienti troppo piccoli === */
+#bsn-app #clienti .bsn-azioni-grid > .btn,
+#bsn-app #clienti .bsn-azioni-grid > .button,
+#bsn-app #clienti .bsn-azioni-grid > a {
+    min-width: 65px;          /* come vuoi tu (70–80) */
+    padding: 3px 3px;         /* più “respiro” sullo sfondo */
+    font-size: 12px;          /* coerente con gli altri */
+}
+
+/* === Riduci font SOLO tabella Clienti (CF / P.IVA / email lunghi) === */
+#bsn-app #bsn-clienti-table,
+#bsn-app #bsn-clienti-table th,
+#bsn-app #bsn-clienti-table td {
+    font-size: 0.95em; /* -10% */
+}
+
+/* === Clienti: colonna ID più stretta === */
+#bsn-app #bsn-clienti-table th:first-child,
+#bsn-app #bsn-clienti-table td:first-child {
+    width: 48px;          /* sufficiente per 1–999 */
+    max-width: 48px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* === Clienti: tabella stabile e colonne fisse === */
+#bsn-app #bsn-clienti-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#bsn-app #bsn-clienti-table th,
+#bsn-app #bsn-clienti-table td {
+    padding: 5px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#bsn-app #bsn-clienti-table th:nth-child(2),
+#bsn-app #bsn-clienti-table td:nth-child(2) {
+    width: 170px;
+}
+
+#bsn-app #bsn-clienti-table th:nth-child(3),
+#bsn-app #bsn-clienti-table td:nth-child(3) {
+    width: 175px;
+}
+
+#bsn-app #bsn-clienti-table th:nth-child(4),
+#bsn-app #bsn-clienti-table td:nth-child(4) {
+    width: 120px;
+}
+
+#bsn-app #bsn-clienti-table th:nth-child(5),
+#bsn-app #bsn-clienti-table td:nth-child(5) {
+    width: 200px;
+}
+
+#bsn-app #bsn-clienti-table th:nth-child(6),
+#bsn-app #bsn-clienti-table td:nth-child(6) {
+    width: 105px;
+}
+
+#bsn-app #bsn-clienti-table th:last-child,
+#bsn-app #bsn-clienti-table td:last-child {
+    min-width: 155px;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+
+/* === Clienti: Articoli ID più stretta === */
+#bsn-app #bsn-articoli-table th:first-child,
+#bsn-app #bsn-articoli-table td:first-child {
+    width: 48px;          /* sufficiente per 1–999 */
+    max-width: 48px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* === noleggi: colonna ID più stretta === */
+#bsn-app #bsn-noleggi-table th:first-child,
+#bsn-app #bsn-noleggi-table td:first-child {
+    width: 70px;          /* sufficiente per 1–999 */
+    max-width: 70px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* === Kit: tabella stabile e colonne fisse === */
+#bsn-app #bsn-kits-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#bsn-app #bsn-kits-table th,
+#bsn-app #bsn-kits-table td {
+    padding: 5px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#bsn-app #bsn-kits-table th:nth-child(1),
+#bsn-app #bsn-kits-table td:nth-child(1) {
+    width: 50px;
+}
+
+#bsn-app #bsn-kits-table th:nth-child(2),
+#bsn-app #bsn-kits-table td:nth-child(2) {
+    width: 125px;
+}
+
+#bsn-app #bsn-kits-table th:nth-child(3),
+#bsn-app #bsn-kits-table td:nth-child(3) {
+    width: 165px;
+}
+
+#bsn-app #bsn-kits-table th:nth-child(4),
+#bsn-app #bsn-kits-table td:nth-child(4) {
+    width: 470px;
+}
+
+#bsn-app #bsn-kits-table th:last-child,
+#bsn-app #bsn-kits-table td:last-child {
+    min-width: 155px;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+#bsn-app .bsn-kit-row-details td {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+
+/* === Dettagli righe: allineamento a sinistra === */
+.bsn-cliente-row-details td,
+.bsn-articolo-row-details td,
+.bsn-noleggio-row-details td {
+    text-align: left;
+}
+
+.bsn-cliente-details-container,
+.bsn-articolo-details-container,
+.bsn-noleggio-details-container {
+    text-align: left;
+}
+
+/* === KIT === */
+#bsn-kit-section .bsn-kit-componente-row select,
+#bsn-kit-section .bsn-kit-componente-row input {
+    font-size: 13px;
+    padding: 6px;
+}
+
+#bsn-preview-kit-componenti table th,
+#bsn-preview-kit-componenti table td {
+    border: 1px solid #ddd;
+}
+.bsn-list-toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bsn-list-toolbar label {
+    font-weight: 600;
+}
+
+.bsn-list-toolbar select {
+    min-width: 72px;
+}
+
+
+#bsn-etichette-table th,
+#bsn-etichette-table td {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#bsn-etichette-table td:nth-child(4),
+#bsn-etichette-table td:nth-child(5) {
+    white-space: normal;
+    min-width: 180px;
+}
+
+.bsn-etichette-copies {
+    width: 60px;
+    text-align: center;
+}
+
+.bsn-etichette-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
